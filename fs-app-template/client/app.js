@@ -1,5 +1,5 @@
 import React from 'react'
-
+//console.log('Hello')
 import {Navbar} from './components'
 import Routes from './routes'
 
