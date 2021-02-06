@@ -20,10 +20,10 @@ const syncAndSeed =  async()=> {
     User.create({email: 'murphy@email.com', password: '123'}),
   ])
   const products = await Promise.all([
-    Product.create({name: 'Beer Curler', price: 10 }),
-    Product.create({name: 'Money Toilet Paper', price: 15.20 }),
-    Product.create({name: 'Diet Water', price: 20.34 }),
-    Product.create({name: 'Buff Squidward', price: 30 })
+    Product.create({name: 'Beer Curler', price: 10, thumbnailImgUrl : "/assets/thumbnails/Beer_Curler_Thumbnail" }),
+    Product.create({name: 'Money Toilet Paper', price: 15.20, thumbnailImgUrl : "/assets/thumbnails/Money_Toilet_Paper_Thumbnail" }),
+    Product.create({name: 'Diet Water', price: 20.34, thumbnailImgUrl : "/assets/thumbnails/Diet_Water_Thumbnail" }),
+    Product.create({name: 'Buff Squidward', price: 30, thumbnailImgUrl : "/assets/thumbnails/Buff_Squidward_Thumbnail" })
   ])
   const [cody, murphy] = users;
 
