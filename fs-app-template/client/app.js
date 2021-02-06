@@ -1,6 +1,6 @@
 import React from 'react'
 //console.log('Hello')
-import {Navbar} from './components'
+import {Navbar,HomePageItems} from './components'
 import Routes from './routes'
 
 const App = () => {

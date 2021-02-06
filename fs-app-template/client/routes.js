@@ -14,7 +14,7 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn} = this.props
-
+    //isLoggedIn = true
     return (
       <div>
         {isLoggedIn ? (
@@ -24,6 +24,7 @@ class Routes extends Component {
           </Switch>
         ) : (
           <Switch>
+            <Route path="/home" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Redirect to="/login" />
