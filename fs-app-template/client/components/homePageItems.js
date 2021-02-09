@@ -38,6 +38,7 @@ const styles = (theme) => ({
 })
 
 class HomePageItems extends React.Component {
+
     async componentDidMount() {
         this.props.getProducts()
     }
@@ -84,6 +85,7 @@ class HomePageItems extends React.Component {
             </div>
         )
     }
+
 }
 
 /**
