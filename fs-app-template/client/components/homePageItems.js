@@ -7,6 +7,7 @@ import { withStyles, withTheme } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import { Card, Button, Box } from '@material-ui/core'
 import { withRouter } from 'react-router'
+import { addProduct } from '../store/cart'
 
 const styles = (theme) => ({
     homePageItemsContainer: {
@@ -25,7 +26,7 @@ const styles = (theme) => ({
         flexDirection: 'column',
         alignItems: 'center',
         textAlign: 'center',
-        wrap: 'wrap ',
+        flexWrap: 'wrap',
         fontFamily: 'Bitter',
         minWidth: 250,
         color: 'black',
@@ -38,16 +39,19 @@ const styles = (theme) => ({
 })
 
 class HomePageItems extends React.Component {
-
     async componentDidMount() {
         this.props.getProducts()
     }
 
     render() {
         const products = this.props.homepageitems
-
+        const { addProduct } = this.props
         const { classes, theme } = this.props
-        console.log(theme)
+
+        const userId = this.props.auth.id // replace this with Auth.ID
+        console.log(userId)
+        const quantity = 1 // can change based off of dropdown from cart menu?
+        console.log(this.props)
 
         return (
             <div className={classes.homePageItemsContainer}>
@@ -73,7 +77,13 @@ class HomePageItems extends React.Component {
 
                                 <h2> {product.name}</h2>
                                 <p>${product.price}</p>
-                                <Button variant="outlined" color="primary">
+                                <Button
+                                    variant="outlined"
+                                    color="primary"
+                                    onClick={() =>
+                                        addProduct(product.id, userId, quantity)
+                                    }
+                                >
                                     Add to Cart
                                 </Button>
                             </Card>
@@ -85,7 +95,6 @@ class HomePageItems extends React.Component {
             </div>
         )
     }
-
 }
 
 /**
@@ -96,6 +105,8 @@ const mapState = (state) => state
 const mapDispatch = (dispatch) => {
     return {
         getProducts: () => dispatch(fetchProducts()),
+        addProduct: (productId, userId, quantity) =>
+            dispatch(addProduct(productId, userId, quantity)),
     }
 }
 
