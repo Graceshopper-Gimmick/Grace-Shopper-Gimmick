@@ -17,8 +17,8 @@ class HomePageItems extends React.Component {
                 return (
                     <div key = {product.id}>
                         <img src={product.thumbnailImgUrl}></img>
-                        <p>{product.name}</p>
-                        <p>{product.price}</p>
+                        <p>{`Name : ${product.name}`}</p>
+                        <p>{`Price : $ ${product.price}`}</p>
                     </div>
                 );
               })
