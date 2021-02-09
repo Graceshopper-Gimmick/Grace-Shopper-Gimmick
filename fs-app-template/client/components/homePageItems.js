@@ -1,44 +1,104 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { logout, fetchProducts } from "../store";
+import * as React from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import { logout, fetchProducts } from '../store'
+import { withStyles, withTheme } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import { Card, Button, Box } from '@material-ui/core'
+import { withRouter } from 'react-router'
+
+const styles = (theme) => ({
+    homePageItemsContainer: {
+        background: '#ffd149', //amber light
+        display: 'flex',
+        justifyContent: 'space-evenly',
+    },
+
+    myCustomClass: {
+        maxWidth: 275,
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        border: 1,
+        margin: '30px',
+        padding: '1rem',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+        wrap: 'wrap ',
+        fontFamily: 'Bitter',
+        minWidth: 250,
+        color: 'black',
+    },
+
+    imgThumbnail: {
+        maxWidth: 160,
+        maxHeight: 160,
+    },
+})
 
 class HomePageItems extends React.Component {
-  async componentDidMount() {
-    this.props.getProducts();
-  }
 
-  render() {
-    const products = this.props.homepageitems;
-    return (
-      <div>
-        {products.length ?
-              products.map((product) => {
-                return (
-                    <div key = {product.id}>
-                        <img src={product.thumbnailImgUrl}></img>
-                        <p>{`Name : ${product.name}`}</p>
-                        <p>{`Price : $ ${product.price}`}</p>
-                    </div>
-                );
-              })
-         : (
-          <h1>No Items</h1>
-        )}
-      </div>
-    );
-  }
+    async componentDidMount() {
+        this.props.getProducts()
+    }
+
+    render() {
+        const products = this.props.homepageitems
+
+        const { classes, theme } = this.props
+        console.log(theme)
+
+        return (
+            <div className={classes.homePageItemsContainer}>
+                {products.length ? (
+                    products.map((product) => {
+                        return (
+                            <Card
+                                className={classes.myCustomClass}
+                                padding={theme.spacing(4)}
+                                key={product.id}
+                                variant="outlined"
+                            >
+                                <Box
+                                    className={classes.imgThumbnail}
+                                    border={1}
+                                    borderColor="black"
+                                >
+                                    <img
+                                        className={classes.imgThumbnail}
+                                        src={product.thumbnailImgUrl}
+                                    ></img>
+                                </Box>
+
+                                <h2> {product.name}</h2>
+                                <p>${product.price}</p>
+                                <Button variant="outlined" color="primary">
+                                    Add to Cart
+                                </Button>
+                            </Card>
+                        )
+                    })
+                ) : (
+                    <h1>No Items</h1>
+                )}
+            </div>
+        )
+    }
+
 }
 
 /**
  * CONTAINER
  */
-const mapState = (state) => state;
+const mapState = (state) => state
 
 const mapDispatch = (dispatch) => {
-  return {
-    getProducts: () => dispatch(fetchProducts()),
-  };
-};
+    return {
+        getProducts: () => dispatch(fetchProducts()),
+    }
+}
 
-export default connect(mapState, mapDispatch)(HomePageItems);
+export default withStyles(styles, { withTheme: true })(
+    connect(mapState, mapDispatch)(HomePageItems)
+)
