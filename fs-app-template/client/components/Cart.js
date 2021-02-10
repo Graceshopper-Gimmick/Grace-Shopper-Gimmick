@@ -1,15 +1,57 @@
 import React from "react";
 import { connect } from "react-redux";
+import { getCartItems } from "../store/cart";
+import { fetchProducts } from '../store/homePageItems'
+import { me } from "../store";
+import axios from 'axios'
+
 
 /**
  * COMPONENT
  */
-export default class Cart extends React.Component {
+class Cart extends React.Component {
+    async componentDidMount() {
+    await this.props.getCartItems(this.props.auth.id)
+  }
+
+// TODO : MAKE SURE CART COMPONENT RENDERS ON REFRESH
+
   render() {
+    const allProducts = this.props.homepageitems
+    //console.log("Render",this.props);
+    //console.log(this.props.cart.length?this.props.cart[0].orders:'false')
+    const cartItemIds = this.props.cart.length?this.props.cart[0].orders.map(product=>product.productId):[]
+    const cartProducts = allProducts.filter(product=>cartItemIds.includes(product.id))
+    console.log(cartProducts)
+    //this.props.cart[0].length?console.log("Render",this.props.cart[0][orders]):null;
     return (
       <div>
-        <h1>Welcome, to the cart</h1>
+        <h1>Welcome, to the cart {this.props.auth.email}</h1>
+        {cartProducts.length ? (
+                    cartProducts.map((product) => {
+                        return (
+                            <div>
+                                <h2> {product.name}</h2>
+                                <p>${product.price}</p>
+                            </div>
+                        )
+                    })
+                ) : (
+                    <h1>No Items</h1>
+                )}
       </div>
     );
   }
 }
+
+const mapState = (state) => state;
+
+const mapDispatch = (dispatch) => {
+  return {
+    getCartItems: (userId) => dispatch(getCartItems(userId)),
+    getProducts: () => dispatch(fetchProducts())
+  };
+};
+
+export default connect(mapState, mapDispatch)(Cart)
+

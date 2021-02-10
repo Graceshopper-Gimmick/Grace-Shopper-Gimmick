@@ -9,12 +9,15 @@ import {me} from './store'
  */
 class Routes extends Component {
   componentDidMount() {
+    //console.log('Routes Component Did Mount')
     this.props.loadInitialData()
   }
 
   render() {
     const {isLoggedIn} = this.props
+    console.log(isLoggedIn)
     //isLoggedIn = true
+    //console.log(this.props)
     return (
       <div>
         {isLoggedIn ? (
