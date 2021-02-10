@@ -13,6 +13,7 @@ const styles = (theme) => ({
     homePageItemsContainer: {
         background: '#ffd149', //amber light
         display: 'flex',
+        flexWrap: 'wrap',
         justifyContent: 'space-evenly',
     },
 
@@ -40,7 +41,7 @@ const styles = (theme) => ({
 
 class HomePageItems extends React.Component {
     async componentDidMount() {
-        this.props.getProducts()
+        await this.props.getProducts()
     }
 
     render() {
@@ -49,9 +50,9 @@ class HomePageItems extends React.Component {
         const { classes, theme } = this.props
 
         const userId = this.props.auth.id // replace this with Auth.ID
-        console.log(userId)
+        //console.log(userId)
         const quantity = 1 // can change based off of dropdown from cart menu?
-        console.log(this.props)
+        //console.log(this.props)
 
         return (
             <div className={classes.homePageItemsContainer}>
