@@ -1,9 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getCartItems } from '../store/cart'
-import { fetchProducts } from '../store/homePageItems'
-import { me } from '../store'
-import axios from 'axios'
+
 
 /**
  * COMPONENT
@@ -16,20 +14,25 @@ class Cart extends React.Component {
     // TODO : MAKE SURE CART COMPONENT RENDERS ON REFRESH
 
     render() {
-        console.log(
-            'ORDERS',
-            this.props.cart.length ? this.props.cart[0].orders : 'No Cart'
-        )
+        // console.log(
+        //     'ORDERS',
+        //     this.props.cart.length ? this.props.cart[0].orders : 'No Cart'
+        // )
+
+        //ADDED FILTER METHOD TO OUR ORDERS ARRAY
+        //Was getting an error "cannot read property id of null" 
         const cartProducts = this.props.cart.length
-            ? this.props.cart[0].orders
+            ? (this.props.cart[0].orders).filter(order => order.product !== null)
             : []
+
+            console.log('CART PRODUCTS', cartProducts);
 
         return (
             <div>
                 <h1>Welcome, to the cart {this.props.auth.email}</h1>
                 {cartProducts.length ? (
                     cartProducts.map((order) => {
-                        return (
+                        return (                            
                             <div key={order.product.id}>
                                 <img src={order.product.thumbnailImgUrl}></img>
                                 <h2> {order.product.name}</h2>

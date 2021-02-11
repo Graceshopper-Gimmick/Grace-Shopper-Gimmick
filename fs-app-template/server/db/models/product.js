@@ -20,7 +20,8 @@ const Product = db.define('product', {
     type: Sequelize.STRING
   },
   thumbnailImgUrl : {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    defaultValue: '/assets/thumbnails/Default_Image_Thumbnail.jpg'
   },
   price: {
     type: Sequelize.DECIMAL(10, 2)
