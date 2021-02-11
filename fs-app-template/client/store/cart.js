@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+
 /**
  * ACTION TYPES
  */
@@ -32,11 +33,21 @@ export const addProduct = (productId, userId, quantity) => {
     }
 }
 
-export const getCartItems = (userId) => {
-    console.log(userId)
+export const getCartItems = () => {
     return async (dispatch) => {
+        const token = window.localStorage.getItem('token')
+        console.log('TOKEN',token)
+        let userId = 0
+        if (token) {
+            const res = (await axios.get('/auth/me', {
+            headers: {
+              authorization: token
+            }
+          })).data
+          console.log('RES',res)
+          userId = res.id
+        }
         const cartItems = (await axios.get(`/api/cart/${userId}`)).data
-        console.log(cartItems)
         dispatch(_getCartItems(cartItems))
     }
 }

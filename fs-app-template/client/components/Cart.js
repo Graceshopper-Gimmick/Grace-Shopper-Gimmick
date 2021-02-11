@@ -10,8 +10,8 @@ import axios from 'axios'
  * COMPONENT
  */
 class Cart extends React.Component {
-    async componentDidMount() {
-    await this.props.getCartItems(this.props.auth.id)
+    componentDidMount() {
+    this.props.getCartItems()
   }
 
 // TODO : MAKE SURE CART COMPONENT RENDERS ON REFRESH
@@ -20,6 +20,7 @@ class Cart extends React.Component {
     const allProducts = this.props.homepageitems
     //console.log("Render",this.props);
     //console.log(this.props.cart.length?this.props.cart[0].orders:'false')
+    console.log('ORDERS',this.props.cart.length?this.props.cart[0].orders:'No Cart')
     const cartItemIds = this.props.cart.length?this.props.cart[0].orders.map(product=>product.productId):[]
     const cartProducts = allProducts.filter(product=>cartItemIds.includes(product.id))
     console.log(cartProducts)
@@ -48,8 +49,7 @@ const mapState = (state) => state;
 
 const mapDispatch = (dispatch) => {
   return {
-    getCartItems: (userId) => dispatch(getCartItems(userId)),
-    getProducts: () => dispatch(fetchProducts())
+    getCartItems: () => dispatch(getCartItems())
   };
 };
 
