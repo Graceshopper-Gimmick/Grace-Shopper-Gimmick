@@ -17,8 +17,7 @@ router.get('/', async (req, res, next) => {
 })
 
 // Potential route to display single product?
-/*
-router.get('/:id', async (req, res, next) => {
+router.get('/home/:id', async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id)
     res.send(product)
@@ -26,4 +25,3 @@ router.get('/:id', async (req, res, next) => {
     next(err)
   }
 })
-*/

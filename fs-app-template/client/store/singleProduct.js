@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 // ACTION TYPES
 const LOAD_PRODUCT = 'LOAD_PRODUCT'
 
@@ -10,9 +9,9 @@ const setProduct = (product) => ({ type: LOAD_PRODUCT, product })
 
 
 // THUNK CREATORS
-export const fetchProduct = (id) => {
+const fetchProduct = (id) => {
     return async (dispatch) => {
-        const product = (await axios.get(`/api/products/${id}`)).data
+        const product = (await axios.get(`/home/${id}`)).data
         dispatch(setProduct(product))
     }
 }
@@ -28,3 +27,5 @@ export default function (state = {}, action) {
             return state
     }
 }
+
+module.exports = fetchProduct;
