@@ -9,23 +9,19 @@ const setProduct = (product) => ({ type: LOAD_PRODUCT, product })
 
 
 // THUNK CREATORS
-const fetchProduct = (id) => {
+export const fetchProduct = (id) => {
     return async (dispatch) => {
-        const product = (await axios.get(`/home/${id}`)).data
+        const product = (await axios.get(`/api/products/${id}`)).data
         dispatch(setProduct(product))
     }
 }
 
 // REDUCER
-export default function (state = {}, action) {
+export default function singleProduct (state = {}, action) {
     switch (action.type) {
-        case LOAD_PRODUCTS:
-            return action.products
         case LOAD_PRODUCT:
             return action.product
         default:
             return state
     }
 }
-
-module.exports = fetchProduct;
