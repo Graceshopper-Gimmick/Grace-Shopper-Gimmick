@@ -9,6 +9,9 @@ import InputLabel from '@material-ui/core/InputLabel'
 import { withStyles } from '@material-ui/core/styles'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
+import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
+import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart'
 
 const styles = (theme) => ({
     cartFormControl: {
@@ -36,7 +39,7 @@ class Cart extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            quantity: 0,
+            quantity: 1,
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -44,8 +47,9 @@ class Cart extends React.Component {
 
     handleChange(ev) {
         const change = {}
-        change[ev.target.name] = ev.target.value
+        change[ev.target.name] = ev.target.value //targets Select Target By Name to change value
         this.setState(change)
+        console.log(change)
     }
 
     // TODO : MAKE SURE CART COMPONENT RENDERS ON REFRESH
@@ -55,10 +59,6 @@ class Cart extends React.Component {
         const { quantity } = this.state
         const { handleChange } = this
 
-        // console.log(
-        //     'ORDERS',
-        //     this.props.cart.length ? this.props.cart[0].orders : 'No Cart'
-        // )
         const cartProducts = this.props.cart.length
             ? this.props.cart[0].orders
             : []
@@ -79,10 +79,10 @@ class Cart extends React.Component {
                                 </InputLabel>
                                 <Select
                                     native
-                                    value={quantity}
+                                    value={this.state.value}
                                     onChange={handleChange}
                                     inputProps={{
-                                        name: 'age',
+                                        name: `${order.product.id}-quantity`, //dynamically assing name based on productId
                                         id: 'filled-age-native-simple',
                                     }}
                                     className={classes.quantity}
@@ -102,12 +102,16 @@ class Cart extends React.Component {
                                 <img src={order.product.thumbnailImgUrl}></img>
                                 <h2> {order.product.name}</h2>
                                 <p>Price: ${order.product.price}</p>
+                                <Button>
+                                    <RemoveShoppingCartIcon />
+                                </Button>
                             </FormControl>
                         )
                     })
                 ) : (
                     <h1>No Items</h1>
                 )}
+                <Button>Submit</Button>
             </FormControl>
         )
     }
