@@ -39,16 +39,15 @@ router.get('/history/:id', async (req, res, next) => {
     }
 })
 
-router.delete('/:id/cartItemId', async (req, res, next) => {
+router.delete('/:id/:cartItemId', async (req, res, next) => {
     try {
-        const deletedCartItem = await Product.findAll({
+        const deletedCartItem = await Order.findOne({
             where: {
-                userId: req.params.id,
-                active: true,
-                cartItemId: req.params.cartItemId,
+                cartId: req.params.id,
+                productId: req.params.cartItemId,
             },
         })
-        console.log(deletedCartItem)
+        await deletedCartItem.destroy()
     } catch (err) {
         next(err)
     }
