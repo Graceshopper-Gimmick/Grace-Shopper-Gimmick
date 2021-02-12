@@ -103,13 +103,11 @@ class HomePageItems extends React.Component {
  */
 const mapState = (state) => state
 
-const mapDispatch = (dispatch) => {
-    return {
-        getProducts: () => dispatch(fetchProducts()),
-        addProduct: (productId, userId, quantity) =>
-            dispatch(addProduct(productId, userId, quantity)),
+const mapDispatch = {
+        getProducts: fetchProducts,
+        addProduct
     }
-}
+
 
 export default withStyles(styles, { withTheme: true })(
     connect(mapState, mapDispatch)(HomePageItems)

@@ -12,15 +12,14 @@ class AdminView extends React.Component {
     async componentDidMount() {
         await this.props.getProducts();
     }
-    async submit(newProduct){
-        const product = await axios.post('api/products', newProduct);
-    }
+    
     render() {
         const products = this.props.homepageitems;
         const { removeProduct } = this.props
+        const { history } = this.props
         return (
             <div>             
-                <ProductForm onSubmit={this.submit} />
+                <ProductForm history={history} />
                 {products.length ? (
                     products.map(product => {
                         return (

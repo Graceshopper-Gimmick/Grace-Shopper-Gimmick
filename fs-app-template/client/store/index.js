@@ -5,10 +5,9 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import auth from './auth'
 import homepageitems from './homePageItems'
 import cart from './cart'
-import { reducer as formReducer } from 'redux-form'
 
 
-const reducer = combineReducers({ auth, homepageitems, cart, form: formReducer })
+const reducer = combineReducers({ auth, homepageitems, cart })
 const middleware = composeWithDevTools(
     applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 )
