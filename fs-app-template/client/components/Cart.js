@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getCartItems } from '../store/cart'
+import { getCartItems, deleteCartItem } from '../store/cart'
 import { fetchProducts } from '../store/homePageItems'
 import { me } from '../store'
 import axios from 'axios'
@@ -102,7 +102,13 @@ class Cart extends React.Component {
                                 <img src={order.product.thumbnailImgUrl}></img>
                                 <h2> {order.product.name}</h2>
                                 <p>Price: ${order.product.price}</p>
-                                <Button>
+                                <Button
+                                    onClick={() =>
+                                        this.props.deleteCartItem(
+                                            order.product.id
+                                        )
+                                    }
+                                >
                                     <RemoveShoppingCartIcon />
                                 </Button>
                             </FormControl>
@@ -111,7 +117,9 @@ class Cart extends React.Component {
                 ) : (
                     <h1>No Items</h1>
                 )}
-                <Button>Submit</Button>
+                <Button color="inherit" href="/checkout">
+                    Submit
+                </Button>
             </FormControl>
         )
     }
@@ -122,6 +130,7 @@ const mapState = (state) => state
 const mapDispatch = (dispatch) => {
     return {
         getCartItems: () => dispatch(getCartItems()),
+        deleteCartItem: (id) => dispatch(deleteCartItem(id)),
     }
 }
 
