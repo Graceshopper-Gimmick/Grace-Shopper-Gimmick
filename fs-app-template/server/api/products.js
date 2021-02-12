@@ -15,3 +15,32 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/:id', async (req, res, next) => {
+  try {
+    const product = await Product.findByPk(req.params.id)
+    res.json(product)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const product = await Product.findByPk(req.params.id);
+    await product.destroy();
+    res.sendStatus(204);
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.post('/', async (req, res, next) => {
+  try {
+    const product = await Product.create(req.body);
+    console.log('product created');
+    res.sendStatus(201);
+  } catch (err) {
+    next(err)
+  }
+})

@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { setProducts } from './homePageItems'
+
 
 
 /**
@@ -6,11 +8,13 @@ import axios from 'axios'
  */
 const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
 const GET_CART_ITEMS = 'GET_CART_ITEMS'
+//const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 
 /**
  * ACTION CREATORS
  */
 const _addProduct = (product) => ({ type: ADD_PRODUCT_TO_CART, product })
+//const _removeProduct = (product) => ({ type: REMOVE_PRODUCT })
 const _getCartItems = (cartItems) => ({type: GET_CART_ITEMS, cartItems})
 
 /**
@@ -30,6 +34,17 @@ export const addProduct = (productId, userId, quantity) => {
         // console.log(product)
 
         // dispatch(_addProducts(product))
+    }
+}
+
+//THIS THUNK STRICTLY FOR USER WHO IS AN ADMIN!!!!
+export const removeProduct = (productId) => {
+    return async (dispatch) => {
+        console.log('PRODUCT ID FROM', productId)
+        await axios.delete(`/api/products/${productId}`)
+
+        const products = (await axios.get('/api/products')).data
+        dispatch(setProducts(products))
     }
 }
 
