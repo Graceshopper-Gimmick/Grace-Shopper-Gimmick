@@ -74,8 +74,9 @@ class HomePageItems extends React.Component {
                     src={product.thumbnailImgUrl}
                   ></img>
                 </Box>
-
-                <h2> {product.name}</h2>
+                <Link to={`/home/${product.id}`}>
+                  <h2> {product.name}</h2>
+                </Link>
                 <p>${product.price}</p>
                 <Button
                   variant="outlined"
