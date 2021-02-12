@@ -7,7 +7,7 @@ import homepageitems from './homePageItems'
 import cart from './cart'
 import ConnectedProductList from './homePageItems'
 
-const reducer = combineReducers({ auth, homepageitems, cart})
+const reducer = combineReducers({ auth, homepageitems, cart })
 const middleware = composeWithDevTools(
     applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 )

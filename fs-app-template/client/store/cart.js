@@ -73,6 +73,13 @@ export default function (state = {}, action) {
     switch (action.type) {
         case GET_CART_ITEMS:
             return action.cartItems
+
+        case DELETE_CART_ITEM: {
+            //updates state for cart items where cart only cart item id that dont match the item deleted
+            return [...state].filter(
+                (cartItem) => cartItem.id !== action.cartItem.id
+            )
+        }
         default:
             return state
     }
