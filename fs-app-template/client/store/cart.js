@@ -55,10 +55,13 @@ export const getCartItems = () => {
     }
 }
 
-export const deleteCartItem = () => {
+export const deleteCartItem = (cartId, cartItemId) => {
+    console.log(cartId)
+    console.log(cartItemId)
     return async (dispatch) => {
-        const deletedCartItem = (await axios.delete(`/api/cart/${cartItemId}`))
-            .data
+        const deletedCartItem = (
+            await axios.delete(`/api/cart/${cartId}/${cartItemId}`)
+        ).data
         dispatch(_deleteCartItem(deletedCartItem))
     }
 }

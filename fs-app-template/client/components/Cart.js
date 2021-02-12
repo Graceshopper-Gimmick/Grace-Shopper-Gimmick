@@ -49,7 +49,7 @@ class Cart extends React.Component {
         const change = {}
         change[ev.target.name] = ev.target.value //targets Select Target By Name to change value
         this.setState(change)
-        console.log(change)
+        // console.log(change)
     }
 
     // TODO : MAKE SURE CART COMPONENT RENDERS ON REFRESH
@@ -63,6 +63,10 @@ class Cart extends React.Component {
             ? this.props.cart[0].orders
             : []
 
+        console.log(
+            'cartID',
+            this.props.cart.length ? this.props.cart[0].id : 'nothing'
+        )
         return (
             <FormControl>
                 <h1>Welcome, to the cart {this.props.auth.email}</h1>
@@ -105,6 +109,7 @@ class Cart extends React.Component {
                                 <Button
                                     onClick={() =>
                                         this.props.deleteCartItem(
+                                            this.props.cart[0].id,
                                             order.product.id
                                         )
                                     }
@@ -130,7 +135,8 @@ const mapState = (state) => state
 const mapDispatch = (dispatch) => {
     return {
         getCartItems: () => dispatch(getCartItems()),
-        deleteCartItem: (id) => dispatch(deleteCartItem(id)),
+        deleteCartItem: (cartId, cartItemId) =>
+            dispatch(deleteCartItem(cartId, cartItemId)),
     }
 }
 
