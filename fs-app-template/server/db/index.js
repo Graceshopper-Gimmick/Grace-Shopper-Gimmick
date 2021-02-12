@@ -14,10 +14,10 @@ User.hasMany(Cart)
 Cart.belongsTo(User)
 Product.hasMany(Order)
 Cart.hasMany(Order)
-User.hasMany(Order)
+//User.hasMany(Order)
 Order.belongsTo(Product)
 Order.belongsTo(Cart)
-Order.belongsTo(User)
+//Order.belongsTo(User)
 // Cart.belongsToMany(Product, { through: 'Order' })
 // Product.belongsToMany(Cart, { through: 'Order' })
 
@@ -27,7 +27,7 @@ const syncAndSeed = async () => {
         User.create({ email: 'sjhunter86@gmail.com', password: '123' }),
         User.create({ email: 'monil2912@gmail.com', password: '123' }),
         User.create({ email: 'Msze400@gmail.com', password: '123' }),
-        User.create({ email: 'arwindersinghh@gmail.com', password: '123' }),
+        User.create({ email: 'arwindersinghh@gmail.com', password: '123', isAdmin: true })
     ])
     const products = await Promise.all([
         Product.create({
@@ -167,10 +167,10 @@ const syncAndSeed = async () => {
     // })
 
     const order = await Promise.all([
-        Order.create({ cartId: 1, productId: 5, quantity: 2, userId: 1 }), // active cart order
-        Order.create({ cartId: 2, productId: 6, quantity: 1, userId: 1 }), // checked out cart order
-        Order.create({ cartId: 2, productId: 4, quantity: 3, userId: 1 }), // checked out cart order
-        Order.create({ cartId: 2, productId: 7, quantity: 5, userId: 1 }), // checked out cart order
+        Order.create({ cartId: 1, productId: 5, quantity: 2}), // active cart order
+        Order.create({ cartId: 2, productId: 6, quantity: 1}), // checked out cart order
+        Order.create({ cartId: 2, productId: 4, quantity: 3}), // checked out cart order
+        Order.create({ cartId: 2, productId: 7, quantity: 5}), // checked out cart order
     ])
     return {
         users: {
@@ -187,5 +187,6 @@ module.exports = {
         User,
         Product,
         Cart,
+        Order
     },
 }

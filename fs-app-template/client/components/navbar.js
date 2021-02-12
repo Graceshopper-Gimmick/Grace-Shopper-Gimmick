@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const Navbar = ({ handleClick, isLoggedIn }) => {
+const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
     const classes = useStyles()
 
     return (
@@ -51,6 +52,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
                             {isLoggedIn ? (
                                 <div>
                                     {/* The navbar will show these links after you log in */}
+                                    <Link to ='/cart'><ShoppingCartIcon /></Link>
+                                    {isAdmin ? <Link to ='/admin'>Admin</Link> : null  }
                                     <Link to="/home">Home</Link>
                                     <a href="#" onClick={handleClick}>
                                         Logout
@@ -59,6 +62,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
                             ) : (
                                 <div>
                                     {/* The navbar will show these links before you log in */}
+                                    <Link to ='/cart'><ShoppingCartIcon /></Link>
                                     <Button color="inherit" href="/login">
                                         Login
                                     </Button>
@@ -106,6 +110,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
 const mapState = (state) => {
     return {
         isLoggedIn: !!state.auth.id,
+        isAdmin: !!state.auth.isAdmin
     }
 }
 

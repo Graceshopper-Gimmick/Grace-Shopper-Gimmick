@@ -6,8 +6,10 @@ import auth from './auth'
 import homepageitems from './homePageItems'
 import ConnectedProductList from './homePageItems'
 import singleProduct from './singleProduct'
+import cart from './cart'
 
-const reducer = combineReducers({ auth, homepageitems, singleProduct })
+
+const reducer = combineReducers({ auth, homepageitems, cart, singleProduct })
 const middleware = composeWithDevTools(
     applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 )
@@ -16,3 +18,5 @@ const store = createStore(reducer, middleware)
 export default store
 export * from './auth'
 export * from './homePageItems'
+export * from './cart'
+

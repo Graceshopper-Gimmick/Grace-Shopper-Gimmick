@@ -1,8 +1,9 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
-import {Login, Signup, Home} from './components'
 import SingleProduct from './components/SingleProduct'
+import {Login, Signup, Home, Cart} from './components'
+import AdminView from './components/AdminView'
 import {me} from './store'
 
 /**
@@ -10,24 +11,33 @@ import {me} from './store'
  */
 class Routes extends Component {
   componentDidMount() {
+    //console.log('Routes Component Did Mount')
     this.props.loadInitialData()
   }
 
   render() {
     const {isLoggedIn} = this.props
+    console.log(isLoggedIn)
     //isLoggedIn = true
+    //console.log(this.props)
+    
+
     return (
       <div>
         {isLoggedIn ? (
           <Switch>
             <Route exact path="/home" component={Home} />
             <Route path="/home/:id" component={SingleProduct} />
-            <Redirect to="/home" />
+            <Route path="/home" component={Home} />
+            <Route path="/cart" component={Cart} />
+            <Route path="/admin" component={AdminView} />
+            <Redirect to="/home" />            
           </Switch>
         ) : (
           <Switch>
             <Route exact path="/home" component={Home} />
             <Route path="/home/:id" component={SingleProduct} />
+            <Route path="/cart" component={Cart} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Redirect to="/home" />
