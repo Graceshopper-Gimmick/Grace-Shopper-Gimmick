@@ -7,6 +7,7 @@ import {Login, Signup, Home, Cart, Checkout} from './components'
 import AdminView from './components/AdminView'
 import {me} from './store'
 import { v4 as uuidv4 } from 'uuid';
+import UpdateProduct from './components/UpdateProduct'
 
 
 
@@ -16,7 +17,7 @@ import { v4 as uuidv4 } from 'uuid';
 class Routes extends Component {
 
   componentDidMount() {
-    console.log('Routes Component Did Mount')
+  console.log('Routes Component Did Mount')
     this.props.loadInitialData()
   }
 
@@ -27,11 +28,12 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
+            <Route exact path="/admin" component={AdminView} />
+            <Route path="/admin/update/:id" component={UpdateProduct} />
             <Route exact path="/home" component={Home} />
             <Route path="/home/:id" component={SingleProduct} />
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
-            <Route path="/admin" component={AdminView} />
             <Redirect to="/home" />            
           </Switch>
         ) : (

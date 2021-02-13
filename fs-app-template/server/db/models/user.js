@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 const axios = require('axios');
 const Cart = require('./cart');
-const { UUID,UUIDV4 } = require('sequelize');
+
 
 const SALT_ROUNDS = 5;
 

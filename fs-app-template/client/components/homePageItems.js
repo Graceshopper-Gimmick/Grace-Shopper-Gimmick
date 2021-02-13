@@ -54,9 +54,9 @@ class HomePageItems extends React.Component {
 
 
     const userId = this.props.auth.id; // replace this with Auth.ID
-    console.log(userId);
+    //console.log('USERID',userId);
     const quantity = 1; // can change based off of dropdown from cart menu?
-    console.log(this.props);
+    //console.log(this.props);
 
     return (
       <div className={classes.homePageItemsContainer}>
