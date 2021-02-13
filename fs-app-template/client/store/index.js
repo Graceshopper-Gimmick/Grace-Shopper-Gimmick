@@ -9,7 +9,9 @@ import singleProduct from './singleProduct'
 import cart from './cart'
 
 
+
 const reducer = combineReducers({ auth, homepageitems, cart, singleProduct })
+
 const middleware = composeWithDevTools(
     applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 )
