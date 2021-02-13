@@ -10,20 +10,13 @@ import { withRouter } from "react-router";
 import { addProduct } from "../store/cart";
 
 const styles = (theme) => ({
-<<<<<<< HEAD
-  homePageItemsContainer: {
-    background: "#ffd149", //amber light
-    display: "flex",
-    justifyContent: "space-evenly",
-  },
-=======
+
     homePageItemsContainer: {
         background: '#ffd149', //amber light
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-evenly',
     },
->>>>>>> 816cbd5fee9d3695dec841543d9ad7a27d34937b
 
   myCustomClass: {
     maxWidth: 275,
@@ -48,32 +41,22 @@ const styles = (theme) => ({
 });
 
 class HomePageItems extends React.Component {
-<<<<<<< HEAD
+
   async componentDidMount() {
     this.props.getProducts();
   }
-=======
-    async componentDidMount() {
-        await this.props.getProducts()
-    }
->>>>>>> 816cbd5fee9d3695dec841543d9ad7a27d34937b
 
   render() {
     const products = this.props.homepageitems;
     const { addProduct } = this.props;
     const { classes, theme } = this.props;
 
-<<<<<<< HEAD
+
+
     const userId = this.props.auth.id; // replace this with Auth.ID
     console.log(userId);
     const quantity = 1; // can change based off of dropdown from cart menu?
     console.log(this.props);
-=======
-        const userId = this.props.auth.id // replace this with Auth.ID
-        //console.log(userId)
-        const quantity = 1 // can change based off of dropdown from cart menu?
-        //console.log(this.props)
->>>>>>> 816cbd5fee9d3695dec841543d9ad7a27d34937b
 
     return (
       <div className={classes.homePageItemsContainer}>
@@ -123,21 +106,10 @@ class HomePageItems extends React.Component {
  */
 const mapState = (state) => state;
 
-<<<<<<< HEAD
-const mapDispatch = (dispatch) => {
-  return {
-    getProducts: () => dispatch(fetchProducts()),
-    addProduct: (productId, userId, quantity) =>
-      dispatch(addProduct(productId, userId, quantity)),
-  };
-};
-=======
 const mapDispatch = {
         getProducts: fetchProducts,
         addProduct
     }
-
->>>>>>> 816cbd5fee9d3695dec841543d9ad7a27d34937b
 
 export default withStyles(styles, { withTheme: true })(
   connect(mapState, mapDispatch)(HomePageItems)

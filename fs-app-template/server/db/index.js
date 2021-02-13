@@ -25,10 +25,11 @@ const syncAndSeed = async () => {
     await db.sync({ force: true })
     const users = await Promise.all([
         User.create({ email: 'sjhunter86@gmail.com', password: '123' }),
-        User.create({ email: 'monil2912@gmail.com', password: '123' }),
+        User.create({ email: 'monil2912@test.com', password: '123' }),
         User.create({ email: 'Msze400@gmail.com', password: '123' }),
         User.create({ email: 'arwindersinghh@gmail.com', password: '123', isAdmin: true })
     ])
+    
     const products = await Promise.all([
         Product.create({
             name: 'Beer Curler',

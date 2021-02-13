@@ -29,6 +29,10 @@ export const me = () => async dispatch => {
     })
     return dispatch(setAuth(res.data))
   }
+  const user = window.localStorage.getItem('userId')
+  if(user){
+    console.log('GUEST IS HERE')
+  }
 }
 
 export const authenticate = (email, password, method) => async dispatch => {

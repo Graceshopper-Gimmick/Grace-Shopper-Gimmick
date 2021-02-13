@@ -29,7 +29,7 @@ class Cart extends React.Component {
 
         return (
             <div>
-                <h1>Welcome, to the cart {this.props.auth.email}</h1>
+                <h1>Welcom, to the cart {this.props.auth.email}</h1>
                 {cartProducts.length ? (
                     cartProducts.map((order) => {
                         return (                            

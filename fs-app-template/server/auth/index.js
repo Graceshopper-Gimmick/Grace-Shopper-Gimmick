@@ -1,6 +1,8 @@
 const router = require('express').Router()
-const { models: {User }} = require('../db')
+const { models: {User,Cart }} = require('../db')
 module.exports = router
+const express = require('express')
+router.use(express.json())
 
 router.post('/login', async (req, res, next) => {
   try {
@@ -16,7 +18,9 @@ router.get('/github/callback', async(req, res, next)=> {
   //if successful, a jwt token will be returned
   //that token will be set in localStorage
   //and client will redirect to home page
+  console.log('CODE',req.query.code)
   try {
+    console.log('CODE',req.query.code)
     res.send(
       `
       <html>
@@ -30,6 +34,7 @@ router.get('/github/callback', async(req, res, next)=> {
       `);
   }
   catch(ex){
+    console.log(ex)
     next(ex);
   }
 });
@@ -37,6 +42,7 @@ router.get('/github/callback', async(req, res, next)=> {
 router.post('/signup', async (req, res, next) => {
   try {
     const user = await User.create(req.body)
+    const cart = await Cart.create({ userId: user.id, active: true })
     res.send({token: await user.generateToken()})
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {

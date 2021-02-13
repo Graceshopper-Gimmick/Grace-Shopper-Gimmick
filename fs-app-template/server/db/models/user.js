@@ -3,6 +3,8 @@ const db = require('../db')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 const axios = require('axios');
+const Cart = require('./cart');
+const { UUID,UUIDV4 } = require('sequelize');
 
 const SALT_ROUNDS = 5;
 
@@ -93,12 +95,13 @@ User.authenticateGithub = async function(code){
       authorization: `token ${ data.access_token }`
     }
   });
+  //console.log(response.data)
   const { email, id } = response.data;
-
   //step 3: either find user or create user
   let user = await User.findOne({ where: { githubId: id, email } });
   if(!user){
     user = await User.create({ email, githubId: id });
+    let cart = await Cart.create({ userId: user.id, active: true })
   }
   //step 4: return jwt token
   return user.generateToken();
