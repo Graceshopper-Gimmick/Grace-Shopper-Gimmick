@@ -10,16 +10,17 @@ router.get('/', async (req, res, next) => {
       // send everything to anyone who asks!
       //attributes: ['id','name', 'price', 'thumbnailImgUrl', 'ogImgUrl']
     )
-    res.json(products)
+    res.send(products)
   } catch (err) {
     next(err)
   }
 })
 
+// Potential route to display single product?
 router.get('/:id', async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id)
-    res.json(product)
+    res.send(product)
   } catch (err) {
     next(err)
   }
