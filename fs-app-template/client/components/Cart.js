@@ -1,9 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
+
 import { getCartItems, deleteCartItem } from '../store/cart'
 import { fetchProducts } from '../store/homePageItems'
 import { me } from '../store'
 import axios from 'axios'
+
 
 import InputLabel from '@material-ui/core/InputLabel'
 import { withStyles } from '@material-ui/core/styles'
@@ -55,13 +57,16 @@ class Cart extends React.Component {
     // TODO : MAKE SURE CART COMPONENT RENDERS ON REFRESH
 
     render() {
+
         const { classes, theme } = this.props
         const { quantity } = this.state
         const { handleChange } = this
 
+
         const cartProducts = this.props.cart.length
-            ? this.props.cart[0].orders
+            ? (this.props.cart[0].orders).filter(order => order.product !== null)
             : []
+
 
         console.log(
             'cartID',

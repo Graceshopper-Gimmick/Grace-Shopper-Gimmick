@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { setProducts } from './homePageItems'
+
 
 /**
  * ACTION TYPES
@@ -7,12 +9,14 @@ const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
 const GET_CART_ITEMS = 'GET_CART_ITEMS'
 const DELETE_CART_ITEM = 'DELETE_CART_ITEM'
 
+
 /**
  * ACTION CREATORS
  */
 const _addProduct = (product) => ({ type: ADD_PRODUCT_TO_CART, product })
 const _getCartItems = (cartItems) => ({ type: GET_CART_ITEMS, cartItems })
 const _deleteCartItem = (cartItemId) => ({ type: DELETE_CART_ITEM, cartItemId })
+
 
 /**
  * THUNK CREATORS
@@ -31,6 +35,17 @@ export const addProduct = (productId, userId, quantity) => {
         // console.log(product)
 
         // dispatch(_addProducts(product))
+    }
+}
+
+//THIS THUNK STRICTLY FOR USER WHO IS AN ADMIN!!!!
+export const removeProduct = (productId) => {
+    return async (dispatch) => {
+        console.log('PRODUCT ID FROM', productId)
+        await axios.delete(`/api/products/${productId}`)
+
+        const products = (await axios.get('/api/products')).data
+        dispatch(setProducts(products))
     }
 }
 

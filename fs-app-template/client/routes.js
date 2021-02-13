@@ -1,45 +1,54 @@
-import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
-import { withRouter, Route, Switch, Redirect } from 'react-router-dom'
-import { Login, Signup, Home, Cart, Checkout } from './components'
-import { me } from './store'
+
+import React, {Component, Fragment} from 'react'
+import {connect} from 'react-redux'
+import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
+import SingleProduct from './components/SingleProduct'
+import {Login, Signup, Home, Cart, Checkout} from './components'
+import AdminView from './components/AdminView'
+import {me} from './store'
+import { v4 as uuidv4 } from 'uuid';
+
+
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
-    componentDidMount() {
-        //console.log('Routes Component Did Mount')
-        this.props.loadInitialData()
-    }
 
-    render() {
-        const { isLoggedIn } = this.props
-        console.log(isLoggedIn)
-        //isLoggedIn = true
-        //console.log(this.props)
-        return (
-            <div>
-                {isLoggedIn ? (
-                    <Switch>
-                        <Route path="/home" component={Home} />
-                        <Route path="/cart" component={Cart} />
-                        <Route path="/checkout" component={Checkout} />
-                        <Redirect to="/home" />
-                    </Switch>
-                ) : (
-                    <Switch>
-                        <Route path="/home" component={Home} />
-                        <Route path="/cart" component={Cart} />
-                        <Route path="/login" component={Login} />
-                        <Route path="/signup" component={Signup} />
-                        <Route path="/checkout" component={Checkout} />
-                        <Redirect to="/home" />
-                    </Switch>
-                )}
-            </div>
-        )
-    }
+  componentDidMount() {
+    console.log('Routes Component Did Mount')
+    this.props.loadInitialData()
+  }
+
+  render() {
+    const {isLoggedIn} = this.props
+        
+    return (
+      <div>
+        {isLoggedIn ? (
+          <Switch>
+            <Route exact path="/home" component={Home} />
+            <Route path="/home/:id" component={SingleProduct} />
+            <Route path="/cart" component={Cart} />
+            <Route path="/checkout" component={Checkout} />
+            <Route path="/admin" component={AdminView} />
+            <Redirect to="/home" />            
+          </Switch>
+        ) : (
+          <Switch>
+            <Route exact path="/home" component={Home} />
+            <Route path="/home/:id" component={SingleProduct} />
+            <Route path="/cart" component={Cart} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/checkout" component={Checkout} />
+            <Redirect to="/home" />
+          </Switch>
+        )}
+      </div>
+    )
+  }
+
 }
 
 /**
