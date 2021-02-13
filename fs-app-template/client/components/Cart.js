@@ -6,7 +6,6 @@ import { fetchProducts } from '../store/homePageItems'
 import { me } from '../store'
 import axios from 'axios'
 
-
 import InputLabel from '@material-ui/core/InputLabel'
 import { withStyles } from '@material-ui/core/styles'
 import FormControl from '@material-ui/core/FormControl'
@@ -57,21 +56,24 @@ class Cart extends React.Component {
     // TODO : MAKE SURE CART COMPONENT RENDERS ON REFRESH
 
     render() {
+        console.log(this.props)
 
         const { classes, theme } = this.props
         const { quantity } = this.state
         const { handleChange } = this
 
-
         const cartProducts = this.props.cart.length
-            ? (this.props.cart[0].orders).filter(order => order.product !== null)
+            ? this.props.cart[0].orders.filter(
+                  (order) => order.product !== null
+              )
             : []
-
 
         console.log(
             'cartID',
             this.props.cart.length ? this.props.cart[0].id : 'nothing'
         )
+
+        console.log('AUTH_ID', this.props.auth.id)
         return (
             <FormControl>
                 <h1>Welcome, to the cart {this.props.auth.email}</h1>
@@ -115,7 +117,8 @@ class Cart extends React.Component {
                                     onClick={() =>
                                         this.props.deleteCartItem(
                                             this.props.cart[0].id,
-                                            order.product.id
+                                            order.product.id,
+                                            this.props.auth.id
                                         )
                                     }
                                 >
@@ -140,8 +143,8 @@ const mapState = (state) => state
 const mapDispatch = (dispatch) => {
     return {
         getCartItems: () => dispatch(getCartItems()),
-        deleteCartItem: (cartId, cartItemId) =>
-            dispatch(deleteCartItem(cartId, cartItemId)),
+        deleteCartItem: (cartId, cartItemId, userId) =>
+            dispatch(deleteCartItem(cartId, cartItemId, userId)),
     }
 }
 

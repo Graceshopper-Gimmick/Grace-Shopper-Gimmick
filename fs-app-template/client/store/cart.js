@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { setProducts } from './homePageItems'
 
-
 /**
  * ACTION TYPES
  */
@@ -9,14 +8,12 @@ const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
 const GET_CART_ITEMS = 'GET_CART_ITEMS'
 const DELETE_CART_ITEM = 'DELETE_CART_ITEM'
 
-
 /**
  * ACTION CREATORS
  */
 const _addProduct = (product) => ({ type: ADD_PRODUCT_TO_CART, product })
 const _getCartItems = (cartItems) => ({ type: GET_CART_ITEMS, cartItems })
-const _deleteCartItem = (cartItemId) => ({ type: DELETE_CART_ITEM, cartItemId })
-
+const _deleteCartItem = (cartItems) => ({ type: DELETE_CART_ITEM, cartItems })
 
 /**
  * THUNK CREATORS
@@ -70,15 +67,17 @@ export const getCartItems = () => {
     }
 }
 
-export const deleteCartItem = (cartId, cartItemId) => {
+export const deleteCartItem = (cartId, cartItemId, userId) => {
+    console.log('USERID', userId)
     console.log(cartId)
-    console.log(cartItemId)
+    console.log('CARTITEM', cartItemId)
     return async (dispatch) => {
         await axios.delete(`/api/cart/${cartId}/${cartItemId}`)
 
-        // dispatch(_getCartItems(cartItems))
-        //why dispatch not working?
-        dispatch(_deleteCartItem(cartItemId))
+        const cartItems = (await axios.get(`/api/cart/${userId}`)).data
+        // console.log('CARTITEMS', cartItems)
+        dispatch(_getCartItems(cartItems))
+        // dispatch(_deleteCartItem(cartItemId))
     }
 }
 
@@ -90,12 +89,13 @@ export default function (state = {}, action) {
         case GET_CART_ITEMS:
             return action.cartItems
 
-        case DELETE_CART_ITEM: {
+        case DELETE_CART_ITEM:
             //updates state for cart items where cart only cart item id that dont match the item deleted
-            return [...state].filter(
-                (cartItem) => cartItem.id !== action.cartItem.id * 1
-            )
-        }
+            // return [...state].filter(
+            //     (cartItem) => cartItem.orders.id !== action.cartItemId * 1
+            // )
+            return action.cartItems
+
         default:
             return state
     }

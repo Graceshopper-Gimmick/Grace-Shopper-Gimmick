@@ -48,6 +48,7 @@ router.delete('/:id/:cartItemId', async (req, res, next) => {
             },
         })
         await deletedCartItem.destroy()
+        res.sendStatus(201)
     } catch (err) {
         next(err)
     }
