@@ -12,7 +12,7 @@ const DELETE_CART_ITEM = 'DELETE_CART_ITEM'
  */
 const _addProduct = (product) => ({ type: ADD_PRODUCT_TO_CART, product })
 const _getCartItems = (cartItems) => ({ type: GET_CART_ITEMS, cartItems })
-const _deleteCartItem = (cartItem) => ({ type: DELETE_CART_ITEM, cartItem })
+const _deleteCartItem = (cartItemId) => ({ type: DELETE_CART_ITEM, cartItemId })
 
 /**
  * THUNK CREATORS
@@ -59,10 +59,11 @@ export const deleteCartItem = (cartId, cartItemId) => {
     console.log(cartId)
     console.log(cartItemId)
     return async (dispatch) => {
-        const deletedCartItem = (
-            await axios.delete(`/api/cart/${cartId}/${cartItemId}`)
-        ).data
-        dispatch(_deleteCartItem(deletedCartItem))
+        await axios.delete(`/api/cart/${cartId}/${cartItemId}`)
+
+        // dispatch(_getCartItems(cartItems))
+        //why dispatch not working?
+        dispatch(_deleteCartItem(cartItemId))
     }
 }
 
@@ -77,7 +78,7 @@ export default function (state = {}, action) {
         case DELETE_CART_ITEM: {
             //updates state for cart items where cart only cart item id that dont match the item deleted
             return [...state].filter(
-                (cartItem) => cartItem.id !== action.cartItem.id
+                (cartItem) => cartItem.id !== action.cartItem.id * 1
             )
         }
         default:
