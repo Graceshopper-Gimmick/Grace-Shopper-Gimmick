@@ -3,10 +3,8 @@ import axios from 'axios'
 // ACTION TYPES
 const LOAD_PRODUCT = 'LOAD_PRODUCT'
 
-
 // ACTION CREATORS
 const setProduct = (product) => ({ type: LOAD_PRODUCT, product })
-
 
 // THUNK CREATORS
 export const fetchProduct = (id) => {
@@ -17,7 +15,7 @@ export const fetchProduct = (id) => {
 }
 
 // REDUCER
-export default function singleProduct (state = {}, action) {
+export default function singleProduct(state = {}, action) {
     switch (action.type) {
         case LOAD_PRODUCT:
             return action.product

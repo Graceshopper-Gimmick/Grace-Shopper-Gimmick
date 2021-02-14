@@ -40,27 +40,74 @@ class Cart extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            quantity: 1,
+            cartTotal: 0,
         }
 
-        this.handleChange = this.handleChange.bind(this)
+        // this.handleChange = this.handleChange.bind(this)
+        this.updateCheckoutTotal = this.updateCheckoutTotal.bind(this)
+        // this.setItemQuantities = this.setItemQuantities.bind(this)
     }
 
-    handleChange(ev) {
-        const change = {}
-        change[ev.target.name] = ev.target.value //targets Select Target By Name to change value
-        this.setState(change)
-        // console.log(change)
+    // handleChange(ev) {
+    //     const change = {}
+    //     change[ev.target.name] = ev.target.value //targets Select Target By Name to change value dynamically change state name quantity to item
+    //     this.setState(change)
+    //     console.log('state after set', this.state)
+    // }
+    // setItemQuantities(productId) {
+    //     console.log(productId)
+    //     // var e = document.getElementById(`cart-item-${productId}`)
+    //     // let itemQuantity = e.value
+    //     if (productId) {
+    //         this.setState({ [`${productId}-quantity`]: 1 })
+    //         console.log(this.state)
+    //     }
+    // }
+
+    updateCheckoutTotal(productId, productPrice) {
+        var e = document.getElementById(`cart-item-${productId}`)
+        let itemQuantity = e.value
+        // console.log.bind(itemQuantity_Price)
+        this.setState(
+            {
+                [`${productId}-quantity-price`]: [
+                    itemQuantity * 1,
+                    productPrice,
+                ],
+            },
+            () => this.calculateTotal()
+        )
+        // because state is asynchrnous need callback
+        // this.setState({ [`${productId}-price`]: productPrice * 1 }, () =>
+        //     this.calculateTotal()
+        // )
+
+        //update total based on item quantity/id and item price
+        console.log('regular log', this.state)
+    }
+
+    calculateTotal() {
+        let cartIdObj = this.state
+        delete cartIdObj.cartTotal
+        let newTotal = 0
+        console.log('obj', cartIdObj)
+
+        for (let id in cartIdObj) {
+            newTotal += cartIdObj[id][0] * (cartIdObj[id][1] * 1) // put price quantity in array object
+            this.setState({ cartTotal: newTotal })
+            console.log('newTotal', newTotal)
+        }
+
+        console.log('setState', this.state)
     }
 
     // TODO : MAKE SURE CART COMPONENT RENDERS ON REFRESH
 
     render() {
-        console.log(this.props)
-
         const { classes, theme } = this.props
         const { quantity } = this.state
-        const { handleChange } = this
+        const { handleChange, updateCheckoutTotal, setItemQuantities } = this
+        let cartTotal = 0
 
         const cartProducts = this.props.cart.length
             ? this.props.cart[0].orders.filter(
@@ -68,17 +115,13 @@ class Cart extends React.Component {
               )
             : []
 
-        console.log(
-            'cartID',
-            this.props.cart.length ? this.props.cart[0].id : 'nothing'
-        )
-
-        console.log('AUTH_ID', this.props.auth.id)
         return (
             <FormControl>
                 <h1>Welcome to the cart, {this.props.auth.email}!</h1>
                 {cartProducts.length ? (
                     cartProducts.map((order) => {
+                        // setItemQuantities(order.product.id)
+                        // this.state.cartTotal += order.product.price * 1
                         return (
                             <FormControl
                                 variant="filled"
@@ -91,14 +134,20 @@ class Cart extends React.Component {
                                 <Select
                                     native
                                     value={this.state.value}
-                                    onChange={handleChange}
+                                    // onChange={handleChange}
+                                    onChange={() =>
+                                        updateCheckoutTotal(
+                                            order.product.id,
+                                            order.product.price
+                                        )
+                                    }
                                     inputProps={{
-                                        name: `${order.product.id}-quantity`, //dynamically assing name based on productId
-                                        id: 'filled-age-native-simple',
+                                        name: `${order.product.id}-quantity`, //dynamically assigning name based on productId
+                                        id: `cart-item-${order.product.id}`,
                                     }}
                                     className={classes.quantity}
                                 >
-                                    <option aria-label="None" value="" />
+                                    <option aria-label="None" value="1" />
                                     <option value={1}>1</option>
                                     <option value={2}>2</option>
                                     <option value={3}>3</option>
@@ -130,6 +179,7 @@ class Cart extends React.Component {
                 ) : (
                     <h1>No Items</h1>
                 )}
+                <h1>Total Price: ${this.state.cartTotal.toFixed(2)}</h1>
                 <Button color="inherit" href="/checkout">
                     Submit
                 </Button>

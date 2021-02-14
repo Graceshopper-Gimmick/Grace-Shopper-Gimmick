@@ -20,9 +20,6 @@ const _deleteCartItem = (cartItems) => ({ type: DELETE_CART_ITEM, cartItems })
  */
 export const addProduct = (productId, userId, quantity) => {
     return async (dispatch) => {
-        // console.log(productId)
-        // console.log(userId)
-        // console.log(quantity)
         await axios.post('/api/order', {
             productId,
             userId,
@@ -90,6 +87,7 @@ export default function (state = {}, action) {
             return action.cartItems
 
         case DELETE_CART_ITEM:
+            //TO DO: Refactor to make state as an array
             //updates state for cart items where cart only cart item id that dont match the item deleted
             // return [...state].filter(
             //     (cartItem) => cartItem.orders.id !== action.cartItemId * 1
