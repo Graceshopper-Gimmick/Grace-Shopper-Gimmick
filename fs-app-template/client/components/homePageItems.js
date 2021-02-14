@@ -49,6 +49,7 @@ class HomePageItems extends React.Component {
         const { addProduct } = this.props
         const { classes, theme } = this.props
 
+
         const userId = this.props.auth.id // replace this with Auth.ID
         console.log(userId)
         const quantity = 1 // can change based off of dropdown from cart menu?
