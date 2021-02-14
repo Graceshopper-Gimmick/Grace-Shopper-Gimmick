@@ -1,3 +1,4 @@
+const { shallowEqual } = require('react-redux');
 const Sequelize = require('sequelize')
 const db = require('../db')
 
@@ -7,8 +8,10 @@ const db = require('../db')
 const Product = db.define('product', {
   name: {
     type: Sequelize.STRING,
-    unique: true,
-    
+    unique: true
+  },
+  description: {
+    type: Sequelize.STRING
   },
   category: {
     type: Sequelize.STRING

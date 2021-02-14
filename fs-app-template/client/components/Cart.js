@@ -76,7 +76,7 @@ class Cart extends React.Component {
         console.log('AUTH_ID', this.props.auth.id)
         return (
             <FormControl>
-                <h1>Welcome, to the cart {this.props.auth.email}</h1>
+                <h1>Welcome to the cart, {this.props.auth.email}!</h1>
                 {cartProducts.length ? (
                     cartProducts.map((order) => {
                         return (
