@@ -10,7 +10,7 @@ export class SingleProduct extends React.Component {
   }
   componentDidMount() {
     this.props.fetchProduct(this.props.match.params.id);
-    console.log("steve test", this.props);
+    //console.log("steve test", this.props);
   }
 
   render() {
