@@ -87,18 +87,13 @@ class Cart extends React.Component {
     }
 
     calculateTotal() {
-        let obj = this.state
-        delete obj.cartTotal
+        let cartIdObj = this.state
+        delete cartIdObj.cartTotal
         let newTotal = 0
-        console.log('obj', obj)
-        // for (let i = 1; i < obj.length / 2; i++) {
-        //     try {
-        //         newTotal += obj[i + '-quantity'] * obj[i + '-price']
-        //     } catch (err) {}
-        // }
-        // console.log(newTotal)
-        for (let key in obj) {
-            newTotal += obj[key][0] * (obj[key][1] * 1)
+        console.log('obj', cartIdObj)
+
+        for (let id in cartIdObj) {
+            newTotal += cartIdObj[id][0] * (cartIdObj[id][1] * 1) // put price quantity in array object
             this.setState({ cartTotal: newTotal })
             console.log('newTotal', newTotal)
         }
