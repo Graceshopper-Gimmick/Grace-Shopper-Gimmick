@@ -55,49 +55,48 @@ class HomePageItems extends React.Component {
         const quantity = 1 // can change based off of dropdown from cart menu?
         console.log(this.props)
 
-        return (
-            <div className={classes.homePageItemsContainer}>
-                {products.length ? (
-                    products.map((product) => {
-                        return (
-                            <Card
-                                className={classes.myCustomClass}
-                                padding={theme.spacing(4)}
-                                key={product.id}
-                                variant="outlined"
-                            >
-                                <Box
-                                    className={classes.imgThumbnail}
-                                    border={1}
-                                    borderColor="black"
-                                >
-                                    <img
-                                        className={classes.imgThumbnail}
-                                        src={product.thumbnailImgUrl}
-                                    ></img>
-                                </Box>
-                                <Link to={`/home/${product.id}`}>
-                                    <h2> {product.name}</h2>
-                                </Link>
-                                <p>${product.price}</p>
-                                <Button
-                                    variant="outlined"
-                                    color="primary"
-                                    onClick={() =>
-                                        addProduct(product.id, userId, quantity)
-                                    }
-                                >
-                                    Add to Cart
-                                </Button>
-                            </Card>
-                        )
-                    })
-                ) : (
-                    <h1>No Items</h1>
-                )}
-            </div>
-        )
-    }
+
+    return (
+      <div className={classes.homePageItemsContainer}>
+        {products.length ? (
+          products.map((product) => {
+            return (
+              <Link to={`/home/${product.id}`} key={product.id}>
+              <Card
+                className={classes.myCustomClass}
+                padding={theme.spacing(4)}
+                variant="outlined"
+              >
+                <Box
+                  className={classes.imgThumbnail}
+                  border={1}
+                  borderColor="black"
+                >
+                  <img
+                    className={classes.imgThumbnail}
+                    src={product.thumbnailImgUrl}
+                  ></img>
+                </Box>
+                  <h2> {product.name}</h2>
+                <p>${product.price}</p>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  onClick={() => addProduct(product.id, userId, quantity)}
+                >
+                  Add to Cart
+                </Button>
+              </Card>
+              </Link>
+            );
+          })
+        ) : (
+          <h1>No Items</h1>
+        )}
+      </div>
+    );
+  }
+
 }
 
 /**
