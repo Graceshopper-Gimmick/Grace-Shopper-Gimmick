@@ -40,12 +40,19 @@ const styles = (theme) => ({
 })
 
 class HomePageItems extends React.Component {
+    constructor(){
+        super()
+        this.state = {
+            category:'All'
+        }
+    }
     async componentDidMount() {
         this.props.getProducts()
     }
 
     render() {
-        const products = this.props.homepageitems
+        let products = this.props.homepageitems
+        products = products.length?products.filter(product=>product.category):[]
         const { addProduct } = this.props
         const { classes, theme } = this.props
 

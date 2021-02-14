@@ -85,7 +85,7 @@ const syncAndSeed = async () => {
     }),
     Product.create({
       name: "Baby Mop",
-      categort: "Gag Gifts",
+      category: "Gag Gifts",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Baby_Mop_Thumbnail.jpg",
       description:
