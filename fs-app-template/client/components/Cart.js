@@ -56,7 +56,12 @@ class Cart extends React.Component {
         console.log('PROP', this.props)
         const { cart } = this.props
 
+        //call the select values
+
         cart[0].orders.map((cartItem) => {
+            // var select = document.getElementById(`cart-item-${cartItem.product.id}`)
+            // let itemQuantity = select.value
+
             this.updateCheckoutTotal(
                 cartItem.product.id,
                 cartItem.product.price
@@ -101,6 +106,7 @@ class Cart extends React.Component {
     // TODO : MAKE SURE CART COMPONENT RENDERS ON REFRESH
 
     render() {
+        const selectValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         const { classes, theme } = this.props
         const { updateCheckoutTotal } = this
         console.log('RENDER', this.props)
@@ -144,8 +150,24 @@ class Cart extends React.Component {
                                     className={classes.quantity}
                                 >
                                     {/* <option aria-label="1" value={1} /> */}
-                                    <option value={1}>1</option>
-                                    <option value={2}>2</option>
+                                    {selectValues.map((selectOption) => {
+                                        return (
+                                            <option
+                                                value={selectOption}
+                                                selected={
+                                                    selectOption === 3
+                                                        ? true
+                                                        : false
+                                                }
+                                            >
+                                                {selectOption}
+                                            </option>
+                                        )
+                                    })}
+                                    {/* <option value={1}>1</option>
+                                    <option value={2} selected>
+                                        2
+                                    </option>
                                     <option value={3}>3</option>
                                     <option value={4}>4</option>
                                     <option value={5}>5</option>
@@ -153,7 +175,7 @@ class Cart extends React.Component {
                                     <option value={7}>7</option>
                                     <option value={8}>8</option>
                                     <option value={9}>9</option>
-                                    <option value={10}>10</option>
+                                    <option value={10}>10</option> */}
                                 </Select>
 
                                 <img src={order.product.thumbnailImgUrl}></img>
