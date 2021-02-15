@@ -105,12 +105,13 @@ class HomePageItems extends React.Component {
           {products.length ? (
             products.map((product) => {
               return (
-                <Link to={`/home/${product.id}`} key={product.id}>
                   <Card
                     className={classes.myCustomClass}
                     padding={theme.spacing(4)}
                     variant="outlined"
+                    key={product.id}
                   >
+                    <Link to={`/home/${product.id}`}>
                     <Box
                       className={classes.imgThumbnail}
                       border={1}
@@ -123,6 +124,7 @@ class HomePageItems extends React.Component {
                     </Box>
                     <h2> {product.name}</h2>
                     <p>${product.price}</p>
+                    </Link>
                     <Button
                       variant="outlined"
                       color="primary"
@@ -131,7 +133,7 @@ class HomePageItems extends React.Component {
                       Add to Cart
                     </Button>
                   </Card>
-                </Link>
+                
               );
             })
           ) : (
