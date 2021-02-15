@@ -17,7 +17,7 @@ class AdminView extends React.Component {
     
     render() {
         const products = this.props.homepageitems;
-        const { removeProduct,updateProduct } = this.props
+        const { removeProduct, updateProduct } = this.props
         const { history } = this.props
         return (
             <div>             

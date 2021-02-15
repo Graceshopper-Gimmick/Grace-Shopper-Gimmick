@@ -2,11 +2,9 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
-import SingleProduct from './components/SingleProduct'
-import {Login, Signup, Home, Cart, Checkout} from './components'
+import {Login, Signup, Home, Cart, Checkout, SingleProduct } from './components'
 import AdminView from './components/AdminView'
 import {me} from './store'
-import { v4 as uuidv4 } from 'uuid';
 import UpdateProduct from './components/UpdateProduct'
 
 
