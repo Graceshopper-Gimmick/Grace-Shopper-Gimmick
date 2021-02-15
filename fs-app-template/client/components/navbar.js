@@ -36,10 +36,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
     root: {
-      display: 'flex',
+       display: 'flex',
+       position: 'static'
     },
     appBar: {
-      transition: theme.transitions.create(['margin', 'width'], {
+        display: 'flex',
+        transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
@@ -157,28 +159,27 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                 </Toolbar>
             </AppBar>
             <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </div>
-        <List>
-          {['Profile', 'Order History'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-      
+                className={classes.drawer}
+                variant="persistent"
+                anchor="left"
+                open={open}
+                classes={{
+                paper: classes.drawerPaper,
+                }}
+            >
+                <div className={classes.drawerHeader}>
+                    <IconButton onClick={handleDrawerClose}>
+                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                    </IconButton>
+                </div>
+                <List>
+                    {['Profile', 'Order History'].map((text, index) => (
+                        <ListItem button key={text}>
+                        <ListItemText primary={text} />
+                        </ListItem>
+                    ))}
+                </List>
+            </Drawer>
         </div>
 
         // <div className={classes.root}>
