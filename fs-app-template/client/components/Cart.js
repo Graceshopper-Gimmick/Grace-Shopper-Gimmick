@@ -43,31 +43,12 @@ class Cart extends React.Component {
             cartTotal: 0,
         }
 
-        // this.handleChange = this.handleChange.bind(this)
         this.updateCheckoutTotal = this.updateCheckoutTotal.bind(this)
-        // this.setItemQuantities = this.setItemQuantities.bind(this)
     }
-
-    // handleChange(ev) {
-    //     const change = {}
-    //     change[ev.target.name] = ev.target.value //targets Select Target By Name to change value dynamically change state name quantity to item
-    //     this.setState(change)
-    //     console.log('state after set', this.state)
-    // }
-    // setItemQuantities(productId) {
-    //     console.log(productId)
-    //     // var e = document.getElementById(`cart-item-${productId}`)
-    //     // let itemQuantity = e.value
-    //     if (productId) {
-    //         this.setState({ [`${productId}-quantity`]: 1 })
-    //         console.log(this.state)
-    //     }
-    // }
 
     updateCheckoutTotal(productId, productPrice) {
         var e = document.getElementById(`cart-item-${productId}`)
         let itemQuantity = e.value
-        // console.log.bind(itemQuantity_Price)
         this.setState(
             {
                 [`${productId}-quantity-price`]: [
@@ -75,22 +56,20 @@ class Cart extends React.Component {
                     productPrice,
                 ],
             },
-            () => this.calculateTotal()
+            () => this.calculateTotal(false, productId)
         )
-        // because state is asynchrnous need callback
-        // this.setState({ [`${productId}-price`]: productPrice * 1 }, () =>
-        //     this.calculateTotal()
-        // )
-
-        //update total based on item quantity/id and item price
-        console.log('regular log', this.state)
     }
 
-    calculateTotal() {
+    calculateTotal(onDelete, productId) {
+        // console.log('onDelete', onDelete)
         let cartIdObj = this.state
         delete cartIdObj.cartTotal
         let newTotal = 0
-        console.log('obj', cartIdObj)
+        // console.log('obj', cartIdObj)
+
+        if (onDelete) {
+            delete cartIdObj[`${productId}-quantity-price`]
+        }
 
         for (let id in cartIdObj) {
             newTotal += cartIdObj[id][0] * (cartIdObj[id][1] * 1) // put price quantity in array object
@@ -105,9 +84,7 @@ class Cart extends React.Component {
 
     render() {
         const { classes, theme } = this.props
-        const { quantity } = this.state
-        const { handleChange, updateCheckoutTotal, setItemQuantities } = this
-        let cartTotal = 0
+        const { updateCheckoutTotal } = this
 
         const cartProducts = this.props.cart.length
             ? this.props.cart[0].orders.filter(
@@ -147,7 +124,7 @@ class Cart extends React.Component {
                                     }}
                                     className={classes.quantity}
                                 >
-                                    <option aria-label="None" value="1" />
+                                    <option aria-label="None" value="" />
                                     <option value={1}>1</option>
                                     <option value={2}>2</option>
                                     <option value={3}>3</option>
@@ -163,13 +140,17 @@ class Cart extends React.Component {
                                 <h2> {order.product.name}</h2>
                                 <p>Price: ${order.product.price}</p>
                                 <Button
-                                    onClick={() =>
+                                    onClick={() => {
                                         this.props.deleteCartItem(
                                             this.props.cart[0].id,
                                             order.product.id,
                                             this.props.auth.id
                                         )
-                                    }
+                                        this.calculateTotal(
+                                            true,
+                                            order.product.id
+                                        )
+                                    }}
                                 >
                                     <RemoveShoppingCartIcon />
                                 </Button>
@@ -179,7 +160,12 @@ class Cart extends React.Component {
                 ) : (
                     <h1>No Items</h1>
                 )}
-                <h1>Total Price: ${this.state.cartTotal.toFixed(2)}</h1>
+                <h1>
+                    Total Price: $
+                    {this.state.cartTotal
+                        ? this.state.cartTotal.toFixed(2)
+                        : '0.00'}
+                </h1>
                 <Button color="inherit" href="/checkout">
                     Submit
                 </Button>
