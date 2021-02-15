@@ -33,8 +33,13 @@ const styles = (theme) => ({
 })
 
 class Cart extends React.Component {
-    componentDidMount() {
-        this.props.getCartItems()
+    async componentDidMount() {
+        await this.props.getCartItems()
+        // console.log(this.props)
+
+        await this.setInitialTotal()
+        //function that gets all product ids on pages (set initial price)
+        //set state of (ids-quantity-price)
     }
 
     constructor(props) {
@@ -44,6 +49,19 @@ class Cart extends React.Component {
         }
 
         this.updateCheckoutTotal = this.updateCheckoutTotal.bind(this)
+    }
+
+    setInitialTotal() {
+        console.log('SET INITIAL_TOTAL')
+        console.log('PROP', this.props)
+        const { cart } = this.props
+
+        cart[0].orders.map((cartItem) => {
+            this.updateCheckoutTotal(
+                cartItem.product.id,
+                cartItem.product.price
+            )
+        })
     }
 
     updateCheckoutTotal(productId, productPrice) {
@@ -85,6 +103,7 @@ class Cart extends React.Component {
     render() {
         const { classes, theme } = this.props
         const { updateCheckoutTotal } = this
+        console.log('RENDER', this.props)
 
         const cartProducts = this.props.cart.length
             ? this.props.cart[0].orders.filter(
@@ -124,14 +143,15 @@ class Cart extends React.Component {
                                     }}
                                     className={classes.quantity}
                                 >
-                                    <option aria-label="None" value="" />
+                                    {/* <option aria-label="1" value={1} /> */}
                                     <option value={1}>1</option>
                                     <option value={2}>2</option>
                                     <option value={3}>3</option>
                                     <option value={4}>4</option>
                                     <option value={5}>5</option>
                                     <option value={6}>6</option>
-                                    <option value={7}>8</option>
+                                    <option value={7}>7</option>
+                                    <option value={8}>8</option>
                                     <option value={9}>9</option>
                                     <option value={10}>10</option>
                                 </Select>
