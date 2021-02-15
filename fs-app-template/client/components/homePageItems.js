@@ -1,15 +1,13 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { logout, fetchProducts } from '../store'
-import { withStyles, withTheme } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
+import { fetchProducts } from '../store'
+import { withStyles } from '@material-ui/core/styles'
 import { Card, Button, Box } from '@material-ui/core'
-import { withRouter } from 'react-router'
 import { addProduct } from '../store/cart'
 
-const styles = (theme) => ({
+
+const styles = () => ({
     homePageItemsContainer: {
         background: '#ffd149', //amber light
         display: 'flex',
