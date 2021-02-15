@@ -49,7 +49,6 @@ class Cart extends React.Component {
     updateCheckoutTotal(productId, productPrice) {
         var e = document.getElementById(`cart-item-${productId}`)
         let itemQuantity = e.value
-        // console.log.bind(itemQuantity_Price)
         this.setState(
             {
                 [`${productId}-quantity-price`]: [
@@ -59,16 +58,14 @@ class Cart extends React.Component {
             },
             () => this.calculateTotal(false, productId)
         )
-
-        console.log('regular log', this.state)
     }
 
     calculateTotal(onDelete, productId) {
-        console.log('onDelete', onDelete)
+        // console.log('onDelete', onDelete)
         let cartIdObj = this.state
         delete cartIdObj.cartTotal
         let newTotal = 0
-        console.log('obj', cartIdObj)
+        // console.log('obj', cartIdObj)
 
         if (onDelete) {
             delete cartIdObj[`${productId}-quantity-price`]
@@ -87,9 +84,7 @@ class Cart extends React.Component {
 
     render() {
         const { classes, theme } = this.props
-        const { quantity } = this.state
-        const { handleChange, updateCheckoutTotal, setItemQuantities } = this
-        let cartTotal = 0
+        const { updateCheckoutTotal } = this
 
         const cartProducts = this.props.cart.length
             ? this.props.cart[0].orders.filter(
