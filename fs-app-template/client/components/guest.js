@@ -1,79 +1,63 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getCartItems, deleteCartItem } from '../store/cart'
-import { fetchProducts } from '../store/homePageItems'
-import { me } from '../store'
-import axios from 'axios'
-
-import InputLabel from '@material-ui/core/InputLabel'
 import { withStyles } from '@material-ui/core/styles'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
 import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart'
+import Paper from '@material-ui/core/Paper'
 
 const styles = (theme) => ({
-    cartFormControl: {
+    guestCard: {
         margin: theme.spacing(1),
         minWidth: 120,
         display: 'flex',
-        maxWidth: 200,
+        flexDirection: 'column',
+        maxWidth: 300,
+        alignItems: 'center',
+        textAlign: 'center',
     },
 
-    imgThumbnail: {
-        maxWidth: 160,
-        maxHeight: 160,
-    },
+    centered: {
+        width: '25vw',
+        height: '25vh',
 
-    quantity: {
-        maxWidth: 100,
+        position: 'absolute',
+        top: '0',
+        bottom: '0',
+        left: '0',
+        right: '0',
+
+        margin: 'auto',
     },
 })
 
 class Guest extends React.Component {
-    componentDidMount() {
-        // this.props.getCartItems()
-    }
-
     constructor(props) {
         super(props)
-        // this.state = {
-        //     quantity: 1,
-        // }
-        // this.handleChange = this.handleChange.bind(this)
     }
 
-    // handleChange(ev) {
-    //     const change = {}
-    //     change[ev.target.name] = ev.target.value //targets Select Target By Name to change value
-    //     this.setState(change)
-    //     console.log(change)
-    // }
-
-    // TODO : MAKE SURE CART COMPONENT RENDERS ON REFRESH
-
     render() {
+        const { classes, theme } = this.props
+
         return (
-            <div>
-                <h1>Welcome Guest!!</h1>
-                <button onClick={()=>{console.log('Create Guest')}}>Continue as Guest</button>
-                <button><a href='/signup'>Sign Up</a></button>
-                <button><a href='login'>Login</a></button>
-            </div>
+            <Paper className={`${classes.guestCard} ${classes.centered}`}>
+                <h1>Welcome</h1>
+                <Button
+                    onClick={() => {
+                        console.log('Create Guest')
+                    }}
+                >
+                    Continue as Guest
+                </Button>
+                <Button>
+                    <a href="/signup">Sign Up</a>
+                </Button>
+                <Button>
+                    <a href="login">Login</a>
+                </Button>
+            </Paper>
         )
     }
 }
 
 const mapState = (state) => state
 
-const mapDispatch = (dispatch) => {
-    return {
-        getCartItems: () => dispatch(getCartItems()),
-        deleteCartItem: (id) => dispatch(deleteCartItem(id)),
-    }
-}
-
-export default withStyles(styles, { withTheme: true })(
-    connect(mapState, mapDispatch)(Guest)
-)
+export default withStyles(styles, { withTheme: true })(connect(mapState)(Guest))

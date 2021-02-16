@@ -1,55 +1,61 @@
-
-import React, {Component, Fragment} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
-import {Login, Signup, Home, Cart, Checkout, SingleProduct , Guest} from './components'
+import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom'
+import {
+    Login,
+    Signup,
+    Home,
+    Cart,
+    Checkout,
+    SingleProduct,
+    Guest,
+} from './components'
 import AdminView from './components/AdminView'
-import {me} from './store'
+import { me } from './store'
 import UpdateProduct from './components/UpdateProduct'
-
-
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
+    componentDidMount() {
+        console.log('Routes Component Did Mount')
+        this.props.loadInitialData()
+    }
 
-  componentDidMount() {
-  console.log('Routes Component Did Mount')
-    this.props.loadInitialData()
-  }
+    render() {
+        const { isLoggedIn } = this.props
 
-  render() {
-    const {isLoggedIn} = this.props
-        
-    return (
-      <div id='Routes'>
-        {isLoggedIn ? (
-          <Switch>
-            <Route exact path="/admin" component={AdminView} />
-            <Route path="/admin/update/:id" component={UpdateProduct} />
-            <Route exact path="/home" component={Home} />
-            <Route path="/home/:id" component={SingleProduct} />
-            <Route path="/cart" component={Cart} />
-            <Route path="/checkout" component={Checkout} />
-            <Redirect to="/home" />            
-          </Switch>
-        ) : (
-          <Switch>
-            <Route exact path="/home" component={Home} />
-            <Route path="/home/:id" component={SingleProduct} />
-            <Route path="/cart" component={Cart} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/checkout" component={Checkout} />
-            <Route path='/guest' component={Guest} />
-            <Redirect to="/guest" />
-          </Switch>
-        )}
-      </div>
-    )
-  }
-
+        return (
+            <div id="Routes">
+                {isLoggedIn ? (
+                    <Switch>
+                        <Route exact path="/admin" component={AdminView} />
+                        <Route
+                            path="/admin/update/:id"
+                            component={UpdateProduct}
+                        />
+                        <Route exact path="/home" component={Home} />
+                        <Route path="/home/:id" component={SingleProduct} />
+                        <Route path="/cart" component={Cart} />
+                        <Route path="/checkout" component={Checkout} />
+                        <Redirect to="/home" />
+                    </Switch>
+                ) : (
+                    <Switch>
+                        <Route exact path="/home" component={Home} />
+                        <Route path="/home/:id" component={SingleProduct} />
+                        <Route path="/cart" component={Cart} />
+                        <Route path="/login" component={Login} />
+                        <Route path="/signup" component={Signup} />
+                        <Route path="/checkout" component={Checkout} />
+                        <Route id="guest" path="/guest" component={Guest} />
+                        <Redirect to="/guest" />
+                    </Switch>
+                )}
+            </div>
+        )
+    }
 }
 
 /**
