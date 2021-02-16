@@ -33,8 +33,13 @@ const styles = (theme) => ({
 })
 
 class Cart extends React.Component {
-    componentDidMount() {
-        this.props.getCartItems()
+    async componentDidMount() {
+        await this.props.getCartItems()
+        // console.log(this.props)
+
+        await this.setInitialTotal()
+        //function that gets all product ids on pages (set initial price)
+        //set state of (ids-quantity-price)
     }
 
     constructor(props) {
@@ -44,6 +49,24 @@ class Cart extends React.Component {
         }
 
         this.updateCheckoutTotal = this.updateCheckoutTotal.bind(this)
+    }
+
+    setInitialTotal() {
+        console.log('SET INITIAL_TOTAL')
+        console.log('PROP', this.props)
+        const { cart } = this.props
+
+        //call the select values
+
+        cart[0].orders.map((cartItem) => {
+            // var select = document.getElementById(`cart-item-${cartItem.product.id}`)
+            // let itemQuantity = select.value
+
+            this.updateCheckoutTotal(
+                cartItem.product.id,
+                cartItem.product.price
+            )
+        })
     }
 
     updateCheckoutTotal(productId, productPrice) {
@@ -83,8 +106,10 @@ class Cart extends React.Component {
     // TODO : MAKE SURE CART COMPONENT RENDERS ON REFRESH
 
     render() {
+        const selectValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         const { classes, theme } = this.props
         const { updateCheckoutTotal } = this
+        console.log('RENDER', this.props)
 
         const cartProducts = this.props.cart.length
             ? this.props.cart[0].orders.filter(
@@ -124,16 +149,33 @@ class Cart extends React.Component {
                                     }}
                                     className={classes.quantity}
                                 >
-                                    <option aria-label="None" value="" />
-                                    <option value={1}>1</option>
-                                    <option value={2}>2</option>
+                                    {/* <option aria-label="1" value={1} /> */}
+                                    {selectValues.map((selectOption) => {
+                                        return (
+                                            <option
+                                                value={selectOption}
+                                                selected={
+                                                    selectOption === 3
+                                                        ? true
+                                                        : false
+                                                }
+                                            >
+                                                {selectOption}
+                                            </option>
+                                        )
+                                    })}
+                                    {/* <option value={1}>1</option>
+                                    <option value={2} selected>
+                                        2
+                                    </option>
                                     <option value={3}>3</option>
                                     <option value={4}>4</option>
                                     <option value={5}>5</option>
                                     <option value={6}>6</option>
-                                    <option value={7}>8</option>
+                                    <option value={7}>7</option>
+                                    <option value={8}>8</option>
                                     <option value={9}>9</option>
-                                    <option value={10}>10</option>
+                                    <option value={10}>10</option> */}
                                 </Select>
 
                                 <img src={order.product.thumbnailImgUrl}></img>

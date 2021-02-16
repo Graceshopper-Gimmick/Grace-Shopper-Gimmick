@@ -28,3 +28,17 @@ form div {
     color: white;
     -webkit-text-stroke: 1px black; /* width and color */
 }
+
+#Routes {
+    padding-top:72px;
+    height:calc(100%-72px);
+}
+
+/* #App {
+    display: flex;
+    flex-direction: column;
+} */
+
+.toolbar{
+    justify-content: space-between;
+}

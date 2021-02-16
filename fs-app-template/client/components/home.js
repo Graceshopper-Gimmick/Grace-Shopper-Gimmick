@@ -9,7 +9,7 @@ export const Home = props => {
   const {email} = props
 
   return (
-    <div>
+    <div id='Home'>
       <h3>Welcome, {email?email:'Guest'}!</h3>
       <HomePageItems/>
     </div>
