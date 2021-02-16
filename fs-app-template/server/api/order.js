@@ -30,6 +30,17 @@ router.post('/', async (req, res, next) => {
             // send everything to anyone who asks!
             //attributes: ['id','name', 'price', 'thumbnailImgUrl', 'ogImgUrl']
         )
+        const checkOrder = await Order.findOne({
+            where: {
+                productId : req.body.productId,
+                cartId : cart.id
+            }
+        });
+        if(checkOrder){
+            const error = Error('Cannot create duplicate order');
+            error.status = 401;
+            return next(error);
+        }
 
         const order = await Order.create({
             userId: req.body.userId,
