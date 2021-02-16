@@ -35,12 +35,17 @@ import ListItemText from '@material-ui/core/ListItemText';
 // }))
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
+    offset: theme.mixins.toolbar,
     root: {
        display: 'flex',
        position: 'static'
     },
+    // toolbar:{
+    //     justifyContent:''
+    // },
     appBar: {
         display: 'flex',
+        height: '72px',
         transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -108,10 +113,10 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
 
     return (
         <div className={classes.root}>
-            <AppBar position="fixed"
+            <AppBar position="fixed" id='appbar'
             className={clsx(classes.appBar,
             {[classes.appBarShift]: open,})}>
-                <Toolbar>
+                <Toolbar id='toolbar' className='toolbar'>
                     <IconButton
                         edge="start"
                         className={clsx(classes.menuButton, open && classes.hide)}
@@ -140,7 +145,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                                     </a>
                                 </div>
                             ) : (
-                                <div>
+                                <div className='navbuttons'>
                                     {/* The navbar will show these links before you log in */}
                                     <Link to ='/cart'><ShoppingCartIcon /></Link>
                                     <Button color="inherit" href="/login">

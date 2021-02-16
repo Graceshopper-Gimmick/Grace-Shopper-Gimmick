@@ -30,5 +30,15 @@ form div {
 }
 
 #Routes {
-    padding-top: 10%;
+    padding-top:72px;
+    height:calc(100%-72px);
+}
+
+/* #App {
+    display: flex;
+    flex-direction: column;
+} */
+
+.toolbar{
+    justify-content: space-between;
 }
