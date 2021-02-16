@@ -189,7 +189,7 @@ const syncAndSeed = async () => {
     }),
     Product.create({
       name: "Noodle Fan",
-      category: "Star Wars",
+      category: "Culinary",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Noodle_Fan_Thumbnail.jpg",
       description:

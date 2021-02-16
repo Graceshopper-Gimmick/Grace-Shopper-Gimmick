@@ -33,8 +33,13 @@ const styles = (theme) => ({
 })
 
 class Cart extends React.Component {
-    componentDidMount() {
-        this.props.getCartItems()
+    async componentDidMount() {
+        await this.props.getCartItems()
+        // console.log(this.props)
+
+        await this.setInitialTotal()
+        //function that gets all product ids on pages (set initial price)
+        //set state of (ids-quantity-price)
     }
 
     constructor(props) {
@@ -43,31 +48,30 @@ class Cart extends React.Component {
             cartTotal: 0,
         }
 
-        // this.handleChange = this.handleChange.bind(this)
         this.updateCheckoutTotal = this.updateCheckoutTotal.bind(this)
-        // this.setItemQuantities = this.setItemQuantities.bind(this)
     }
 
-    // handleChange(ev) {
-    //     const change = {}
-    //     change[ev.target.name] = ev.target.value //targets Select Target By Name to change value dynamically change state name quantity to item
-    //     this.setState(change)
-    //     console.log('state after set', this.state)
-    // }
-    // setItemQuantities(productId) {
-    //     console.log(productId)
-    //     // var e = document.getElementById(`cart-item-${productId}`)
-    //     // let itemQuantity = e.value
-    //     if (productId) {
-    //         this.setState({ [`${productId}-quantity`]: 1 })
-    //         console.log(this.state)
-    //     }
-    // }
+    setInitialTotal() {
+        console.log('SET INITIAL_TOTAL')
+        console.log('PROP', this.props)
+        const { cart } = this.props
+
+        //call the select values
+
+        cart[0].orders.map((cartItem) => {
+            // var select = document.getElementById(`cart-item-${cartItem.product.id}`)
+            // let itemQuantity = select.value
+
+            this.updateCheckoutTotal(
+                cartItem.product.id,
+                cartItem.product.price
+            )
+        })
+    }
 
     updateCheckoutTotal(productId, productPrice) {
         var e = document.getElementById(`cart-item-${productId}`)
         let itemQuantity = e.value
-        // console.log.bind(itemQuantity_Price)
         this.setState(
             {
                 [`${productId}-quantity-price`]: [
@@ -75,22 +79,20 @@ class Cart extends React.Component {
                     productPrice,
                 ],
             },
-            () => this.calculateTotal()
+            () => this.calculateTotal(false, productId)
         )
-        // because state is asynchrnous need callback
-        // this.setState({ [`${productId}-price`]: productPrice * 1 }, () =>
-        //     this.calculateTotal()
-        // )
-
-        //update total based on item quantity/id and item price
-        console.log('regular log', this.state)
     }
 
-    calculateTotal() {
+    calculateTotal(onDelete, productId) {
+        // console.log('onDelete', onDelete)
         let cartIdObj = this.state
         delete cartIdObj.cartTotal
         let newTotal = 0
-        console.log('obj', cartIdObj)
+        // console.log('obj', cartIdObj)
+
+        if (onDelete) {
+            delete cartIdObj[`${productId}-quantity-price`]
+        }
 
         for (let id in cartIdObj) {
             newTotal += cartIdObj[id][0] * (cartIdObj[id][1] * 1) // put price quantity in array object
@@ -104,10 +106,10 @@ class Cart extends React.Component {
     // TODO : MAKE SURE CART COMPONENT RENDERS ON REFRESH
 
     render() {
+        const selectValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         const { classes, theme } = this.props
-        const { quantity } = this.state
-        const { handleChange, updateCheckoutTotal, setItemQuantities } = this
-        let cartTotal = 0
+        const { updateCheckoutTotal } = this
+        console.log('RENDER', this.props)
 
         const cartProducts = this.props.cart.length
             ? this.props.cart[0].orders.filter(
@@ -147,29 +149,50 @@ class Cart extends React.Component {
                                     }}
                                     className={classes.quantity}
                                 >
-                                    <option aria-label="None" value="1" />
-                                    <option value={1}>1</option>
-                                    <option value={2}>2</option>
+                                    {/* <option aria-label="1" value={1} /> */}
+                                    {selectValues.map((selectOption) => {
+                                        return (
+                                            <option
+                                                value={selectOption}
+                                                selected={
+                                                    selectOption === 3
+                                                        ? true
+                                                        : false
+                                                }
+                                            >
+                                                {selectOption}
+                                            </option>
+                                        )
+                                    })}
+                                    {/* <option value={1}>1</option>
+                                    <option value={2} selected>
+                                        2
+                                    </option>
                                     <option value={3}>3</option>
                                     <option value={4}>4</option>
                                     <option value={5}>5</option>
                                     <option value={6}>6</option>
-                                    <option value={7}>8</option>
+                                    <option value={7}>7</option>
+                                    <option value={8}>8</option>
                                     <option value={9}>9</option>
-                                    <option value={10}>10</option>
+                                    <option value={10}>10</option> */}
                                 </Select>
 
                                 <img src={order.product.thumbnailImgUrl}></img>
                                 <h2> {order.product.name}</h2>
                                 <p>Price: ${order.product.price}</p>
                                 <Button
-                                    onClick={() =>
+                                    onClick={() => {
                                         this.props.deleteCartItem(
                                             this.props.cart[0].id,
                                             order.product.id,
                                             this.props.auth.id
                                         )
-                                    }
+                                        this.calculateTotal(
+                                            true,
+                                            order.product.id
+                                        )
+                                    }}
                                 >
                                     <RemoveShoppingCartIcon />
                                 </Button>
@@ -179,7 +202,12 @@ class Cart extends React.Component {
                 ) : (
                     <h1>No Items</h1>
                 )}
-                <h1>Total Price: ${this.state.cartTotal.toFixed(2)}</h1>
+                <h1>
+                    Total Price: $
+                    {this.state.cartTotal
+                        ? this.state.cartTotal.toFixed(2)
+                        : '0.00'}
+                </h1>
                 <Button color="inherit" href="/checkout">
                     Submit
                 </Button>

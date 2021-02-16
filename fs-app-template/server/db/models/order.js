@@ -5,4 +5,5 @@ const Order = db.define('order', {
     quantity: { type: Sequelize.INTEGER },
 })
 
+
 module.exports = Order

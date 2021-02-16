@@ -18,7 +18,7 @@ router.get('/:id', async (req, res, next) => {
                 active: true,
             },
         })
-        res.json(cartItems)
+        res.send(cartItems)
     } catch (err) {
         next(err)
     }

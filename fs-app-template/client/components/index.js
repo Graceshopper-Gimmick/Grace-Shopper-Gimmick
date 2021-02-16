@@ -5,7 +5,8 @@
  */
 export { default as Navbar } from './navbar'
 export { default as Home } from './home'
-export { default as Cart } from './cart'
+export { default as Cart } from './Cart'
 export { default as Checkout } from './Checkout'
+export { default as SingleProduct } from './singleProduct'
 export { Login, Signup } from './auth-form'
 export {default as Menu } from './menu'
