@@ -48,6 +48,7 @@ router.post('/', async (req, res, next) => {
             quantity: req.body.quantity,
             productId: req.body.productId,
         })
+        res.sendStatus(201)
     } catch (err) {
         next(err)
     }

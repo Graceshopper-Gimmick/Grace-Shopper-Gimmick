@@ -155,7 +155,7 @@ class Cart extends React.Component {
                                             <option
                                                 value={selectOption}
                                                 selected={
-                                                    selectOption === 3
+                                                    selectOption === 1
                                                         ? true
                                                         : false
                                                 }
