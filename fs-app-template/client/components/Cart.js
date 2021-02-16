@@ -113,7 +113,7 @@ class Cart extends React.Component {
 
         const cartProducts = this.props.cart.length
             ? this.props.cart[0].orders.filter(
-                  (order) => order.product !== null
+                  (order) => order.product
               )
             : []
 

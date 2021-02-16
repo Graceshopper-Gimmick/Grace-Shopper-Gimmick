@@ -27,11 +27,11 @@ export const me = () => async dispatch => {
         authorization: token
       }
     })
+    window.localStorage.removeItem('user')
     return dispatch(setAuth(res.data))
   }
-  const user = window.localStorage.getItem('userId')
-  if(user){
-    console.log('GUEST IS HERE')
+  else{
+    window.localStorage.setItem('user','Guest')
   }
 }
 

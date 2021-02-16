@@ -32,6 +32,9 @@ const syncAndSeed = async () => {
       password: "123",
       isAdmin: true,
     }),
+    User.create({ email: "guest1@gmail.com", password: "guest1" }),
+    User.create({ email: "guest2@gmail.com", password: "guest2" }),
+    User.create({ email: "guest3@gmail.com", password: "guest3" }),
   ]);
 
   const products = await Promise.all([
@@ -223,6 +226,9 @@ const syncAndSeed = async () => {
     Cart.create({ userId: 2, active: true }),
     Cart.create({ userId: 3, active: true }),
     Cart.create({ userId: 4, active: true }),
+    Cart.create({ userId: 5, active: true }),
+    Cart.create({ userId: 6, active: true }),
+    Cart.create({ userId: 1, active: true }),
   ]);
 
   // Cart.create({ userId: 1, active: false }),
@@ -235,7 +241,7 @@ const syncAndSeed = async () => {
     Order.create({ cartId: 1, productId: 5, quantity: 2 }), // active cart order
     Order.create({ cartId: 2, productId: 6, quantity: 1 }), // checked out cart order
     Order.create({ cartId: 2, productId: 4, quantity: 3 }), // checked out cart order
-    Order.create({ cartId: 2, productId: 7, quantity: 5 }), // checked out cart order
+    Order.create({ cartId: 8, productId: 7, quantity: 5 }), // checked out cart order
   ]);
   return {
     users: {
