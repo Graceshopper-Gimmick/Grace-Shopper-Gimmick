@@ -7,9 +7,10 @@
  * Node process on process.env
  */
 try {
-  const {GITHUB_CLIENT_ID,GITHUB_CLIENT_SECRET} = require('../secrets')
+  const {GITHUB_CLIENT_ID,GITHUB_CLIENT_SECRET, JWT_SECRET} = require('../secrets')
   process.env.GITHUB_CLIENT_ID = GITHUB_CLIENT_ID;
   process.env.GITHUB_CLIENT_SECRET = GITHUB_CLIENT_SECRET;
+  process.env.JWT_SECRET = JWT_SECRET;
 }
 catch(ex){
   console.log(ex.message);
