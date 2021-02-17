@@ -29,6 +29,10 @@ const _createNewCart = (userId) => ({ type: CREATE_NEW_CART, userId })
  */
 export const addProduct = (productId, userId, quantity) => {
     return async (dispatch) => {
+        const guestId = window.localStorage.getItem('guestId') * 1
+        if (guestId) {
+            userId = guestId
+        }
         await axios.post('/api/order', {
             productId,
             userId,
@@ -68,6 +72,10 @@ export const getCartItems = () => {
             console.log('RES', res)
             userId = res.id
         }
+        const guestId = window.localStorage.getItem('guestId') * 1
+        if (guestId) {
+            userId = guestId
+        }
         const cartItems = (await axios.get(`/api/cart/${userId}`)).data
         dispatch(_getCartItems(cartItems))
     }
@@ -95,13 +103,13 @@ export const submitCart = (cartId) => {
     }
 }
 
-export const createNewCart = (userId) => {
-    return async (dispatch) => {
-        const newCart = (await axios.post(`/api/cart${userId}`)).data
-        console.log(newCart)
-        dispatch(_createNewCart(newCart))
-    }
-}
+// export const createNewCart = (userId) => {
+//     return async (dispatch) => {
+//         const newCart = (await axios.post(`/api/cart${userId}`)).data
+//         console.log(newCart)
+//         dispatch(_createNewCart(newCart))
+//     }
+// }
 
 /**
  * REDUCER

@@ -58,6 +58,10 @@ router.delete('/:id/:cartItemId', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
     try {
         const updatedCart = await Cart.findByPk(req.params.id)
+        const newCart = await Cart.create({
+            userId: updatedCart.userId,
+            active: true,
+        })
         res.send(
             await updatedCart.update({
                 active: false,

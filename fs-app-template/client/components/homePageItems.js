@@ -84,46 +84,6 @@ class HomePageItems extends React.Component {
         const quantity = 1 // can change based off of dropdown from cart menu?
 
         return (
-            // <div>
-            //     <div className={classes.homePageItemsContainer}>
-            //         {products.length ? (
-            //         products.map((product) => {
-            //             return (
-            //             <Link to={`/home/${product.id}`} key={product.id}>
-            //             <Card
-            //                 className={classes.myCustomClass}
-            //                 padding={theme.spacing(4)}
-            //                 variant="outlined"
-            //             >
-            //                 <Box
-            //                 className={classes.imgThumbnail}
-            //                 border={1}
-            //                 borderColor="black"
-            //                 >
-            //                 <img
-            //                     className={classes.imgThumbnail}
-            //                     src={product.thumbnailImgUrl}
-            //                 ></img>
-            //                 </Box>
-            //                 <h2> {product.name}</h2>
-            //                 <p>${product.price}</p>
-            //                 <Button
-            //                 variant="outlined"
-            //                 color="primary"
-            //                 onClick={() => addProduct(product.id, userId, quantity)}
-            //                 >
-            //                 Add to Cart
-            //                 </Button>
-            //             </Card>
-            //             </Link>
-            //             );
-            //         })
-            //         ) : (
-            //         <h1>No Items</h1>
-            //         )}
-            //     </div>
-            // </div>
-
             <div>
                 <FormControl variant="filled" className={classes.formControl}>
                     <InputLabel htmlFor="filled-age-native-simple">

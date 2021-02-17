@@ -42,10 +42,10 @@ class Guest extends React.Component {
                 <h1>Welcome</h1>
                 <Button
                     onClick={() => {
-                        console.log('Create Guest')
+                        window.localStorage.setItem('user', 'guest')
                     }}
                 >
-                    Continue as Guest
+                    <a href="/home">Continue as Guest</a>
                 </Button>
                 <Button>
                     <a href="/signup">Sign Up</a>
