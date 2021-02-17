@@ -44,6 +44,7 @@ const syncAndSeed = async () => {
       category: "Culinary",
       price: 10,
       thumbnailImgUrl: "/assets/thumbnails/Beer_Curler_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/Beer_Curler.jpg",
       description:
         "Have you ever been binge drinking and thought to yourself, 'I should workout more.' Us, too! Presenting: the Beer Curler! Drink with confidence as you burn calories while you get your party on.",
     }),
@@ -52,6 +53,7 @@ const syncAndSeed = async () => {
       category: "Home Decor",
       price: 15.2,
       thumbnailImgUrl: "/assets/thumbnails/Money_Toilet_Paper_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/Money_Toilet_Paper.jpg",
       description:
         "Do you like to wipe your butt with really soft paper after you drop a deuce? Well then this probably isn't for you, but if you want to feel like a baller while you wipe, then Money Toilet Paper is the perfect item for you.",
     }),
@@ -60,6 +62,7 @@ const syncAndSeed = async () => {
       category: "Gag Gifts",
       price: 20.34,
       thumbnailImgUrl: "/assets/thumbnails/Diet_Water_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/Diet_Water.jpg",
       description:
         "Thirsty, but tired of your boring no-calorie water? Introducing Diet Water! It's the same as regular water, only it's diet!",
     }),
@@ -68,6 +71,7 @@ const syncAndSeed = async () => {
       category: "Home Decor",
       price: 30,
       thumbnailImgUrl: "/assets/thumbnails/Buff_Squidward_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/Buff_Squidward.jpg",
       description:
         "Who lifts in a pineapple under the sea? Squidward, that's who. Whenever you need that extra motivation to get back to the gym, what's better than looking at a Buff Squidward on your desk?",
     }),
@@ -76,6 +80,7 @@ const syncAndSeed = async () => {
       category: "Culinary",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Anti_Theft_Bag_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/Anti_Theft_Bag.jpg",
       description:
         "We've all had food stolen by a roommate, a family member, or maybe even a school bus driver while long sideburns. Buy these Anti Theft Bags to make your food look moldy and unappealing, and never go hungry again.",
     }),
@@ -84,6 +89,7 @@ const syncAndSeed = async () => {
       category: "Star Wars",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/AT_AT_BBQ_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/AT_AT_BBQ.jpg",
       description:
         "Where the BBQ AT-AT? Look no further. It's right here. Literally. An AT-AT with a grill inside.",
     }),
@@ -92,6 +98,7 @@ const syncAndSeed = async () => {
       category: "Gag Gifts",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Baby_Mop_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/Baby_Mop.jpg",
       description:
         "You feed them, you clothe them, you change their diapers. It's time we put these free-loading babies to work! Get the Baby Mop and turn your baby into a cleaning machine while finally getting a return on your investment!",
     }),
@@ -100,6 +107,7 @@ const syncAndSeed = async () => {
       category: "Gag Gifts",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Bacon_Perfume_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/Bacon_Perfume.jpg",
       description:
         "Do you want to smell like you just left a wedding reception at a Denny's? You're damn right you do. A few pumps of this Bacon Perfume will have you attracting all those breakfast-loving singles.",
     }),
@@ -108,6 +116,7 @@ const syncAndSeed = async () => {
       category: "Gag Gifts",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Baguette_Pack_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/Baguette_Pack_Original.jpg",
       description:
         "Oui oui, poo poo, c'est la vie. Look cultured AF with this Baguette Pack on your back so you can whip out some of the best bread on the planet like a battle-tested samurai.",
     }),
@@ -116,6 +125,7 @@ const syncAndSeed = async () => {
       category: "Apparel",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Beard_Hat_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/beard-hat.jpg",
       description:
         "Do you live in Williamsburg, Brooklyn? Then chances are you already own 5 of these. For those that don't, get yourself a Beard Hat today and blend in with the cool guys at the craft beer bar wearing plaid.",
     }),
@@ -124,6 +134,7 @@ const syncAndSeed = async () => {
       category: "Apparel",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Computer_Privacy_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/Computer_Privacy.jpg",
       description:
         "Ever wanted to look at the NSFW Reddit thread while you're in fact at work? Computer Privacy Hood lets you look at whatever you want, wherever you want, while also confusing absolutely anyone that can see you.",
     }),
@@ -132,6 +143,7 @@ const syncAndSeed = async () => {
       category: "Star Wars",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Darth_Vader_BBQ_Apron_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/Darth_Vader_BBQ_Apron.jpg",
       description:
         "If you're looking at this item, chances are you already own the AT-AT BBQ Grill and you need to complete the set. Complete your training and become a Dark Grill Lord of the Sith with this Darth Vader BBQ Apron.",
     }),
@@ -140,6 +152,7 @@ const syncAndSeed = async () => {
       category: "Star Wars",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Darth_Vader_Face_Mask_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/Darth_Vader_Face_Mask.jpg",
       description:
         "I know what you're thinking, and no, this mask doesn't change your voice when you talk. However, it does make you look like the baddest Skywalker to ever do it. Buy the Darth Vader Face Mask and make the voice sound effects yourself like the rest of us.",
     }),
@@ -148,6 +161,7 @@ const syncAndSeed = async () => {
       category: "Gag Gifts",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Eyedrop_Funnel_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/eye-drop-funnel.jpg",
       description:
         "How many dollars worth of eye drops have you wasted COMPLETELY missing your eye? Probably more than this Eye Drop Funnel costs. Make the investment and never waste your precious drops again.",
     }),
@@ -156,6 +170,7 @@ const syncAndSeed = async () => {
       category: "Gag Gifts",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Finger_Pants_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/Finger_Pants.jpg",
       description:
         "You want a roundhouse kick to the face while I'm wearing these bad boys? Forget about it. Get our your old tech-deck finger skateboard with a pair of these on your fingers and show Tony Hawk how it's done.",
     }),
@@ -164,6 +179,7 @@ const syncAndSeed = async () => {
       category: "Star Wars",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Han_Solo_Icecube_Tray_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/Han_Solo_Icecube_Tray.jpg",
       description:
         "He's no good to you dead. Have you ever seen something as spot-on as Han Solo Icecubes? Cool down your drink while feeling like the coolest person in the room with this Han Solo Icecube Tray.",
     }),
@@ -172,6 +188,7 @@ const syncAndSeed = async () => {
       category: "Culinary",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Hand_Holder_Thumbnail.jpg",
+      ogImgUrl: `/assets/og/Hand_Holder.jpg`,
       description:
         "If you don't trust yourself to chop those vegetables using your own hand as the guide, buy this freaky mannequin Hand Holder and feel like a serial killer while you chop your food. Hell, leave it in your fridge or freezer to scare unsuspecting company!",
     }),
@@ -180,6 +197,7 @@ const syncAndSeed = async () => {
       category: "Culinary",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Handglass_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/hand-glass.jpg",
       description:
         "There is no chance you'll lose your grip on this Hand Glass. Perfect indentations allow you to ergonomically hold this glass and look like Hulk after you put it down.",
     }),
@@ -188,6 +206,7 @@ const syncAndSeed = async () => {
       category: "Star Wars",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Its_A_Nap_Pillow_Case_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/Its_A_Nap_Pillow_Case.jpg",
       description:
         "Admiral Ackbar get's tired, too. He also wants to help you in your time of need. Catch some much needed zzz's while you're saving the Republic with the It's A Nap! pillowcase.",
     }),
@@ -196,6 +215,7 @@ const syncAndSeed = async () => {
       category: "Culinary",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Noodle_Fan_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/Noodle_Fan.jpg",
       description:
         "What's worse than being so excited to eat your noodles that you burn the roof of your mouth because you didn't even blow on them? Noodle Fan to the rescue! Mount this awesome fan to your chopsticks and never burn your mouth again.",
     }),
@@ -204,6 +224,7 @@ const syncAndSeed = async () => {
       category: "Apparel",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Shoe_Umbrella_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/Shoe_Umbrella.jpg",
       description:
         "We're going to be honest with you here. These do not work, but they look hilarious. Make a statement with the Shoe Umbrella and see how many people compliment your trend-setting fashion choices.",
     }),
@@ -212,8 +233,18 @@ const syncAndSeed = async () => {
       category: "Apparel",
       price: 1,
       thumbnailImgUrl: "/assets/thumbnails/Tshirt_Mask_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/Tshirt_Mask.jpg",
       description:
         "If you forgot your mask and home and also want to make strangers feel uncomfortable, get this T-Shirt Mask which offers you no real protection, but at least it looks hilarious.",
+    }),
+    Product.create({
+      name: "Chicken Spongebob",
+      category: "Home Decor",
+      price: 19.99,
+      thumbnailImgUrl: "/assets/thumbnails/Spongebob_Thumbnail.jpg",
+      ogImgUrl: "/assets/og/Spongebob.jpg",
+      description:
+        "Getting bored of looking at Buff Squidward? You probably need the Chicken Spongebob then. Who needs rubber duck debugging when you can Chicken Spongebob debug?",
     }),
   ]);
   const [cody, murphy] = users;
