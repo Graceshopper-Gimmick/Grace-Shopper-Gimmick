@@ -53,3 +53,26 @@ router.delete('/:id/:cartItemId', async (req, res, next) => {
         next(err)
     }
 })
+
+// makes the active cart false
+router.put('/:id', async (req, res, next) => {
+    try {
+        const updatedCart = await Cart.findByPk(req.params.id)
+        res.send(
+            await updatedCart.update({
+                active: false,
+            })
+        )
+    } catch (err) {
+        next(err)
+    }
+})
+
+router.post('/:id', async (req, res, next) => {
+    try {
+        //must get new cart ID
+        const newCart = await Cart.create(req.params.id)
+    } catch (err) {
+        next(err)
+    }
+})

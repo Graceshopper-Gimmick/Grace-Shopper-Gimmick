@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { getCartItems, deleteCartItem } from '../store/cart'
+import { getCartItems, deleteCartItem, submitCart } from '../store/cart'
 import { fetchProducts } from '../store/homePageItems'
 import { me } from '../store'
 import axios from 'axios'
@@ -107,15 +107,15 @@ class Cart extends React.Component {
 
     render() {
         const selectValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        const { classes, theme } = this.props
+        const { classes, theme, submitCart } = this.props
         const { updateCheckoutTotal } = this
         console.log('RENDER', this.props)
 
         const cartProducts = this.props.cart.length
-            ? this.props.cart[0].orders.filter(
-                  (order) => order.product
-              )
+            ? this.props.cart[0].orders.filter((order) => order.product)
             : []
+
+        const cartId = this.props.cart.length ? this.props.cart[0].id : 0
 
         return (
             <FormControl>
@@ -164,18 +164,6 @@ class Cart extends React.Component {
                                             </option>
                                         )
                                     })}
-                                    {/* <option value={1}>1</option>
-                                    <option value={2} selected>
-                                        2
-                                    </option>
-                                    <option value={3}>3</option>
-                                    <option value={4}>4</option>
-                                    <option value={5}>5</option>
-                                    <option value={6}>6</option>
-                                    <option value={7}>7</option>
-                                    <option value={8}>8</option>
-                                    <option value={9}>9</option>
-                                    <option value={10}>10</option> */}
                                 </Select>
 
                                 <img src={order.product.thumbnailImgUrl}></img>
@@ -208,7 +196,14 @@ class Cart extends React.Component {
                         ? this.state.cartTotal.toFixed(2)
                         : '0.00'}
                 </h1>
-                <Button color="inherit" href="/checkout">
+                <Button
+                    onClick={() => {
+                        console.log('CARTID', cartId)
+                        this.props.submitCart(cartId)
+                    }}
+                    color="inherit"
+                    href="/checkout"
+                >
                     Submit
                 </Button>
             </FormControl>
@@ -223,6 +218,7 @@ const mapDispatch = (dispatch) => {
         getCartItems: () => dispatch(getCartItems()),
         deleteCartItem: (cartId, cartItemId, userId) =>
             dispatch(deleteCartItem(cartId, cartItemId, userId)),
+        submitCart: (cartId) => dispatch(submitCart(cartId)),
     }
 }
 
