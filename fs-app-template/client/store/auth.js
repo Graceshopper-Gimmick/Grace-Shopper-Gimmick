@@ -27,11 +27,20 @@ export const me = () => async dispatch => {
         authorization: token
       }
     })
-    window.localStorage.removeItem('user')
+    const cartId = window.localStorage.getItem('cartId')*1
+    const guestId = window.localStorage.getItem('guestId')*1
+    if(cartId){
+      await axios.put(`/api/users/claimcart/${res.data.id}`,{cartId,guestId})
+      window.localStorage.removeItem('guestId')
+      window.localStorage.removeItem('cartId')
+    }
     return dispatch(setAuth(res.data))
   }
-  else{
-    window.localStorage.setItem('user','Guest')
+  if(window.localStorage.getItem('user')==='guest'){
+    const {guest,cart} = (await axios.post('/api/users/createguest',{})).data
+    window.localStorage.setItem('guestId',guest.id.toString())
+    window.localStorage.setItem('cartId',cart.id.toString())
+    window.localStorage.removeItem('user')
   }
 }
 
@@ -48,7 +57,7 @@ export const authenticate = (email, password, method) => async dispatch => {
 
 export const logout = () => {
   storage().removeItem(TOKEN)
-  history.push('/login')
+  history.push('/guest')
   return {
     type: SET_AUTH,
     auth: {}

@@ -11,7 +11,10 @@ const Cart = db.define('cart', {
   }
 })
 
-
+Cart.destroyGuest = async function(cartId){
+  const cart = await Cart.findByPk(cartId);
+  await cart.destroy()
+}
 
 
 
