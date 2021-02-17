@@ -1,37 +1,63 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+import Paper from '@material-ui/core/Paper'
+
+const styles = (theme) => ({
+    guestCard: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+        display: 'flex',
+        flexDirection: 'column',
+        maxWidth: 300,
+        alignItems: 'center',
+        textAlign: 'center',
+    },
+
+    centered: {
+        width: '25vw',
+        height: '25vh',
+
+        position: 'absolute',
+        top: '0',
+        bottom: '0',
+        left: '0',
+        right: '0',
+
+        margin: 'auto',
+    },
+})
 
 class Guest extends React.Component {
-    // componentDidMount() {
-    //     this.props.getCartItems()
-    // }
-
-    // constructor(props) {
-    //     super(props)
-    // }
-
-    // TODO : MAKE SURE CART COMPONENT RENDERS ON REFRESH
+    constructor(props) {
+        super(props)
+    }
 
     render() {
+        const { classes, theme } = this.props
+
         return (
-            <div>
-                <h1>Welcome Guest!!</h1>
-                <button id='guestbutton' onClick={()=>{window.localStorage.setItem('user','guest')}}><a href='/home'>Continue as Guest</a></button>
-                <button><a href='/signup'>Sign Up</a></button>
-                <button><a href='login'>Login</a></button>
-            </div>
+            <Paper className={`${classes.guestCard} ${classes.centered}`}>
+                <h1>Welcome</h1>
+                <Button
+                    onClick={() => {
+                        window.localStorage.setItem('user', 'guest')
+                    }}
+                >
+                    <a href="/home">Continue as Guest</a>
+                </Button>
+                <Button>
+                    <a href="/signup">Sign Up</a>
+                </Button>
+                <Button>
+                    <a href="login">Login</a>
+                </Button>
+            </Paper>
         )
     }
 }
 
 const mapState = (state) => state
 
-// const mapDispatch = (dispatch) => {
-//     return {
-//         getCartItems: () => dispatch(getCartItems()),
-//         deleteCartItem: (id) => dispatch(deleteCartItem(id)),
-//     }
-// }
-
-export default connect(mapState)(Guest)
-
+export default withStyles(styles, { withTheme: true })(connect(mapState)(Guest))

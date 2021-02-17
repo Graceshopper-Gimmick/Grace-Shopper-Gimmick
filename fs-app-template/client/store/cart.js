@@ -7,6 +7,8 @@ import { setProducts } from './homePageItems'
 const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
 const GET_CART_ITEMS = 'GET_CART_ITEMS'
 const DELETE_CART_ITEM = 'DELETE_CART_ITEM'
+const SUBMIT_CART = 'SUBMIT_CART'
+const CREATE_NEW_CART = 'CREATE_NEW_CART'
 
 /**
  * ACTION CREATORS
@@ -15,14 +17,21 @@ const _addProduct = (product) => ({ type: ADD_PRODUCT_TO_CART, product })
 const _getCartItems = (cartItems) => ({ type: GET_CART_ITEMS, cartItems })
 const _deleteCartItem = (cartItems) => ({ type: DELETE_CART_ITEM, cartItems })
 
+const _submitCart = (cartId) => ({
+    type: SUBMIT_CART,
+    cartId,
+})
+
+const _createNewCart = (userId) => ({ type: CREATE_NEW_CART, userId })
+
 /**
  * THUNK CREATORS
  */
 export const addProduct = (productId, userId, quantity) => {
     return async (dispatch) => {
-        const guestId = window.localStorage.getItem('guestId')*1
-        if(guestId){
-            userId=guestId
+        const guestId = window.localStorage.getItem('guestId') * 1
+        if (guestId) {
+            userId = guestId
         }
         await axios.post('/api/order', {
             productId,
@@ -63,9 +72,9 @@ export const getCartItems = () => {
             console.log('RES', res)
             userId = res.id
         }
-        const guestId = window.localStorage.getItem('guestId')*1
-        if(guestId){
-            userId=guestId
+        const guestId = window.localStorage.getItem('guestId') * 1
+        if (guestId) {
+            userId = guestId
         }
         const cartItems = (await axios.get(`/api/cart/${userId}`)).data
         dispatch(_getCartItems(cartItems))
@@ -86,6 +95,22 @@ export const deleteCartItem = (cartId, cartItemId, userId) => {
     }
 }
 
+export const submitCart = (cartId) => {
+    return async (dispatch) => {
+        const updatedCart = (await axios.put(`/api/cart/${cartId}`)).data
+        console.log(updatedCart)
+        dispatch(_submitCart(updatedCart))
+    }
+}
+
+// export const createNewCart = (userId) => {
+//     return async (dispatch) => {
+//         const newCart = (await axios.post(`/api/cart${userId}`)).data
+//         console.log(newCart)
+//         dispatch(_createNewCart(newCart))
+//     }
+// }
+
 /**
  * REDUCER
  */
@@ -102,6 +127,11 @@ export default function (state = {}, action) {
             // )
             return action.cartItems
 
+        case SUBMIT_CART:
+            return action.cartId
+
+        case CREATE_NEW_CART:
+            return action.userId
         default:
             return state
     }
