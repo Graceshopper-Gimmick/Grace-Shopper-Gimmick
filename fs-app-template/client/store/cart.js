@@ -20,6 +20,10 @@ const _deleteCartItem = (cartItems) => ({ type: DELETE_CART_ITEM, cartItems })
  */
 export const addProduct = (productId, userId, quantity) => {
     return async (dispatch) => {
+        const guestId = window.localStorage.getItem('guestId')*1
+        if(guestId){
+            userId=guestId
+        }
         await axios.post('/api/order', {
             productId,
             userId,
@@ -58,6 +62,10 @@ export const getCartItems = () => {
             ).data
             console.log('RES', res)
             userId = res.id
+        }
+        const guestId = window.localStorage.getItem('guestId')*1
+        if(guestId){
+            userId=guestId
         }
         const cartItems = (await axios.get(`/api/cart/${userId}`)).data
         dispatch(_getCartItems(cartItems))

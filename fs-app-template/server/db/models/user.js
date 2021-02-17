@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 const axios = require('axios');
 const Cart = require('./cart');
-
+const {Op} = Sequelize;
 
 const SALT_ROUNDS = 5;
 
@@ -107,6 +107,21 @@ User.authenticateGithub = async function(code){
   return user.generateToken();
 }
 
+User.createGuest = async function(){
+  const guests = User.findAll({
+    where:{
+      email: {
+        [Op.substring]:'guest'
+      }
+    }
+  })
+  return guests
+}
+
+User.destroyGuest = async function(guestId){
+  const guest = await User.findByPk(guestId);
+  await guest.destroy()
+}
 /**
  * hooks
  */

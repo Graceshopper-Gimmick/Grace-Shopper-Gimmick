@@ -102,7 +102,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
     const classes = useStyles()
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-  
+
     const handleDrawerOpen = () => {
       setOpen(true);
     };
@@ -154,6 +154,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                                     <Button color="inherit" href="/signup">
                                         Sign Up
                                     </Button>
+                                    
                                     <Button color="inherit" href="/home">
                                         Home
                                     </Button>
