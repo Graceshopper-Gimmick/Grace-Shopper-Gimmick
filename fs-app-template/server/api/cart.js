@@ -70,9 +70,11 @@ router.put('/:id', async (req, res, next) => {
 
 router.post('/:id', async (req, res, next) => {
     try {
-        //must get new cart ID
+        //must get new cart ID ==> ask monil how he got length of database
         const newCart = await Cart.create(req.params.id)
     } catch (err) {
         next(err)
     }
 })
+
+//
