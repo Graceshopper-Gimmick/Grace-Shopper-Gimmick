@@ -42,3 +42,8 @@ form div {
 .toolbar{
     justify-content: space-between;
 }
+
+.ogImg {
+    height: 240px;
+    width: 240px;
+}

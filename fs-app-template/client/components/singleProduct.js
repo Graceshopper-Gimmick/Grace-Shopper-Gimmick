@@ -29,9 +29,9 @@ const styles = (theme) => ({
         color: 'black',
     },
 
-    imgThumbnail: {
-        maxWidth: 160,
-        maxHeight: 160,
+    imgOg: {
+        maxWidth: 249,
+        maxHeight: 242,
         display: 'block',
         margin: 'auto',
     },
@@ -61,11 +61,11 @@ export class SingleProduct extends React.Component {
                         <h1>{product.name}</h1>
                         <br />
                         <Box
-                            className={classes.imgThumbnail}
+                            className={classes.imgOg}
                             border={1}
                             borderColor="black"
                         >
-                            <img src={product.thumbnailImgUrl} />
+                            <img src={product.ogImgUrl} className='ogImg'/>
                         </Box>
                         <br />
                         <h2>Description: </h2>
