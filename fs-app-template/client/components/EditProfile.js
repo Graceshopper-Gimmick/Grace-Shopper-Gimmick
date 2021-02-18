@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
+import { FormControl, Input } from '@material-ui/core';
+import { Button } from '@material-ui/core'
+
+
 
 class EditProfile extends React.Component{
 constructor(props){
@@ -33,30 +37,32 @@ this.setState({
     const {submit,handleChange} = this
     const {email, firstName, lastName, address, state} = this.state
     console.log(this.props);
+
+
   return (
       <div>
     <form onSubmit={submit}>
       <div>
         <label>Email Address</label>
-        <input name='email' value={email} onChange={(evt) => handleChange(evt)} />
+        <Input name='email' value={email} onChange={(evt) => handleChange(evt)}  inputProps={{ 'aria-label': 'description' }}/>
       </div>
       <div>
         <label>First Name</label>
-        <input name='firstName' value={firstName} onChange={(evt) => handleChange(evt)} />
+        <Input name='firstName' value={firstName} onChange={(evt) => handleChange(evt)} inputProps={{ 'aria-label': 'description' }} />
       </div>
       <div>
         <label>Last Name</label>
-        <input name='lastName' value={lastName} onChange={(evt) => handleChange(evt)} />
+        <Input name='lastName' value={lastName} onChange={(evt) => handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
       </div>
       <div>
         <label>Address</label>
-        <input name='address' value={address} onChange={(evt) => handleChange(evt)} />
+        <Input name='address' value={address} onChange={(evt) => handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
       </div>
       <div>
         <label>State</label>
-        <input name='state' value={state} onChange={(evt) => handleChange(evt)} />
+        <Input name='state' value={state} onChange={(evt) => handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
       </div>      
-      <button type="submit">Update</button>
+      <Button color="primary" variant="contained" type="submit">Update </Button>
     </form>
     </div>
   )
