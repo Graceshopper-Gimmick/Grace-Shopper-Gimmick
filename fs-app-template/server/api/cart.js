@@ -38,7 +38,7 @@ router.get('/history/:id', async (req, res, next) => {
                 active: false,
             },
         })
-        res.json(cartItems)
+        res.send(cartItems)
     } catch (err) {
         next(err)
     }

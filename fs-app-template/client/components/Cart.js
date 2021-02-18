@@ -202,7 +202,7 @@ class Cart extends React.Component {
                         this.props.submitCart(cartId)
                     }}
                     color="inherit"
-                    href="/checkout"
+                    //href="/checkout"
                 >
                     Submit
                 </Button>
