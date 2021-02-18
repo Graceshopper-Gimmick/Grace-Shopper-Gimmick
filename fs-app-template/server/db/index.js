@@ -24,17 +24,24 @@ Order.belongsTo(Cart);
 const syncAndSeed = async () => {
   await db.sync({ force: true });
   const users = await Promise.all([
-    User.create({ email: "sjhunter86@gmail.com", password: "123" }),
-    User.create({ email: "monil2912@test.com", password: "123" }),
-    User.create({ email: "Msze400@gmail.com", password: "123" }),
+    User.create({ email: "sjhunter86@gmail.com", password: "123", firstName: "Steve", lastName: "Hunter", address: "1230 Straford Park", state: "Kentucky" }),
+    User.create({ email: "monil2912@test.com", password: "123", firstName: "Monil", lastName: "Goklani", address: "2281 Meadow View Drive", state: "Texas" }),
+    User.create({ email: "Msze400@gmail.com", password: "123", firstName: "Matthew", lastName: "Sze", address: "3020 Simpson Street", state: "Illinois" }),
     User.create({
       email: "arwindersinghh@gmail.com",
       password: "123",
       isAdmin: true,
-    }),
+      firstName: "Arwinder",
+      lastName: "Singh",
+      address: "1856 American Drive",
+      state: "New Jersey"
+    })
+  ]);
+
+  const guests = await Promise.all([
     User.create({ email: "guest1@gmail.com", password: "guest1" }),
     User.create({ email: "guest2@gmail.com", password: "guest2" }),
-    User.create({ email: "guest3@gmail.com", password: "guest3" }),
+    User.create({ email: "guest3@gmail.com", password: "guest3" })
   ]);
 
 

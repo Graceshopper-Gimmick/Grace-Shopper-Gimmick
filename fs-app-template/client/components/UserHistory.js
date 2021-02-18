@@ -15,18 +15,27 @@ class UserHistory extends React.Component {
         
         //console.log('userHistory array of products', orderArray);
     }
-    
+    // <div key={order.product.id}>
+    //                          <img src={order.product.thumbnailImgUrl} />                            
+    //                          <h2>{order.product.name}</h2>
+    //                          <h4>{order.product.price}</h4>
+    //                      </div>
     render() {
-        const orderArray = this.props.userHistory.length ? this.props.userHistory[0].orders : [];        
+        const cartArray = this.props.userHistory.length ? this.props.userHistory : [];        
         return (
             <div>             
-                 {orderArray.length ? orderArray.map(order => {
+                 {cartArray.length ? cartArray.map(cart => {
                      return (
-                         <div key={order.product.id}>
+                         cart.orders.map(order => {
+                             return (
+                                     <div key={order.product.id}>
                              <img src={order.product.thumbnailImgUrl} />                            
-                             <h2>{order.product.name}</h2>
-                             <h4>{order.product.price}</h4>
+                             <h2> NAME : {order.product.name} </h2>
+                             <h2> PRICE : {order.product.price} </h2>
+                             <h2> QUANTITY : {order.quantity} </h2>
                          </div>
+                             )
+                         })
                      )
                  }) : 'no history'}          
             </div>
