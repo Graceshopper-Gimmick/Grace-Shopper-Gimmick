@@ -1,12 +1,20 @@
 import React, { useState } from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
+import { FormControl, Input } from '@material-ui/core';
+import { Button } from '@material-ui/core'
+
+
 
 class EditProfile extends React.Component{
 constructor(props){
     super(props)
     this.state = {
-        email: this.props.auth?this.props.auth.email : ''
+        email: this.props.auth?this.props.auth.email : '',
+        firstName: this.props.auth?this.props.auth.firstName : '',
+        lastName: this.props.auth?this.props.auth.lastName : '',
+        address: this.props.auth?this.props.auth.address : '',
+        state: this.props.auth?this.props.auth.state : ''
     }
     this.submit = this.submit.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -27,16 +35,34 @@ this.setState({
 
   render(){
     const {submit,handleChange} = this
-    const {email} = this.state
+    const {email, firstName, lastName, address, state} = this.state
     console.log(this.props);
+
+
   return (
       <div>
     <form onSubmit={submit}>
       <div>
-        <label>User Email</label>
-        <input name='email' value={email} onChange={(evt) => handleChange(evt)} />
+        <label>Email Address</label>
+        <Input name='email' value={email} onChange={(evt) => handleChange(evt)}  inputProps={{ 'aria-label': 'description' }}/>
+      </div>
+      <div>
+        <label>First Name</label>
+        <Input name='firstName' value={firstName} onChange={(evt) => handleChange(evt)} inputProps={{ 'aria-label': 'description' }} />
+      </div>
+      <div>
+        <label>Last Name</label>
+        <Input name='lastName' value={lastName} onChange={(evt) => handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
+      </div>
+      <div>
+        <label>Address</label>
+        <Input name='address' value={address} onChange={(evt) => handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
+      </div>
+      <div>
+        <label>State</label>
+        <Input name='state' value={state} onChange={(evt) => handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
       </div>      
-      <button type="submit">Update</button>
+      <Button color="primary" variant="contained" type="submit">Update </Button>
     </form>
     </div>
   )
