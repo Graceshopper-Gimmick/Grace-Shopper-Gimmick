@@ -49,6 +49,7 @@ class Cart extends React.Component {
         }
 
         this.updateCheckoutTotal = this.updateCheckoutTotal.bind(this)
+        this.changeQuantity = this.changeQuantity.bind(this)
     }
 
     setInitialTotal() {
@@ -103,19 +104,37 @@ class Cart extends React.Component {
         console.log('setState', this.state)
     }
 
+    async changeQuantity(cartId, productId) {
+        var e = document.getElementById(`cart-item-${productId}`)
+        let quantity = e.value
+        console.log('VALUES', cartId, productId, quantity)
+        // console.log('STATE', this.state)
+        const updatedOrder = await axios.put('/api/order/', {
+            cartId,
+            productId,
+            quantity,
+        })
+
+        // await this.props.getCartItems()
+        // console.log(updatedOrder)
+    }
+
     // TODO : MAKE SURE CART COMPONENT RENDERS ON REFRESH
 
     render() {
         const selectValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         const { classes, theme, submitCart } = this.props
-        const { updateCheckoutTotal } = this
+        const { updateCheckoutTotal, changeQuantity } = this
         console.log('RENDER', this.props)
 
         const cartProducts = this.props.cart.length
             ? this.props.cart[0].orders.filter((order) => order.product)
             : []
 
+        console.log('CARTPRODCTS', cartProducts)
+
         const cartId = this.props.cart.length ? this.props.cart[0].id : 0
+        const userId = this.props.auth ? this.props.auth.id : 0
 
         return (
             <FormControl>
@@ -137,12 +156,13 @@ class Cart extends React.Component {
                                     native
                                     value={this.state.value}
                                     // onChange={handleChange}
-                                    onChange={() =>
+                                    onChange={() => {
                                         updateCheckoutTotal(
                                             order.product.id,
                                             order.product.price
                                         )
-                                    }
+                                        changeQuantity(cartId, order.product.id)
+                                    }}
                                     inputProps={{
                                         name: `${order.product.id}-quantity`, //dynamically assigning name based on productId
                                         id: `cart-item-${order.product.id}`,
@@ -155,7 +175,8 @@ class Cart extends React.Component {
                                             <option
                                                 value={selectOption}
                                                 selected={
-                                                    selectOption === 1
+                                                    selectOption ===
+                                                    order.quantity
                                                         ? true
                                                         : false
                                                 }

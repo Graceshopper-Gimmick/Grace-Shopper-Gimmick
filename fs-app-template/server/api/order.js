@@ -32,14 +32,14 @@ router.post('/', async (req, res, next) => {
         )
         const checkOrder = await Order.findOne({
             where: {
-                productId : req.body.productId,
-                cartId : cart.id
-            }
-        });
-        if(checkOrder){
-            const error = Error('Cannot create duplicate order');
-            error.status = 401;
-            return next(error);
+                productId: req.body.productId,
+                cartId: cart.id,
+            },
+        })
+        if (checkOrder) {
+            const error = Error('Cannot create duplicate order')
+            error.status = 401
+            return next(error)
         }
 
         const order = await Order.create({
@@ -49,6 +49,25 @@ router.post('/', async (req, res, next) => {
             productId: req.body.productId,
         })
         res.sendStatus(201)
+    } catch (err) {
+        next(err)
+    }
+})
+
+router.put('/', async (req, res, next) => {
+    try {
+        const checkOrder = await Order.findOne({
+            where: {
+                productId: req.body.productId,
+                cartId: req.body.cartId,
+            },
+        })
+
+        await checkOrder.update({
+            quantity: req.body.quantity,
+        })
+
+        res.send(checkOrder).status(204)
     } catch (err) {
         next(err)
     }

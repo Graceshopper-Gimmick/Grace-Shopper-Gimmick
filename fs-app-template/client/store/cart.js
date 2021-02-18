@@ -9,6 +9,7 @@ const GET_CART_ITEMS = 'GET_CART_ITEMS'
 const DELETE_CART_ITEM = 'DELETE_CART_ITEM'
 const SUBMIT_CART = 'SUBMIT_CART'
 const CREATE_NEW_CART = 'CREATE_NEW_CART'
+const CHANGE_QUANTITY = 'CHANGE_QUANTITY'
 
 /**
  * ACTION CREATORS
@@ -16,6 +17,7 @@ const CREATE_NEW_CART = 'CREATE_NEW_CART'
 const _addProduct = (product) => ({ type: ADD_PRODUCT_TO_CART, product })
 const _getCartItems = (cartItems) => ({ type: GET_CART_ITEMS, cartItems })
 const _deleteCartItem = (cartItems) => ({ type: DELETE_CART_ITEM, cartItems })
+// const _changeQuantity = (productId, cartId, quantity) => ({type: CHANGE_QUANTITY, })
 
 const _submitCart = (cartId) => ({
     type: SUBMIT_CART,

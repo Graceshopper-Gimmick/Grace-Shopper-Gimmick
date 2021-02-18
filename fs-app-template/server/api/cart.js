@@ -10,13 +10,15 @@ router.get('/:id', async (req, res, next) => {
             include: [
                 {
                     model: Order,
-                    include: [Product],
+                    include: [{ model: Product }],
+                    // include: [Product],
                 },
             ],
             where: {
                 userId: req.params.id,
                 active: true,
             },
+            order: [['id']],
         })
         res.send(cartItems)
     } catch (err) {
