@@ -82,7 +82,7 @@ const syncAndSeed = async () => {
       thumbnailImgUrl: "/assets/thumbnails/Anti_Theft_Bag_Thumbnail.jpg",
       ogImgUrl: "/assets/og/Anti_Theft_Bag.jpg",
       description:
-        "We've all had food stolen by a roommate, a family member, or maybe even a school bus driver while long sideburns. Buy these Anti Theft Bags to make your food look moldy and unappealing, and never go hungry again.",
+        "We've all had food stolen by a roommate, a family member, or maybe even a school bus driver with long sideburns. Buy these Anti Theft Bags to make your food look moldy and unappealing, and never go hungry again.",
     }),
     Product.create({
       name: "AT-AT BBQ GRILL",
