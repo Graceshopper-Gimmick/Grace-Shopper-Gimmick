@@ -29,13 +29,18 @@ router.get('/:id', async (req, res, next) => {
 router.get('/history/:id', async (req, res, next) => {
     try {
         const cartItems = await Cart.findAll({
-            include: [Order],
+            include: [
+                {
+                    model: Order,
+                    include: [Product],
+                },
+            ],
             where: {
                 userId: req.params.id,
                 active: false,
             },
         })
-        res.json(cartItems)
+        res.send(cartItems)
     } catch (err) {
         next(err)
     }

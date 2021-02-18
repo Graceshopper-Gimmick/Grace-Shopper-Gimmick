@@ -16,6 +16,17 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.put('/', async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.body.userId);
+    res.send(await user.update({
+      email : req.body.email
+    }))
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.post('/createguest', async (req, res, next) => {
   try {
     const guests = await User.createGuest()

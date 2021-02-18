@@ -58,7 +58,7 @@ class Cart extends React.Component {
         const { cart } = this.props
 
         //call the select values
-
+        
         cart[0].orders.map((cartItem) => {
             // var select = document.getElementById(`cart-item-${cartItem.product.id}`)
             // let itemQuantity = select.value
@@ -223,7 +223,7 @@ class Cart extends React.Component {
                         this.props.submitCart(cartId)
                     }}
                     color="inherit"
-                    href="/checkout"
+                    //href="/checkout"
                 >
                     Submit
                 </Button>

@@ -9,6 +9,8 @@ import {
     Checkout,
     SingleProduct,
     Guest,
+    UserHistory,
+    EditProfile
 } from './components'
 import AdminView from './components/AdminView'
 import { me } from './store'
@@ -35,9 +37,11 @@ class Routes extends Component {
                             path="/admin/update/:id"
                             component={UpdateProduct}
                         />
+                        <Route exact path="/Purchases" component={UserHistory} />
+                        <Route exact path="/Profile" component={EditProfile} />
                         <Route exact path="/home" component={Home} />
                         <Route path="/home/:id" component={SingleProduct} />
-                        <Route path="/cart" component={Cart} />
+                        <Route exact path="/cart" component={Cart} />
                         <Route path="/checkout" component={Checkout} />
                         <Redirect to="/home" />
                     </Switch>
@@ -50,7 +54,7 @@ class Routes extends Component {
                         <Route path="/signup" component={Signup} />
                         <Route path="/checkout" component={Checkout} />
                         <Route id="guest" path="/guest" component={Guest} />
-                        <Redirect to="/guest" />
+                        <Redirect to="/guest" />                        
                     </Switch>
                 )}
             </div>

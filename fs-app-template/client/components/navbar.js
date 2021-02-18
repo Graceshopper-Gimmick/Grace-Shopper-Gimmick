@@ -179,10 +179,11 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                     </IconButton>
                 </div>
                 <List>
-                    {['Profile', 'Order History'].map((text, index) => (
-                        <ListItem button key={text}>
+                    {['Profile', 'Purchases'].map((text, index) => (
+                        <Link to={`/${text}`}> <ListItem button key={text}> 
                         <ListItemText primary={text} />
                         </ListItem>
+                        </Link>
                     ))}
                 </List>
             </Drawer>
