@@ -38,22 +38,24 @@ class Guest extends React.Component {
         const { classes, theme } = this.props
 
         return (
-            <Paper className={`${classes.guestCard} ${classes.centered}`}>
-                <h1>Welcome</h1>
-                <Button
-                    onClick={() => {
-                        window.localStorage.setItem('user', 'guest')
-                    }}
-                >
-                    <a href="/home">Continue as Guest</a>
-                </Button>
-                <Button>
-                    <a href="/signup">Sign Up</a>
-                </Button>
-                <Button>
-                    <a href="login">Login</a>
-                </Button>
-            </Paper>
+            <div id="guest">
+                <Paper className={`${classes.guestCard} ${classes.centered}`}>
+                    <h1>Welcome</h1>
+                    <Button
+                        onClick={() => {
+                            window.localStorage.setItem('user', 'guest')
+                        }}
+                    >
+                        <a href="/home">Continue as Guest</a>
+                    </Button>
+                    <Button>
+                        <a href="/signup">Sign Up</a>
+                    </Button>
+                    <Button>
+                        <a href="login">Login</a>
+                    </Button>
+                </Paper>
+            </div>
         )
     }
 }
