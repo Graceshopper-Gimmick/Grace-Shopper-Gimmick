@@ -23,7 +23,7 @@ class UserHistory extends React.Component {
     render() {
         const cartArray = this.props.userHistory.length ? this.props.userHistory : [];        
         return (
-            <div>             
+            <div id="userHistory">             
                  {cartArray.length ? cartArray.map(cart => {
                      return (
                          cart.orders.map(order => {

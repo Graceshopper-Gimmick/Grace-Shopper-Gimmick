@@ -79,7 +79,11 @@ form div {
     width: 100vw;
     background-color: rgb(254, 206, 0);
 }
-
+#userHistory {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(254, 206, 0)
+}
 
 .slider > * {
     text-align: center;
@@ -107,6 +111,7 @@ form div {
 
 #adminView {
     padding-left : 30px;
+    background-color: rgb(254, 206, 0);
 }
 
 #updateProduct {
