@@ -9,14 +9,14 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import clsx from 'clsx';
-import Drawer from '@material-ui/core/Drawer';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
+import clsx from 'clsx'
+import Drawer from '@material-ui/core/Drawer'
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
 
 // const useStyles = makeStyles((theme) => ({
 //     root: {
@@ -33,12 +33,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 //         background: '#ffa000', // amber 700 primary
 //     },
 // }))
-const drawerWidth = 240;
+const drawerWidth = 240
 const useStyles = makeStyles((theme) => ({
     offset: theme.mixins.toolbar,
     root: {
-       display: 'flex',
-       position: 'static'
+        display: 'flex',
+        position: 'static',
     },
     // toolbar:{
     //     justifyContent:''
@@ -47,79 +47,86 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         height: '72px',
         transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
     },
     appBarShift: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
+        width: `calc(100% - ${drawerWidth}px)`,
+        marginLeft: drawerWidth,
+        transition: theme.transitions.create(['margin', 'width'], {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
     },
     menuButton: {
-      marginRight: theme.spacing(2),
+        marginRight: theme.spacing(2),
     },
     hide: {
-      display: 'none',
+        display: 'none',
     },
     drawer: {
-      width: drawerWidth,
-      flexShrink: 0,
+        width: drawerWidth,
+        flexShrink: 0,
     },
     drawerPaper: {
-      width: drawerWidth,
+        width: drawerWidth,
     },
     drawerHeader: {
-      display: 'flex',
-      alignItems: 'center',
-      padding: theme.spacing(0, 1),
-      // necessary for content to be below app bar
-      ...theme.mixins.toolbar,
-      justifyContent: 'flex-end',
+        display: 'flex',
+        alignItems: 'center',
+        padding: theme.spacing(0, 1),
+        // necessary for content to be below app bar
+        ...theme.mixins.toolbar,
+        justifyContent: 'flex-end',
     },
     content: {
-      flexGrow: 1,
-      padding: theme.spacing(3),
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      marginLeft: -drawerWidth,
+        flexGrow: 1,
+        padding: theme.spacing(3),
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+        marginLeft: -drawerWidth,
     },
     contentShift: {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+        marginLeft: 0,
     },
-  }));
+}))
 
 const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
     const classes = useStyles()
-    const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const theme = useTheme()
+    const [open, setOpen] = React.useState(false)
 
     const handleDrawerOpen = () => {
-      setOpen(true);
-    };
-  
+        setOpen(true)
+    }
+
     const handleDrawerClose = () => {
-      setOpen(false);
-    };
+        setOpen(false)
+    }
 
     return (
         <div className={classes.root}>
-            <AppBar position="fixed" id='appbar'
-            className={clsx(classes.appBar,
-            {[classes.appBarShift]: open,})}>
-                <Toolbar id='toolbar' className='toolbar'>
+            <AppBar
+                position="fixed"
+                id="appbar"
+                className={clsx(classes.appBar, {
+                    [classes.appBarShift]: open,
+                })}
+            >
+                <Toolbar id="toolbar" className="toolbar">
                     <IconButton
                         edge="start"
-                        className={clsx(classes.menuButton, open && classes.hide)}
+                        className={clsx(
+                            classes.menuButton,
+                            open && classes.hide
+                        )}
                         color="inherit"
                         aria-label="open-drawer"
                         edge="start"
@@ -137,24 +144,30 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                             {isLoggedIn ? (
                                 <div>
                                     {/* The navbar will show these links after you log in */}
-                                    <Link to ='/cart'><ShoppingCartIcon /></Link>
-                                    {isAdmin ? <Link to ='/admin'>Admin</Link> : null  }
+                                    <Link to="/cart">
+                                        <ShoppingCartIcon />
+                                    </Link>
+                                    {isAdmin ? (
+                                        <Link to="/admin">Admin</Link>
+                                    ) : null}
                                     <Link to="/home">Home</Link>
                                     <a href="#" onClick={handleClick}>
                                         Logout
                                     </a>
                                 </div>
                             ) : (
-                                <div className='navbuttons'>
+                                <div className="navbuttons">
                                     {/* The navbar will show these links before you log in */}
-                                    <Link to ='/cart'><ShoppingCartIcon /></Link>
+                                    <Link to="/cart">
+                                        <ShoppingCartIcon />
+                                    </Link>
                                     <Button color="inherit" href="/login">
                                         Login
                                     </Button>
                                     <Button color="inherit" href="/signup">
                                         Sign Up
                                     </Button>
-                                    
+
                                     <Button color="inherit" href="/home">
                                         Home
                                     </Button>
@@ -170,19 +183,25 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                 anchor="left"
                 open={open}
                 classes={{
-                paper: classes.drawerPaper,
+                    paper: classes.drawerPaper,
                 }}
             >
                 <div className={classes.drawerHeader}>
                     <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                        {theme.direction === 'ltr' ? (
+                            <ChevronLeftIcon />
+                        ) : (
+                            <ChevronRightIcon />
+                        )}
                     </IconButton>
                 </div>
                 <List>
                     {['Profile', 'Purchases'].map((text, index) => (
-                        <Link to={`/${text}`}> <ListItem button key={text}> 
-                        <ListItemText primary={text} />
-                        </ListItem>
+                        <Link to={`/${text}`} key={index}>
+                            {' '}
+                            <ListItem button key={text}>
+                                <ListItemText primary={text} />
+                            </ListItem>
                         </Link>
                     ))}
                 </List>
@@ -219,7 +238,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
 const mapState = (state) => {
     return {
         isLoggedIn: !!state.auth.id,
-        isAdmin: !!state.auth.isAdmin
+        isAdmin: !!state.auth.isAdmin,
     }
 }
 

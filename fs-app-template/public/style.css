@@ -30,8 +30,8 @@ form div {
 }
 
 #Routes {
-    padding-top:72px;
-    height:calc(100%-72px);
+    padding-top: 72px;
+    height: calc(100%-72px);
 }
 
 /* #App {
@@ -39,11 +39,20 @@ form div {
     flex-direction: column;
 } */
 
-.toolbar{
+.toolbar {
     justify-content: space-between;
 }
 
 .ogImg {
     height: 240px;
     width: 240px;
+}
+
+#guest,
+#login {
+    height: 100vh;
+    width: 100vw;
+    background-image: url('assets/background-imgs/yoda-chanel.jpg');
+    background-size: cover;
+    /* background-image: url('https://wallpapercave.com/wp/wp6428025.jpg'); */
 }

@@ -41,30 +41,34 @@ export default function AuthForm(props) {
     const classes = useStyles()
 
     return (
-        <Paper className={`${classes.root} ${classes.centered}`}>
-            <form onSubmit={handleSubmit} name={name}>
-                <TextField
-                    id="standard-basic"
-                    label="Email"
-                    name="email"
-                    type="text"
-                />
+        <div id="login">
+            <Paper className={`${classes.root} ${classes.centered}`}>
+                <form onSubmit={handleSubmit} name={name}>
+                    <TextField
+                        id="standard-basic"
+                        label="Email"
+                        name="email"
+                        type="text"
+                    />
 
-                <TextField
-                    id="standard-basic"
-                    label="Password"
-                    name="password"
-                    type="password"
-                />
+                    <TextField
+                        id="standard-basic"
+                        label="Password"
+                        name="password"
+                        type="password"
+                    />
 
-                <Button type="submit">{displayName}</Button>
+                    <Button type="submit">{displayName}</Button>
 
-                {error && error.response && <div> {error.response.data} </div>}
-            </form>
-            {window.githubURL && (
-                <a href={window.githubURL}>Login / Register Via Github </a>
-            )}
-        </Paper>
+                    {error && error.response && (
+                        <div> {error.response.data} </div>
+                    )}
+                </form>
+                {window.githubURL && (
+                    <a href={window.githubURL}>Login / Register Via Github </a>
+                )}
+            </Paper>
+        </div>
     )
 }
 
