@@ -56,7 +56,8 @@ router.post('/', async (req, res, next) => {
       name: req.body.name,
       category: req.body.category,
       thumbnailImgUrl: req.body.thumbnailImgUrl,
-      price : req.body.price
+      price : req.body.price,
+      description : req.body.description
     });
     console.log('product created');
     res.sendStatus(201);

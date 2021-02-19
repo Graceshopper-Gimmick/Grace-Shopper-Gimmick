@@ -32,7 +32,11 @@ const Product = db.define('product', {
 })
 
 
-
+Product.beforeCreate(async (product, options) => {
+  if(!product.ogImgUrl){
+    product.ogImgUrl = product.thumbnailImgUrl
+  }
+});
 
 
 
