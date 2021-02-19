@@ -157,7 +157,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                                         />
                                     </Button>
                                     {isAdmin ? (
-                                        <Button color = 'inherit' href="/admin">Admin</Button>
+                                        <Link to ="/admin" style={{color:'white', textDecoration:'none'}}><Button color = 'inherit' href="/admin">Admin</Button></Link>
                                     ) : null}
                                     <Button color = 'inherit' href="/home">Home</Button>
                                     <Link to = "/guest" style={{color:'white',textDecoration:'none'}}><Button color = 'inherit' onClick={handleClick}>
