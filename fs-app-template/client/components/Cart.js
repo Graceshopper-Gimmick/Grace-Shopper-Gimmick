@@ -7,29 +7,69 @@ import { me } from '../store'
 import axios from 'axios'
 
 import InputLabel from '@material-ui/core/InputLabel'
-import { withStyles } from '@material-ui/core/styles'
+import { withStyles,createMuiTheme } from '@material-ui/core/styles'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
 import IconButton from '@material-ui/core/IconButton'
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart'
 
 const styles = (theme) => ({
+    card:{
+        // minWidth:1000,
+        // maxHeight:200,
+        margin: 16,
+        // backgroundColor:'#fcd734'
+    },
     cartFormControl: {
         margin: theme.spacing(1),
-        minWidth: 120,
+        //minWidth: 120,
+        minWidth: '80vw',
+        maxHeight: 200,
         display: 'flex',
-        maxWidth: 200,
+        //maxWidth: 200,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor:'#fcd734',
+        //border:'solid 10px #0d47a1',
     },
 
-    imgThumbnail: {
-        maxWidth: 160,
-        maxHeight: 160,
+    image: {
+        width: 160,
+        height: 160,
+        margin: 10,
+        border: 'solid 4px black'
     },
 
-    quantity: {
-        maxWidth: 100,
+    select: {
+        maxWidth: 75,
+        maxHeight: 40,
+        display : 'flex',
+        flexDirection: 'row',
+        alignItems:'center'
     },
+
+    heading : {
+        margin:'16px 0 0 32px',
+        fontSize: 48
+    },
+    submit :{
+        maxWidth:50
+    },
+    buttonContainer :{
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'center'
+    },
+    productName: {
+        flexGrow:4,
+        paddingLeft:'2rem'
+    },
+    quantityContainer: {
+        marginTop:'-50px',
+    }
 })
 
 class Cart extends React.Component {
@@ -138,20 +178,27 @@ class Cart extends React.Component {
 
         return (
             <FormControl>
-                <h1>Welcome to the cart, {this.props.auth.email}!</h1>
+                <div>
+                    <h1 className = {classes.heading}>CART ITEMS</h1>
+                </div>
                 {cartProducts.length ? (
                     cartProducts.map((order) => {
                         // setItemQuantities(order.product.id)
                         // this.state.cartTotal += order.product.price * 1
                         return (
+                            <Card
+                            className={classes.card}>
                             <FormControl
                                 variant="filled"
                                 className={classes.cartFormControl}
                                 key={order.product.id}
                             >
-                                <InputLabel htmlFor="filled-age-native-simple">
-                                    Quantity
-                                </InputLabel>
+                                <div>
+                                <img className={classes.image} src={order.product.thumbnailImgUrl}></img>
+                                </div>
+                                
+                                <div className={classes.quantityContainer}>
+                                <p style={{fontSize:'16px',fontWeight:'bold',textAlign:'left'}}>Quantity</p>
                                 <Select
                                     native
                                     value={this.state.value}
@@ -186,10 +233,14 @@ class Cart extends React.Component {
                                         )
                                     })}
                                 </Select>
-
-                                <img src={order.product.thumbnailImgUrl}></img>
-                                <h2> {order.product.name}</h2>
-                                <p>Price: ${order.product.price}</p>
+                                </div>
+                                <div className={classes.productName}>
+                                <p style={{fontSize:'72px',fontFamily:'Luckiest Guy'}}> {order.product.name}</p>
+                                </div>
+                                <div>
+                                <p style={{fontSize:'48px',color:'green'}}>${order.product.price}</p>
+                                </div>
+                                
                                 <Button
                                     onClick={() => {
                                         this.props.deleteCartItem(
@@ -206,27 +257,33 @@ class Cart extends React.Component {
                                     <RemoveShoppingCartIcon />
                                 </Button>
                             </FormControl>
+                            </Card>
                         )
                     })
                 ) : (
                     <h1>No Items</h1>
                 )}
-                <h1>
+                <h1 style={{textAlign:'right'}} className={classes.heading}>
                     Total Price: $
                     {this.state.cartTotal
                         ? this.state.cartTotal.toFixed(2)
                         : '0.00'}
                 </h1>
+                <div className = {classes.buttonContainer}>
                 <Button
                     onClick={() => {
-                        console.log('CARTID', cartId)
+                        //console.log('CARTID', cartId)
                         this.props.submitCart(cartId)
                     }}
-                    color="inherit"
+                    color="primary"
+                    size='large'
+                    variant = 'contained'
+                    className={classes.submit}
                     //href="/checkout"
                 >
                     Submit
                 </Button>
+                </div>
             </FormControl>
         )
     }

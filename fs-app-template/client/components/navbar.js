@@ -100,6 +100,9 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: '6px',
         fontSize: '30px',
     },
+    navButtons: {
+        marginTop:'16px'
+    }
 }))
 
 const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
@@ -146,29 +149,30 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                     <div>
                         <nav>
                             {isLoggedIn ? (
-                                <div id="login-div">
+                                <div id="login-div" className = {classes.navButtons}>
                                     {/* The navbar will show these links after you log in */}
-                                    <Link to="/cart" id="shopping-cart">
+                                    <Button color = 'inherit' href="/cart" id="shopping-cart">
                                         <ShoppingCartIcon
                                             className={classes.shoppingCart}
                                         />
-                                    </Link>
+                                    </Button>
                                     {isAdmin ? (
-                                        <Link to="/admin">Admin</Link>
+                                        <Button color = 'inherit' href="/admin">Admin</Button>
                                     ) : null}
-                                    <Link to="/home">Home</Link>
-                                    <a href="#" onClick={handleClick}>
+                                    <Button color = 'inherit' href="/home">Home</Button>
+                                    <Link to = "/guest" style={{color:'white',textDecoration:'none'}}><Button color = 'inherit' onClick={handleClick}>
                                         Logout
-                                    </a>
+                                    </Button>
+                                    </Link>
                                 </div>
                             ) : (
-                                <div className="navbuttons">
+                                <div className = {classes.navButtons}>
                                     {/* The navbar will show these links before you log in */}
-                                    <Link to="/cart" id="shopping-cart">
+                                    <Button color = 'inherit' href="/cart" id="shopping-cart">
                                         <ShoppingCartIcon
                                             className={classes.shoppingCart}
                                         />
-                                    </Link>
+                                    </Button>
                                     <Button color="inherit" href="/login">
                                         Login
                                     </Button>

@@ -15,6 +15,7 @@ const styles = (theme) => ({
       maxWidth: 300,
       alignItems: 'center',
       textAlign: 'center',
+      backgroundColor: '#F5F5F5'
   },
 
   centered: {
