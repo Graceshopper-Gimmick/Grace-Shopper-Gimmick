@@ -7,7 +7,7 @@ import { me } from '../store'
 import axios from 'axios'
 
 import InputLabel from '@material-ui/core/InputLabel'
-import { withStyles,createMuiTheme } from '@material-ui/core/styles'
+import { withStyles, createMuiTheme } from '@material-ui/core/styles'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import Button from '@material-ui/core/Button'
@@ -16,7 +16,7 @@ import IconButton from '@material-ui/core/IconButton'
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart'
 
 const styles = (theme) => ({
-    card:{
+    card: {
         // minWidth:1000,
         // maxHeight:200,
         margin: 16,
@@ -32,7 +32,7 @@ const styles = (theme) => ({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor:'#fcd734',
+        backgroundColor: '#fcd734',
         //border:'solid 10px #0d47a1',
     },
 
@@ -40,36 +40,37 @@ const styles = (theme) => ({
         width: 160,
         height: 160,
         margin: 10,
-        border: 'solid 4px black'
+        border: 'solid 4px black',
     },
 
     select: {
         maxWidth: 75,
         maxHeight: 40,
-        display : 'flex',
+        display: 'flex',
         flexDirection: 'row',
-        alignItems:'center'
+        alignItems: 'center',
     },
 
-    heading : {
-        margin:'16px 0 0 32px',
-        fontSize: 48
+    heading: {
+        margin: '16px 0 0 32px',
+        fontSize: 48,
     },
-    submit :{
-        maxWidth:50
+    submit: {
+        maxWidth: 50,
     },
-    buttonContainer :{
-        display:'flex',
-        flexDirection:'row',
-        justifyContent:'center'
+    buttonContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
     },
     productName: {
-        flexGrow:4,
-        paddingLeft:'2rem'
+        flexGrow: 4,
+        paddingLeft: '2rem',
+        paddingRight: '2rem',
     },
     quantityContainer: {
-        marginTop:'-50px',
-    }
+        marginTop: '-50px',
+    },
 })
 
 class Cart extends React.Component {
@@ -98,7 +99,7 @@ class Cart extends React.Component {
         const { cart } = this.props
 
         //call the select values
-        
+
         cart[0].orders.map((cartItem) => {
             // var select = document.getElementById(`cart-item-${cartItem.product.id}`)
             // let itemQuantity = select.value
@@ -179,110 +180,141 @@ class Cart extends React.Component {
         return (
             <FormControl>
                 <div>
-                    <h1 className = {classes.heading}>CART ITEMS</h1>
+                    <h1 className={classes.heading}>CART ITEMS</h1>
                 </div>
                 {cartProducts.length ? (
                     cartProducts.map((order) => {
                         // setItemQuantities(order.product.id)
                         // this.state.cartTotal += order.product.price * 1
                         return (
-                            <Card
-                            className={classes.card}>
-                            <FormControl
-                                variant="filled"
-                                className={classes.cartFormControl}
-                                key={order.product.id}
-                            >
-                                <div>
-                                <img className={classes.image} src={order.product.thumbnailImgUrl}></img>
-                                </div>
-                                
-                                <div className={classes.quantityContainer}>
-                                <p style={{fontSize:'16px',fontWeight:'bold',textAlign:'left'}}>Quantity</p>
-                                <Select
-                                    native
-                                    value={this.state.value}
-                                    // onChange={handleChange}
-                                    onChange={() => {
-                                        updateCheckoutTotal(
-                                            order.product.id,
-                                            order.product.price
-                                        )
-                                        changeQuantity(cartId, order.product.id)
-                                    }}
-                                    inputProps={{
-                                        name: `${order.product.id}-quantity`, //dynamically assigning name based on productId
-                                        id: `cart-item-${order.product.id}`,
-                                    }}
-                                    className={classes.quantity}
+                            <Card className={classes.card}>
+                                <FormControl
+                                    variant="filled"
+                                    className={classes.cartFormControl}
+                                    key={order.product.id}
                                 >
-                                    {/* <option aria-label="1" value={1} /> */}
-                                    {selectValues.map((selectOption) => {
-                                        return (
-                                            <option
-                                                value={selectOption}
-                                                selected={
-                                                    selectOption ===
-                                                    order.quantity
-                                                        ? true
-                                                        : false
+                                    <div>
+                                        <img
+                                            className={classes.image}
+                                            src={order.product.thumbnailImgUrl}
+                                        ></img>
+                                    </div>
+
+                                    <div className={classes.quantityContainer}>
+                                        <p
+                                            style={{
+                                                fontSize: '16px',
+                                                fontWeight: 'bold',
+                                                textAlign: 'left',
+                                            }}
+                                        >
+                                            Quantity
+                                        </p>
+                                        <Select
+                                            native
+                                            value={this.state.value}
+                                            // onChange={handleChange}
+                                            onChange={() => {
+                                                updateCheckoutTotal(
+                                                    order.product.id,
+                                                    order.product.price
+                                                )
+                                                changeQuantity(
+                                                    cartId,
+                                                    order.product.id
+                                                )
+                                            }}
+                                            inputProps={{
+                                                name: `${order.product.id}-quantity`, //dynamically assigning name based on productId
+                                                id: `cart-item-${order.product.id}`,
+                                            }}
+                                            className={classes.quantity}
+                                        >
+                                            {/* <option aria-label="1" value={1} /> */}
+                                            {selectValues.map(
+                                                (selectOption) => {
+                                                    return (
+                                                        <option
+                                                            value={selectOption}
+                                                            selected={
+                                                                selectOption ===
+                                                                order.quantity
+                                                                    ? true
+                                                                    : false
+                                                            }
+                                                        >
+                                                            {selectOption}
+                                                        </option>
+                                                    )
                                                 }
-                                            >
-                                                {selectOption}
-                                            </option>
-                                        )
-                                    })}
-                                </Select>
-                                </div>
-                                <div className={classes.productName}>
-                                <p style={{fontSize:'72px',fontFamily:'Luckiest Guy'}}> {order.product.name}</p>
-                                </div>
-                                <div>
-                                <p style={{fontSize:'48px',color:'green'}}>${order.product.price}</p>
-                                </div>
-                                
-                                <Button
-                                    onClick={() => {
-                                        this.props.deleteCartItem(
-                                            this.props.cart[0].id,
-                                            order.product.id,
-                                            this.props.auth.id
-                                        )
-                                        this.calculateTotal(
-                                            true,
-                                            order.product.id
-                                        )
-                                    }}
-                                >
-                                    <RemoveShoppingCartIcon />
-                                </Button>
-                            </FormControl>
+                                            )}
+                                        </Select>
+                                    </div>
+                                    <div className={classes.productName}>
+                                        <p
+                                            style={{
+                                                fontSize: '72px',
+                                                fontFamily: 'Luckiest Guy',
+                                            }}
+                                            className="itemTitle"
+                                        >
+                                            {' '}
+                                            {order.product.name}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p
+                                            style={{
+                                                fontSize: '48px',
+                                                color: 'green',
+                                            }}
+                                        >
+                                            ${order.product.price}
+                                        </p>
+                                    </div>
+
+                                    <Button
+                                        onClick={() => {
+                                            this.props.deleteCartItem(
+                                                this.props.cart[0].id,
+                                                order.product.id,
+                                                this.props.auth.id
+                                            )
+                                            this.calculateTotal(
+                                                true,
+                                                order.product.id
+                                            )
+                                        }}
+                                    >
+                                        <RemoveShoppingCartIcon />
+                                    </Button>
+                                </FormControl>
                             </Card>
                         )
                     })
                 ) : (
                     <h1>No Items</h1>
                 )}
-                <h1 style={{textAlign:'right'}} className={classes.heading}>
+                <h1 style={{ textAlign: 'right' }} className={classes.heading}>
                     Total Price: $
                     {this.state.cartTotal
                         ? this.state.cartTotal.toFixed(2)
                         : '0.00'}
                 </h1>
-                <div className = {classes.buttonContainer}>
-                <Button
-                    onClick={() => {
-                        //console.log('CARTID', cartId)
-                        this.props.submitCart(cartId)
-                    }}
-                    color="primary"
-                    size='large'
-                    variant = 'contained'
-                    className={classes.submit}
-                    //href="/checkout"
-                >
-                    Submit
-                </Button>
+                <div className={classes.buttonContainer}>
+                    <Button
+                        onClick={() => {
+                            //console.log('CARTID', cartId)
+                            this.props.submitCart(cartId)
+                        }}
+                        color="primary"
+                        size="large"
+                        variant="contained"
+                        className={classes.submit}
+                        //href="/checkout"
+                    >
+                        Submit
+                    </Button>
                 </div>
             </FormControl>
         )
