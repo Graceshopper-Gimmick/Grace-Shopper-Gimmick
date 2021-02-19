@@ -55,6 +55,7 @@
     "enzyme-adapter-react-16": "^1.12.1",
     "esm": "^3.2.25",
     "infinite-react-carousel": "^1.2.11",
+    "mdbreact": "^5.0.1",
     "mocha": "^6.2.3",
     "nodemon": "^1.19.4",
     "react-test-renderer": "^16.4.2",
