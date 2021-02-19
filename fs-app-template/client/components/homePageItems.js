@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { logout, fetchProducts } from '../store'
 import { withStyles, withTheme } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
-import { Card, Button, Box } from '@material-ui/core'
+import { Card, Button, Box, Paper } from '@material-ui/core'
 import { withRouter } from 'react-router'
 import { addProduct } from '../store/cart'
 import InputLabel from '@material-ui/core/InputLabel'
@@ -14,16 +14,21 @@ import Select from '@material-ui/core/Select'
 
 const styles = (theme) => ({
     homePageItemsContainer: {
-        background: '#ffd149', //amber light
+        // background: '#ffd149', //amber light
+
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-evenly',
+
+        // background: #DCE35B;  /* fallback for old browsers */
+        // background: -webkit-linear-gradient(to right, #45B649, #DCE35B);  /* Chrome 10-25, Safari 5.1-6 */
+        background:
+            'linear-gradient(to right, #45B649, #DCE35B)' /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */,
     },
 
     myCustomClass: {
         maxWidth: 275,
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        border: 1,
+        // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
         margin: '30px',
         padding: '1rem',
         display: 'flex',
@@ -33,19 +38,32 @@ const styles = (theme) => ({
         flexWrap: 'wrap',
         fontFamily: 'Bitter',
         minWidth: 250,
-        color: 'black',
     },
 
     imgThumbnail: {
-        maxWidth: 160,
-        maxHeight: 160,
+        width: '160',
+        height: '160',
+        borderColor: 'black',
+        objectFit: 'cover',
+        boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
+        transition: '0.3s',
+        '&:hover': {
+            boxShadow: '0 8px 18px 0 rgba(0,0,0,0.3)',
+        },
     },
+
     formControl: {
         margin: theme.spacing(1),
         minWidth: 120,
     },
     selectEmpty: {
         marginTop: theme.spacing(2),
+    },
+    productLink: {
+        justifyContent: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
     },
 })
 
@@ -111,23 +129,22 @@ class HomePageItems extends React.Component {
                     {products.length ? (
                         products.map((product) => {
                             return (
-                                <Card
+                                <Paper
                                     className={classes.myCustomClass}
                                     padding={theme.spacing(4)}
-                                    variant="outlined"
                                     key={product.id}
+                                    elevation={3}
                                 >
-                                    <Link to={`/home/${product.id}`}>
-                                        <Box
+                                    <Link
+                                        className={classes.productLink}
+                                        to={`/home/${product.id}`}
+                                    >
+                                        <img
                                             className={classes.imgThumbnail}
-                                            border={1}
-                                            borderColor="black"
-                                        >
-                                            <img
-                                                className={classes.imgThumbnail}
-                                                src={product.thumbnailImgUrl}
-                                            ></img>
-                                        </Box>
+                                            src={product.thumbnailImgUrl}
+                                            border={'3px'}
+                                        ></img>
+
                                         <h2> {product.name}</h2>
                                         <p>${product.price}</p>
                                     </Link>
@@ -144,7 +161,7 @@ class HomePageItems extends React.Component {
                                     >
                                         Add to Cart
                                     </Button>
-                                </Card>
+                                </Paper>
                             )
                         })
                     ) : (
