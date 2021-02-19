@@ -38,13 +38,12 @@ const useStyles = makeStyles((theme) => ({
     offset: theme.mixins.toolbar,
     root: {
         display: 'flex',
-        position: 'static',
+        // position: 'static',
+        // alignItems: 'unset',
     },
-    // toolbar:{
-    //     justifyContent:''
-    // },
+
     appBar: {
-        display: 'flex',
+        // display: 'flex',
         height: '72px',
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
@@ -96,6 +95,11 @@ const useStyles = makeStyles((theme) => ({
         }),
         marginLeft: 0,
     },
+
+    shoppingCart: {
+        paddingTop: '6px',
+        fontSize: '30px',
+    },
 }))
 
 const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
@@ -142,10 +146,12 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                     <div>
                         <nav>
                             {isLoggedIn ? (
-                                <div>
+                                <div id="login-div">
                                     {/* The navbar will show these links after you log in */}
-                                    <Link to="/cart">
-                                        <ShoppingCartIcon />
+                                    <Link to="/cart" id="shopping-cart">
+                                        <ShoppingCartIcon
+                                            className={classes.shoppingCart}
+                                        />
                                     </Link>
                                     {isAdmin ? (
                                         <Link to="/admin">Admin</Link>
@@ -158,8 +164,10 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                             ) : (
                                 <div className="navbuttons">
                                     {/* The navbar will show these links before you log in */}
-                                    <Link to="/cart">
-                                        <ShoppingCartIcon />
+                                    <Link to="/cart" id="shopping-cart">
+                                        <ShoppingCartIcon
+                                            className={classes.shoppingCart}
+                                        />
                                     </Link>
                                     <Button color="inherit" href="/login">
                                         Login
@@ -197,17 +205,20 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                 </div>
                 <List>
                     {['Profile', 'Purchases'].map((text, index) => (
-
-                        <Link to={`/${text}`} key={index}> <ListItem button key={text} onClick={handleDrawerClose}> 
-                        <ListItemText primary={text} />
-                        </ListItem>
-
+                        <Link to={`/${text}`} key={index}>
+                            {' '}
+                            <ListItem
+                                button
+                                key={text}
+                                onClick={handleDrawerClose}
+                            >
+                                <ListItemText primary={text} />
+                            </ListItem>
                         </Link>
                     ))}
                 </List>
             </Drawer>
         </div>
-
     )
 }
 
