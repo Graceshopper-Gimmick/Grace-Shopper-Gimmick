@@ -81,3 +81,13 @@ form div {
     background-color: rgb(254,206,0);
 }
 
+#adminView {
+    padding-left : 30px;
+}
+
+#updateProduct {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(254,206,0);
+}
+

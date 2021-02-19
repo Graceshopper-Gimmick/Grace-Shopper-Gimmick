@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
-import { FormControl, Input, TextField } from '@material-ui/core';
-import { Button, Grid } from '@material-ui/core'
+import { TextField, Button } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save'
 import Paper from '@material-ui/core/Paper'
-import { makeStyles, withTheme, withStyles } from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles'
 
 const styles = (theme) => ({
-  guestCard: {
+  profileCard: {
       margin: theme.spacing(1),
       minWidth: 120,
       display: 'flex',
@@ -69,7 +68,7 @@ this.setState({
 
   return (
     <div id="editProfile">
-    <Paper style={{overflow:"scroll"}} className={`${classes.guestCard} ${classes.centered}`}>
+    <Paper style={{overflow:"scroll"}} className={`${classes.profileCard} ${classes.centered}`}>
 
     <form onSubmit={submit}>
         
