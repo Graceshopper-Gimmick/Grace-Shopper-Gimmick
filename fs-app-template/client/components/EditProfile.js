@@ -1,8 +1,36 @@
 import React, { useState } from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
-import { FormControl, Input } from '@material-ui/core';
-import { Button } from '@material-ui/core'
+import { FormControl, Input, TextField } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core'
+import SaveIcon from '@material-ui/icons/Save'
+import Paper from '@material-ui/core/Paper'
+import { makeStyles, withTheme, withStyles } from '@material-ui/core/styles'
+
+const styles = (theme) => ({
+  guestCard: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+      display: 'flex',
+      flexDirection: 'column',
+      maxWidth: 300,
+      alignItems: 'center',
+      textAlign: 'center',
+  },
+
+  centered: {
+      width: '50vw',
+      height: '75vh',
+
+      position: 'absolute',
+      top: '0',
+      bottom: '0',
+      left: '0',
+      right: '0',
+
+      margin: 'auto',
+  },
+})
 
 
 
@@ -36,35 +64,28 @@ this.setState({
   render(){
     const {submit,handleChange} = this
     const {email, firstName, lastName, address, state} = this.state
-    console.log(this.props);
-
+    const { classes, theme } = this.props
 
   return (
-      <div>
+    <Paper style={{overflow:"scroll"}} className={`${classes.guestCard} ${classes.centered}`}>
+
     <form onSubmit={submit}>
-      <div>
-        <label>Email Address</label>
-        <Input name='email' value={email} onChange={(evt) => handleChange(evt)}  inputProps={{ 'aria-label': 'description' }}/>
-      </div>
-      <div>
-        <label>First Name</label>
-        <Input name='firstName' value={firstName} onChange={(evt) => handleChange(evt)} inputProps={{ 'aria-label': 'description' }} />
-      </div>
-      <div>
-        <label>Last Name</label>
-        <Input name='lastName' value={lastName} onChange={(evt) => handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
-      </div>
-      <div>
-        <label>Address</label>
-        <Input name='address' value={address} onChange={(evt) => handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
-      </div>
-      <div>
-        <label>State</label>
-        <Input name='state' value={state} onChange={(evt) => handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
-      </div>      
-      <Button color="primary" variant="contained" type="submit">Update </Button>
+        
+        <TextField style={{marginTop:'2rem'}}label="Email Address" id="outlined-basic"  variant="outlined" name='email' value={email} onChange={(evt) => handleChange(evt)}  />
+
+        <TextField label="First Name" id="outlined-basic"  variant="outlined" name='firstName' value={firstName} onChange={(evt) => handleChange(evt)}  />
+      
+        <TextField label="Last Name" id="outlined-basic"  variant="outlined" name='lastName' value={lastName} onChange={(evt) => handleChange(evt)} />
+      
+        <TextField label="Address" id="outlined-basic"  variant="outlined" name='address' value={address} onChange={(evt) => handleChange(evt)} />
+    
+        <TextField label="State" id="outlined-basic"  variant="outlined" name='state' value={state} onChange={(evt) => handleChange(evt)} />
+       
+      
+      <Button color="primary" startIcon={<SaveIcon />}variant="contained" type="submit">Save </Button>
+      
     </form>
-    </div>
+    </Paper>
   )
   }
 
@@ -74,4 +95,4 @@ const mapState = (state) => state
 
 
 
-export default connect(mapState)(EditProfile)
+export default withStyles(styles, { withTheme: true })(connect(mapState)(EditProfile))

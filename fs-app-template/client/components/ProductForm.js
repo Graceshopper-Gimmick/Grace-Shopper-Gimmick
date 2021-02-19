@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { FormControl, Input } from '@material-ui/core';
 import { Button } from '@material-ui/core'
+import SaveIcon from '@material-ui/icons/Save'
 
 const ProductForm = (props) => {
   const [name, setName] = useState('');
@@ -34,7 +35,7 @@ const ProductForm = (props) => {
         <label htmlFor="thumbnailImgUrl">Product Image</label>
         <Input value={thumbnailImgUrl} onChange={(evt)=>setImgUrl(evt.target.value)}type="text" inputProps={{ 'aria-label': 'description' }} />
       </div>
-      <Button color="primary" variant="contained" type="submit">Create </Button>
+      <Button color="primary" startIcon={<SaveIcon />} variant="contained" type="submit">Create </Button>
     </form>
     </div>
   )
