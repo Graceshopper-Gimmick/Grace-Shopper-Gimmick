@@ -20,6 +20,7 @@
   "author": "Fullstack Academy of Code",
   "license": "MIT",
   "dependencies": {
+    "@brainhubeu/react-carousel": "^1.19.26",
     "@material-ui/core": "^4.11.3",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
@@ -36,6 +37,7 @@
     "react-redux": "^7.2.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
+    "react-slick": "^0.28.0",
     "redux": "^4.0.5",
     "redux-form": "^8.3.7",
     "sequelize": "^6.3.5"
@@ -52,6 +54,7 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "esm": "^3.2.25",
+    "infinite-react-carousel": "^1.2.11",
     "mocha": "^6.2.3",
     "nodemon": "^1.19.4",
     "react-test-renderer": "^16.4.2",

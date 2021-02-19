@@ -11,6 +11,7 @@ import { addProduct } from '../store/cart'
 import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
+import AutoPlay from './Banner.js'
 
 const styles = (theme) => ({
     homePageItemsContainer: {
@@ -103,6 +104,7 @@ class HomePageItems extends React.Component {
 
         return (
             <div>
+                <AutoPlay />
                 <FormControl variant="filled" className={classes.formControl}>
                     <InputLabel htmlFor="filled-age-native-simple">
                         Category
