@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     button: {
       margin: theme.spacing(1),
     },
+    
   }));
 
 
@@ -35,7 +36,7 @@ class AdminView extends React.Component {
                             <div key={product.id}>
                                 <h2>{product.name}</h2>
                                 <img src={product.thumbnailImgUrl}></img>
-                                <p>{product.price}</p>
+                                <h3>{`$ ${product.price}`}</h3>
                                 <Button variant="contained"
                                         color="secondary"
                                         className={classes.button}
