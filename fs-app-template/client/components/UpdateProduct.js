@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
+import { FormControl, Input } from '@material-ui/core';
+import { Button } from '@material-ui/core'
 
 class UpdateProduct extends React.Component{
 constructor(props){
@@ -37,29 +39,29 @@ this.setState({
     <form onSubmit={submit}>
       <div>
         <label>Product Name</label>
-        <input name='name' value={name} onChange={(evt)=>handleChange(evt)} />
+        <Input name='name' value={name} onChange={(evt)=>handleChange(evt)}  inputProps={{ 'aria-label': 'description' }}/>
       </div>
       <div>
         <label>Product Price</label>
-        <input name='price' value={price} onChange={(evt)=>handleChange(evt)}/>
+        <Input name='price' value={price} onChange={(evt)=>handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
       </div>
       <div>
         <label>Product Category</label>
-        <input name='category' value={category} onChange={(evt)=>handleChange(evt)}/>
+        <Input name='category' value={category} onChange={(evt)=>handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
       </div>
       <div>
         <label>Product Original Image URL</label>
-        <input name='ogImgUrl' value={ogImgUrl} onChange={(evt)=>handleChange(evt)}/>
+        <Input name='ogImgUrl' value={ogImgUrl} onChange={(evt)=>handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
       </div>
       <div>
         <label>Product Thumbnail URL</label>
-        <input name='thumbnailImgUrl' value={thumbnailImgUrl} onChange={(evt)=>handleChange(evt)}/>
+        <Input name='thumbnailImgUrl' value={thumbnailImgUrl} onChange={(evt)=>handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
       </div>
       <div>
         <label>Product Quantity</label>
-        <input name='quantity' value={quantity} onChange={(evt)=>handleChange(evt)}/>
+        <Input name='quantity' value={quantity} onChange={(evt)=>handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
       </div>
-      <button type="submit">Update</button>
+      <Button color="primary" variant="contained" type="submit">Update </Button>
     </form>
     </div>
   )

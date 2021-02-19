@@ -46,7 +46,18 @@ router.put('/admin/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const product = await Product.create(req.body);
+    if(!req.body.thumbnailImgUrl){
+      req.body.thumbnailImgUrl = '/assets/thumbnails/Default_Image_Thumbnail.jpg'
+    }
+    if(!req.body.category){
+     req.body.category = 'All' 
+    }
+    const product = await Product.create({
+      name: req.body.name,
+      category: req.body.category,
+      thumbnailImgUrl: req.body.thumbnailImgUrl,
+      price : req.body.price
+    });
     console.log('product created');
     res.sendStatus(201);
   } catch (err) {

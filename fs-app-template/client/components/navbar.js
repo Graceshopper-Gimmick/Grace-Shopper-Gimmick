@@ -197,38 +197,17 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                 </div>
                 <List>
                     {['Profile', 'Purchases'].map((text, index) => (
-                        <Link to={`/${text}`} key={index}>
-                            {' '}
-                            <ListItem button key={text}>
-                                <ListItemText primary={text} />
-                            </ListItem>
+
+                        <Link to={`/${text}`} key={index}> <ListItem button key={text} onClick={handleDrawerClose}> 
+                        <ListItemText primary={text} />
+                        </ListItem>
+
                         </Link>
                     ))}
                 </List>
             </Drawer>
         </div>
 
-        // <div className={classes.root}>
-        //
-        //     <nav>
-        //         {isLoggedIn ? (
-        //             <div>
-        //                 {/* The navbar will show these links after you log in */}
-        //                 <Link to="/home">Home</Link>
-        //                 <a href="#" onClick={handleClick}>
-        //                     Logout
-        //                 </a>
-        //             </div>
-        //         ) : (
-        //             <div>
-        //                 {/* The navbar will show these links before you log in */}
-        //                 <Link to="/login">Login</Link>
-        //                 <Link to="/signup">Sign Up</Link>
-        //             </div>
-        //         )}
-        //     </nav>
-        //     <hr />
-        // </div>
     )
 }
 
