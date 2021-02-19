@@ -28,6 +28,8 @@ form div {
     color: white;
     -webkit-text-stroke: 1px black; /* width and color */
     flex-grow: 4;
+    font-size: 40px;
+    margin:10px 0 0 0;
 }
 
 #Routes {
