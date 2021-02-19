@@ -68,6 +68,14 @@ form div {
     /* background-image: url('https://wallpapercave.com/wp/wp6428025.jpg'); */
 }
 
+
 .singleProduct {
     background-color: rgb(254,206,0);
 }
+
+#editProfile {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(254,206,0);
+}
+
