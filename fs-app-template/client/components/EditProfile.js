@@ -23,7 +23,7 @@ const styles = (theme) => ({
       height: '75vh',
 
       position: 'absolute',
-      top: '0',
+      top: '70px',
       bottom: '0',
       left: '0',
       right: '0',
@@ -67,6 +67,7 @@ this.setState({
     const { classes, theme } = this.props
 
   return (
+    <div id="editProfile">
     <Paper style={{overflow:"scroll"}} className={`${classes.guestCard} ${classes.centered}`}>
 
     <form onSubmit={submit}>
@@ -86,6 +87,7 @@ this.setState({
       
     </form>
     </Paper>
+    </div>
   )
   }
 

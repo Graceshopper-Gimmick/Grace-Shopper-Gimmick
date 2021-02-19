@@ -67,3 +67,9 @@ form div {
     background-size: cover;
     /* background-image: url('https://wallpapercave.com/wp/wp6428025.jpg'); */
 }
+
+#editProfile {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(254,206,0);
+}
