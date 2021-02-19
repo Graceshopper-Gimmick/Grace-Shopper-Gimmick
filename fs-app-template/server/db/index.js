@@ -49,7 +49,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Beer Curler",
       category: "Culinary",
-      price: 10,
+      price: 9.99,
       thumbnailImgUrl: "/assets/thumbnails/Beer_Curler_Thumbnail.jpg",
       ogImgUrl: "/assets/og/Beer_Curler.jpg",
       description:
@@ -58,7 +58,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Money Toilet Paper",
       category: "Home Decor",
-      price: 15.2,
+      price: 15.99,
       thumbnailImgUrl: "/assets/thumbnails/Money_Toilet_Paper_Thumbnail.jpg",
       ogImgUrl: "/assets/og/Money_Toilet_Paper.jpg",
       description:
@@ -67,7 +67,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Diet Water",
       category: "Gag Gifts",
-      price: 20.34,
+      price: 20.97,
       thumbnailImgUrl: "/assets/thumbnails/Diet_Water_Thumbnail.jpg",
       ogImgUrl: "/assets/og/Diet_Water.jpg",
       description:
@@ -76,7 +76,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Buff Squidward",
       category: "Home Decor",
-      price: 30,
+      price: 34.95,
       thumbnailImgUrl: "/assets/thumbnails/Buff_Squidward_Thumbnail.jpg",
       ogImgUrl: "/assets/og/Buff_Squidward.jpg",
       description:
@@ -85,7 +85,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Anti-Theft Bag",
       category: "Culinary",
-      price: 1,
+      price: 17.99,
       thumbnailImgUrl: "/assets/thumbnails/Anti_Theft_Bag_Thumbnail.jpg",
       ogImgUrl: "/assets/og/Anti_Theft_Bag.jpg",
       description:
@@ -94,7 +94,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "AT-AT BBQ GRILL",
       category: "Star Wars",
-      price: 1,
+      price: 249.99,
       thumbnailImgUrl: "/assets/thumbnails/AT_AT_BBQ_Thumbnail.jpg",
       ogImgUrl: "/assets/og/AT_AT_BBQ.jpg",
       description:
@@ -103,7 +103,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Baby Mop",
       category: "Gag Gifts",
-      price: 1,
+      price: 9.99,
       thumbnailImgUrl: "/assets/thumbnails/Baby_Mop_Thumbnail.jpg",
       ogImgUrl: "/assets/og/Baby_Mop.jpg",
       description:
@@ -112,7 +112,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Bacon Perfume",
       category: "Gag Gifts",
-      price: 1,
+      price: 4.99,
       thumbnailImgUrl: "/assets/thumbnails/Bacon_Perfume_Thumbnail.jpg",
       ogImgUrl: "/assets/og/Bacon_Perfume.jpg",
       description:
@@ -121,7 +121,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Baguette Pack",
       category: "Gag Gifts",
-      price: 1,
+      price: 29.97,
       thumbnailImgUrl: "/assets/thumbnails/Baguette_Pack_Thumbnail.jpg",
       ogImgUrl: "/assets/og/Baguette_Pack_Original.jpg",
       description:
@@ -130,7 +130,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Beard Hat",
       category: "Apparel",
-      price: 1,
+      price: 12.99,
       thumbnailImgUrl: "/assets/thumbnails/Beard_Hat_Thumbnail.jpg",
       ogImgUrl: "/assets/og/beard-hat.jpg",
       description:
@@ -139,7 +139,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Computer Privacy Hood",
       category: "Apparel",
-      price: 1,
+      price: 24.99,
       thumbnailImgUrl: "/assets/thumbnails/Computer_Privacy_Thumbnail.jpg",
       ogImgUrl: "/assets/og/Computer_Privacy.jpg",
       description:
@@ -148,7 +148,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Darth Vader BBQ Apron",
       category: "Star Wars",
-      price: 1,
+      price: 19.99,
       thumbnailImgUrl: "/assets/thumbnails/Darth_Vader_BBQ_Apron_Thumbnail.jpg",
       ogImgUrl: "/assets/og/Darth_Vader_BBQ_Apron.jpg",
       description:
@@ -157,7 +157,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Darth Vader Face Mask",
       category: "Star Wars",
-      price: 1,
+      price: 7.99,
       thumbnailImgUrl: "/assets/thumbnails/Darth_Vader_Face_Mask_Thumbnail.jpg",
       ogImgUrl: "/assets/og/Darth_Vader_Face_Mask.jpg",
       description:
@@ -166,7 +166,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Eye Drop Funnel",
       category: "Gag Gifts",
-      price: 1,
+      price: 4.99,
       thumbnailImgUrl: "/assets/thumbnails/Eyedrop_Funnel_Thumbnail.jpg",
       ogImgUrl: "/assets/og/eye-drop-funnel.jpg",
       description:
@@ -175,7 +175,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Finger Pants",
       category: "Gag Gifts",
-      price: 1,
+      price: 2.99,
       thumbnailImgUrl: "/assets/thumbnails/Finger_Pants_Thumbnail.jpg",
       ogImgUrl: "/assets/og/Finger_Pants.jpg",
       description:
@@ -184,7 +184,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Han Solo Icecube Tray",
       category: "Star Wars",
-      price: 1,
+      price: 7.99,
       thumbnailImgUrl: "/assets/thumbnails/Han_Solo_Icecube_Tray_Thumbnail.jpg",
       ogImgUrl: "/assets/og/Han_Solo_Icecube_Tray.jpg",
       description:
@@ -193,7 +193,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Hand Holder",
       category: "Culinary",
-      price: 1,
+      price: 9.99,
       thumbnailImgUrl: "/assets/thumbnails/Hand_Holder_Thumbnail.jpg",
       ogImgUrl: `/assets/og/Hand_Holder.jpg`,
       description:
@@ -202,7 +202,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Hand Glass",
       category: "Culinary",
-      price: 1,
+      price: 9.99,
       thumbnailImgUrl: "/assets/thumbnails/Handglass_Thumbnail.jpg",
       ogImgUrl: "/assets/og/hand-glass.jpg",
       description:
@@ -211,7 +211,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "It's A Nap! Pillowcase",
       category: "Star Wars",
-      price: 1,
+      price: 14.97,
       thumbnailImgUrl: "/assets/thumbnails/Its_A_Nap_Pillow_Case_Thumbnail.jpg",
       ogImgUrl: "/assets/og/Its_A_Nap_Pillow_Case.jpg",
       description:
@@ -220,7 +220,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Noodle Fan",
       category: "Culinary",
-      price: 1,
+      price: 24.99,
       thumbnailImgUrl: "/assets/thumbnails/Noodle_Fan_Thumbnail.jpg",
       ogImgUrl: "/assets/og/Noodle_Fan.jpg",
       description:
@@ -229,7 +229,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "Shoe Umbrella",
       category: "Apparel",
-      price: 1,
+      price: 8.99,
       thumbnailImgUrl: "/assets/thumbnails/Shoe_Umbrella_Thumbnail.jpg",
       ogImgUrl: "/assets/og/Shoe_Umbrella.jpg",
       description:
@@ -238,7 +238,7 @@ const syncAndSeed = async () => {
     Product.create({
       name: "T-Shirt Mask",
       category: "Apparel",
-      price: 1,
+      price: 19.99,
       thumbnailImgUrl: "/assets/thumbnails/Tshirt_Mask_Thumbnail.jpg",
       ogImgUrl: "/assets/og/Tshirt_Mask.jpg",
       description:

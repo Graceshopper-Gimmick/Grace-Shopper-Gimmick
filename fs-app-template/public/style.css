@@ -67,3 +67,7 @@ form div {
     background-size: cover;
     /* background-image: url('https://wallpapercave.com/wp/wp6428025.jpg'); */
 }
+
+.singleProduct {
+    background-color: rgb(254,206,0);
+}
