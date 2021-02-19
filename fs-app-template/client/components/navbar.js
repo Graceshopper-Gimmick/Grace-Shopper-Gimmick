@@ -95,6 +95,11 @@ const useStyles = makeStyles((theme) => ({
         }),
         marginLeft: 0,
     },
+
+    shoppingCart: {
+        paddingTop: '6px',
+        fontSize: '30px',
+    },
 }))
 
 const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
@@ -141,10 +146,12 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                     <div>
                         <nav>
                             {isLoggedIn ? (
-                                <div>
+                                <div id="login-div">
                                     {/* The navbar will show these links after you log in */}
                                     <Link to="/cart" id="shopping-cart">
-                                        <ShoppingCartIcon />
+                                        <ShoppingCartIcon
+                                            className={classes.shoppingCart}
+                                        />
                                     </Link>
                                     {isAdmin ? (
                                         <Link to="/admin">Admin</Link>
@@ -159,10 +166,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                                     {/* The navbar will show these links before you log in */}
                                     <Link to="/cart" id="shopping-cart">
                                         <ShoppingCartIcon
-                                            style={{
-                                                paddingTop: '6px',
-                                                fontSize: '30px',
-                                            }}
+                                            className={classes.shoppingCart}
                                         />
                                     </Link>
                                     <Button color="inherit" href="/login">
