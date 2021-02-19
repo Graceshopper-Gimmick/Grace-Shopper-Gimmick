@@ -9,8 +9,19 @@ export const Home = (props) => {
     const { email } = props
 
     return (
-        <div id="Home">
-            <h3>Come Get Yer Gimmicks, {email ? email : 'Guest'}!</h3>
+        <div id="Home" style={{ textAlign: 'center' }}>
+            <h3
+                style={{
+                    fontFamily: 'Bitter',
+                    backgroundColor: '#767ce8',
+                    marginTop: '0',
+                    marginBottom: '10px',
+                    position: 'relative',
+                    color: 'white',
+                }}
+            >
+                Come Get Yer Gimmicks, {email ? email : 'Guest'}!
+            </h3>
             <HomePageItems />
         </div>
     )

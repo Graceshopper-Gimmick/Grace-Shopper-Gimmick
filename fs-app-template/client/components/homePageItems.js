@@ -12,6 +12,7 @@ import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import AutoPlay from './Banner.js'
+import { green } from '@material-ui/core/colors'
 
 const styles = (theme) => ({
     homePageItemsContainer: {
@@ -51,6 +52,15 @@ const styles = (theme) => ({
         '&:hover': {
             boxShadow: '0 8px 18px 0 rgba(0,0,0,0.3)',
         },
+    },
+
+    formBackground: {
+        width: '100vw',
+        // backgroundColor: 'green',
+        display: 'flex',
+        justifyContent: 'flex-end',
+        paddingRight: '4.5rem',
+        background: 'linear-gradient(to right, #45B649, #DCE35B)',
     },
 
     formControl: {
@@ -105,28 +115,33 @@ class HomePageItems extends React.Component {
         return (
             <div>
                 <AutoPlay />
-                <FormControl variant="filled" className={classes.formControl}>
-                    <InputLabel htmlFor="filled-age-native-simple">
-                        Category
-                    </InputLabel>
-                    <Select
-                        native
-                        value={this.state.category}
-                        onChange={this.handleChange}
-                        inputProps={{
-                            id: 'filled-age-native-simple',
-                        }}
+                <div className={classes.formBackground}>
+                    <FormControl
+                        variant="filled"
+                        className={classes.formControl}
                     >
-                        <option aria-label="None" value="All">
-                            All
-                        </option>
-                        <option value="Culinary">Culinary</option>
-                        <option value="Home Decor">Home Decor</option>
-                        <option value="Star Wars">Star Wars</option>
-                        <option value="Gag Gifts">Gag Gifts</option>
-                        <option value="Apparel">Apparel</option>
-                    </Select>
-                </FormControl>
+                        <InputLabel htmlFor="filled-age-native-simple">
+                            Category
+                        </InputLabel>
+                        <Select
+                            native
+                            value={this.state.category}
+                            onChange={this.handleChange}
+                            inputProps={{
+                                id: 'filled-age-native-simple',
+                            }}
+                        >
+                            <option aria-label="None" value="All">
+                                All
+                            </option>
+                            <option value="Culinary">Culinary</option>
+                            <option value="Home Decor">Home Decor</option>
+                            <option value="Star Wars">Star Wars</option>
+                            <option value="Gag Gifts">Gag Gifts</option>
+                            <option value="Apparel">Apparel</option>
+                        </Select>
+                    </FormControl>
+                </div>
                 <div className={classes.homePageItemsContainer}>
                     {products.length ? (
                         products.map((product) => {

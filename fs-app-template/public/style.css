@@ -86,7 +86,6 @@ form div {
     font-size: 20px;
     color: white;
     -webkit-text-stroke: 1px black; /* width and color */
-    width: 100vw;
 }
 .slider > div {
     background-image: url('https://images.twinkl.co.uk/tr/image/upload/illustation/Girl-Laughing---French-Funny-People-Secondary.png');
@@ -98,4 +97,9 @@ form div {
 .itemTitle {
     color: 'white';
     -webkit-text-stroke: 1px black; /* width and color */
+}
+.banner {
+    width: 97.5vw;
+    /* display: flex; */
+    /* justify-content: center; */
 }
