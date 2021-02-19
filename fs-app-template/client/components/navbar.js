@@ -38,13 +38,12 @@ const useStyles = makeStyles((theme) => ({
     offset: theme.mixins.toolbar,
     root: {
         display: 'flex',
-        position: 'static',
+        // position: 'static',
+        // alignItems: 'unset',
     },
-    // toolbar:{
-    //     justifyContent:''
-    // },
+
     appBar: {
-        display: 'flex',
+        // display: 'flex',
         height: '72px',
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
@@ -144,7 +143,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                             {isLoggedIn ? (
                                 <div>
                                     {/* The navbar will show these links after you log in */}
-                                    <Link to="/cart">
+                                    <Link to="/cart" id="shopping-cart">
                                         <ShoppingCartIcon />
                                     </Link>
                                     {isAdmin ? (
@@ -158,8 +157,13 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                             ) : (
                                 <div className="navbuttons">
                                     {/* The navbar will show these links before you log in */}
-                                    <Link to="/cart">
-                                        <ShoppingCartIcon />
+                                    <Link to="/cart" id="shopping-cart">
+                                        <ShoppingCartIcon
+                                            style={{
+                                                paddingTop: '6px',
+                                                fontSize: '30px',
+                                            }}
+                                        />
                                     </Link>
                                     <Button color="inherit" href="/login">
                                         Login
@@ -197,17 +201,20 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                 </div>
                 <List>
                     {['Profile', 'Purchases'].map((text, index) => (
-
-                        <Link to={`/${text}`} key={index}> <ListItem button key={text} onClick={handleDrawerClose}> 
-                        <ListItemText primary={text} />
-                        </ListItem>
-
+                        <Link to={`/${text}`} key={index}>
+                            {' '}
+                            <ListItem
+                                button
+                                key={text}
+                                onClick={handleDrawerClose}
+                            >
+                                <ListItemText primary={text} />
+                            </ListItem>
                         </Link>
                     ))}
                 </List>
             </Drawer>
         </div>
-
     )
 }
 

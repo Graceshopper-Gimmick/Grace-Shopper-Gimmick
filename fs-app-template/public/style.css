@@ -27,6 +27,7 @@ form div {
     font-family: 'Luckiest Guy', cursive;
     color: white;
     -webkit-text-stroke: 1px black; /* width and color */
+    flex-grow: 4;
 }
 
 #Routes {
@@ -34,13 +35,23 @@ form div {
     height: calc(100%-72px);
 }
 
-/* #App {
-    display: flex;
-    flex-direction: column;
-} */
-
 .toolbar {
-    justify-content: space-between;
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+#toolbar {
+    align-items: unset;
+    display: flex;
+}
+
+#toolbar > h6 {
+    flex-grow: 2.5;
+    text-align: center;
+}
+#toolbar > button {
+    flex-grow: 1;
+    justify-content: left;
 }
 
 .ogImg {
