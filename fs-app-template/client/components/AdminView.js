@@ -3,11 +3,18 @@ import { connect } from 'react-redux'
 import { fetchProducts } from '../store'
 import { removeProduct } from '../store/cart'
 import ProductForm from './ProductForm'
-import axios from 'axios'
 import {Link} from 'react-router-dom'
-import UpdateProduct from './UpdateProduct'
+import { Button } from '@material-ui/core'
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
-
+const useStyles = makeStyles((theme) => ({
+    button: {
+      margin: theme.spacing(1),
+    },
+    
+  }));
 
 
 class AdminView extends React.Component {
@@ -15,12 +22,13 @@ class AdminView extends React.Component {
         await this.props.getProducts();
     }
     
+
     render() {
         const products = this.props.homepageitems;
         const { removeProduct, updateProduct } = this.props
-        const { history } = this.props
+        const { history, classes, theme } = this.props
         return (
-            <div>             
+            <div id="adminView">             
                 <ProductForm history={history} />
                 {products.length ? (
                     products.map(product => {
@@ -28,11 +36,21 @@ class AdminView extends React.Component {
                             <div key={product.id}>
                                 <h2>{product.name}</h2>
                                 <img src={product.thumbnailImgUrl}></img>
-                                <p>{product.price}</p>
-                                <button onClick={() =>
-                                        removeProduct(product.id)
-                                    }>x</button>
-                                <button><Link to={`/admin/update/${product.id}`}>Edit Item</Link></button>
+                                <h3>{`$ ${product.price}`}</h3>
+                                <Button variant="contained"
+                                        color="secondary"
+                                        className={classes.button}
+                                        startIcon={<DeleteIcon />}
+                                onClick={() =>
+                                removeProduct(product.id)}>
+                                    Delete
+                                </Button>
+
+                                <Button                             
+                                    variant="contained"                                
+                                    className={classes.button}
+                                    startIcon={<EditIcon />}
+                                ><Link to={`/admin/update/${product.id}`}>Edit Item</Link></Button>
                             </div>
                         )
                     })
@@ -54,4 +72,4 @@ const mapDispatch = (dispatch) => {
     }
 }
 
-export default connect(mapState, mapDispatch)(AdminView)
+export default withStyles(useStyles, {withTheme:true})(connect(mapState, mapDispatch)(AdminView))

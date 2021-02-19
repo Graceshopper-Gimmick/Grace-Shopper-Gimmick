@@ -1,8 +1,35 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
-import { FormControl, Input } from '@material-ui/core';
-import { Button } from '@material-ui/core'
+import { TextField, Button } from '@material-ui/core';
+import SaveIcon from '@material-ui/icons/Save'
+import Paper from '@material-ui/core/Paper'
+import { withStyles } from '@material-ui/core/styles'
+
+const styles = (theme) => ({
+  productCard: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+      display: 'flex',
+      flexDirection: 'column',
+      maxWidth: 300,
+      alignItems: 'center',
+      textAlign: 'center',
+  },
+
+  centered: {
+      width: '50vw',
+      height: '82vh',
+
+      position: 'absolute',
+      top: '70px',
+      bottom: '0',
+      left: '0',
+      right: '0',
+
+      margin: 'auto',
+  },
+})
 
 class UpdateProduct extends React.Component{
 constructor(props){
@@ -34,35 +61,20 @@ this.setState({
   render(){
     const {submit,handleChange} = this
     const {name,price,quantity,ogImgUrl,thumbnailImgUrl,category} = this.state
+    const { classes, theme } = this.props
   return (
-      <div>
-    <form onSubmit={submit}>
-      <div>
-        <label>Product Name</label>
-        <Input name='name' value={name} onChange={(evt)=>handleChange(evt)}  inputProps={{ 'aria-label': 'description' }}/>
-      </div>
-      <div>
-        <label>Product Price</label>
-        <Input name='price' value={price} onChange={(evt)=>handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
-      </div>
-      <div>
-        <label>Product Category</label>
-        <Input name='category' value={category} onChange={(evt)=>handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
-      </div>
-      <div>
-        <label>Product Original Image URL</label>
-        <Input name='ogImgUrl' value={ogImgUrl} onChange={(evt)=>handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
-      </div>
-      <div>
-        <label>Product Thumbnail URL</label>
-        <Input name='thumbnailImgUrl' value={thumbnailImgUrl} onChange={(evt)=>handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
-      </div>
-      <div>
-        <label>Product Quantity</label>
-        <Input name='quantity' value={quantity} onChange={(evt)=>handleChange(evt)} inputProps={{ 'aria-label': 'description' }}/>
-      </div>
-      <Button color="primary" variant="contained" type="submit">Update </Button>
+      <div id="updateProduct">
+        <Paper style={{overflow:"scroll"}} className={`${classes.productCard} ${classes.centered}`}>
+    <form onSubmit={submit}>        
+        <TextField style={{ marginTop:'2rem' }} label="Product Name" id="outlined-basic" variant="outlined" name="name" value={name} onChange={(evt)=>handleChange(evt)} />
+        <TextField label="Product Price" id="outlined-basic" variant="outlined" name='price' value={price} onChange={(evt)=>handleChange(evt)} />
+        <TextField label="Product Category" id="outlined-basic" variant="outlined" name='category' value={category} onChange={(evt)=>handleChange(evt)} />
+        <TextField label="Large Image" id="outlined-basic" variant="outlined" name='ogImgUrl' value={ogImgUrl} onChange={(evt)=>handleChange(evt)} />
+        <TextField label="Small Image" id="outlined-basic" variant="outlined" name='thumbnailImgUrl' value={thumbnailImgUrl} onChange={(evt)=>handleChange(evt)} />
+        <TextField label="Product Quantity" id="outlined-basic" variant="outlined" name='quantity' value={quantity} onChange={(evt)=>handleChange(evt)} />
+        <Button color="primary" variant="contained" type="submit">Update </Button>
     </form>
+    </Paper>
     </div>
   )
   }
@@ -76,5 +88,4 @@ const mapState = (state,otherProps) => {
     }
 }
 
-export default connect(mapState)(UpdateProduct)
-
+export default withStyles(styles, { withTheme: true })(connect(mapState)(UpdateProduct))
