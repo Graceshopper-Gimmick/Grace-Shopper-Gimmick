@@ -143,7 +143,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
                         <p className="navbar-title">
-                            Gimme' Your Money Gimmicks
+                            Gimme' Yo Money Gimmicks
                         </p>
                     </Typography>
                     <div>
@@ -151,15 +151,16 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                             {isLoggedIn ? (
                                 <div id="login-div" className = {classes.navButtons}>
                                     {/* The navbar will show these links after you log in */}
-                                    <Button color = 'inherit' href="/cart" id="shopping-cart">
+                                    <Link style={{color:'white',textDecoration:'none'}} to='/cart'><Button color ='inherit' id="shopping-cart">
                                         <ShoppingCartIcon
                                             className={classes.shoppingCart}
                                         />
                                     </Button>
+                                    </Link>
                                     {isAdmin ? (
-                                        <Link to ="/admin" style={{color:'white', textDecoration:'none'}}><Button color = 'inherit' href="/admin">Admin</Button></Link>
+                                        <Link to ="/admin" style={{color:'white', textDecoration:'none'}}><Button color = 'inherit'>Admin</Button></Link>
                                     ) : null}
-                                    <Button color = 'inherit' href="/home">Home</Button>
+                                    <Link style={{color:'white',textDecoration:'none'}} to="/home"><Button color = 'inherit'>Home</Button></Link>
                                     <Link to = "/guest" style={{color:'white',textDecoration:'none'}}><Button color = 'inherit' onClick={handleClick}>
                                         Logout
                                     </Button>
@@ -168,21 +169,28 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                             ) : (
                                 <div className = {classes.navButtons}>
                                     {/* The navbar will show these links before you log in */}
-                                    <Button color = 'inherit' href="/cart" id="shopping-cart">
-                                        <ShoppingCartIcon
-                                            className={classes.shoppingCart}
-                                        />
-                                    </Button>
-                                    <Button color="inherit" href="/login">
+                                    <Link style={{color:'white',textDecoration:'none'}} to="/cart" >
+                                        <Button color = 'inherit' id="shopping-cart">
+                                            <ShoppingCartIcon
+                                                className={classes.shoppingCart}
+                                            />
+                                        </Button>
+                                    </Link>
+                                    <Link style={{color:'white',textDecoration:'none'}} to='/login'>
+                                    <Button color="inherit">
                                         Login
                                     </Button>
-                                    <Button color="inherit" href="/signup">
+                                    </Link>
+                                    <Link style={{color:'white',textDecoration:'none'}} to="/signup">
+                                    <Button color="inherit">
                                         Sign Up
                                     </Button>
-
-                                    <Button color="inherit" href="/home">
+                                    </Link>
+                                    <Link style={{color:'white',textDecoration:'none'}} to="/home">
+                                    <Button color="inherit">
                                         Home
                                     </Button>
+                                    </Link>
                                 </div>
                             )}
                         </nav>
