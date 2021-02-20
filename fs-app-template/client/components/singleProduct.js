@@ -79,7 +79,7 @@ export class SingleProduct extends React.Component {
               <h2>Category: </h2>
               <h3>{product.category}</h3>
               <br />
-              <h3>Price: {product.price}</h3>
+              <h3>Price: {`$ ${product.price}`}</h3>
               <Button
                 variant="outlined"
                 color="primary"
