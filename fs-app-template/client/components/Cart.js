@@ -311,7 +311,7 @@ class Cart extends React.Component {
                         size="large"
                         variant="contained"
                         className={classes.submit}
-                        //href="/checkout"
+                        href="/checkout"
                     >
                         Submit
                     </Button>

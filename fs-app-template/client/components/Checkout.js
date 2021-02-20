@@ -7,62 +7,55 @@ import axios from 'axios'
 
 import InputLabel from '@material-ui/core/InputLabel'
 import { withStyles } from '@material-ui/core/styles'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart'
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
+import { Paper } from '@material-ui/core'
 
 const styles = (theme) => ({
-    cartFormControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
+    checkIcon: {
+        fontSize: '100px',
+        color: 'green',
+    },
+
+    thankYou: {
+        width: '50vw',
+        height: '75vh',
         display: 'flex',
-        maxWidth: 200,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: '15vh',
     },
 
-    imgThumbnail: {
-        maxWidth: 160,
-        maxHeight: 160,
-    },
-
-    quantity: {
-        maxWidth: 100,
+    checkoutContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        height: '100vh',
+        width: '100vw',
+        backgroundColor: 'rgb(254, 206, 0)',
     },
 })
 
 class Checkout extends React.Component {
-    componentDidMount() {
-        // this.props.getCartItems()
-    }
-
-    constructor(props) {
-        super(props)
-        // this.state = {
-        //     quantity: 1,
-        // }
-        // this.handleChange = this.handleChange.bind(this)
-    }
-
-    // handleChange(ev) {
-    //     const change = {}
-    //     change[ev.target.name] = ev.target.value //targets Select Target By Name to change value
-    //     this.setState(change)
-    //     console.log(change)
-    // }
-
-    // TODO : MAKE SURE CART COMPONENT RENDERS ON REFRESH
-
     render() {
-        // const { classes, theme } = this.props
-        // const { quantity } = this.state
-        // const { handleChange } = this
-
-        // const cartProducts = this.props.cart.length
-        //     ? this.props.cart[0].orders
-        //     : []
-
-        return <h1>Thank you for your purchase</h1>
+        const { classes, theme } = this.props
+        return (
+            <div className={classes.checkoutContainer}>
+                <Paper className={classes.thankYou}>
+                    <CheckCircleOutlineIcon className={classes.checkIcon} />
+                    <h1 style={{ textAlign: 'center' }}>
+                        Thank you for your purchase
+                    </h1>
+                    <h2>Yoda approves this purchase...</h2>
+                    <Paper>
+                        <img
+                            src="assets/background-imgs/yoda-chanel-centered.jpeg"
+                            width="200"
+                            height="200"
+                        ></img>
+                    </Paper>
+                </Paper>
+            </div>
+        )
     }
 }
 
