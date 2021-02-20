@@ -42,14 +42,16 @@ class Guest extends React.Component {
             <div id="guest">
                 <Paper className={`${classes.guestCard} ${classes.centered}`}>
                     <h1>Welcome</h1>
-                    <Link to="/home">
+                    {/* <Link> */}
                         <Button
+                        href = '/home'
                             onClick={() => {
                                 window.localStorage.setItem('user', 'guest')
                             }}
+                            
                         > Continue as Guest
                         </Button>
-                    </Link>
+                    {/* </Link> */}
                     <Link to="/signup">
                         <Button>
                             Sign Up

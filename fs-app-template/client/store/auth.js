@@ -37,6 +37,7 @@ export const me = () => async dispatch => {
     return dispatch(setAuth(res.data))
   }
   if(window.localStorage.getItem('user')==='guest'){
+    console.log('HERE !')
     const {guest,cart} = (await axios.post('/api/users/createguest',{})).data
     window.localStorage.setItem('guestId',guest.id.toString())
     window.localStorage.setItem('cartId',cart.id.toString())
