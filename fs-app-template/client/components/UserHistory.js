@@ -89,7 +89,7 @@ class UserHistory extends React.Component {
         console.log('CART',cartArray)    
         return (
             <div id="userHistory">    
-                
+                <div id='historyContainer'>
                 <h1 className={classes.heading}>PURCHASE HISTORY</h1>
                 
                  {cartArray.length ? cartArray.map(cart => {
@@ -111,7 +111,8 @@ class UserHistory extends React.Component {
                              )
                          })
                      )
-                 }) : 'no history'}          
+                 }) : 'no history'}   
+                 </div>       
             </div>
         )
     }
