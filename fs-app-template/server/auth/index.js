@@ -1,8 +1,11 @@
 const router = require('express').Router()
+
+const stripe = require("stripe")("sk_test_51IMjVXJQEuzpjUNS3dj78SnPEDgcZ0eFCCX8bHgqVSyrHX7sPSD9OOP8MfeoHGHXpBj8dMOOsMEih0xTKkzzCZpp00sDGpecB1")
 const { models: {User,Cart }} = require('../db')
 module.exports = router
 const express = require('express')
 router.use(express.json())
+
 
 router.post('/login', async (req, res, next) => {
   try {
@@ -10,6 +13,33 @@ router.post('/login', async (req, res, next) => {
   } catch (err) {
     next(err)
   }
+})
+
+router.post("/payment", async(req, res) => {
+  console.log("REQUEST", req.body);
+  let error;
+  let status;
+  try{
+  const { token } = req.body;
+  const customer = await stripe.customers.create({
+    email: token.email,
+    source: token.id
+  })
+  const charge = await stripe.charges.create({
+      amount: 10 * 100,
+      currency: 'usd',
+      customer: customer.id,
+      receipt_email: token.email           
+    })
+    console.log("CHARGE:", { charge } );
+    status = "success";
+  } catch(error){
+    console.log("ERROR:", error);
+    status = "failure"
+  }
+
+  res.json({ error, status })
+
 })
 
 //github callback if using github OAUTH
