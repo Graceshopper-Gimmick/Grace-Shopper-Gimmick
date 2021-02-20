@@ -5,6 +5,7 @@ import { TextField, Button } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save'
 import Paper from '@material-ui/core/Paper'
 import { withStyles } from '@material-ui/core/styles'
+import { me } from '../store';
 
 const styles = (theme) => ({
   profileCard: {
@@ -52,6 +53,7 @@ async submit(evt){
     evt.preventDefault();
     const userId = this.props.auth.id;
     const user = await axios.put(`/api/users`, {...this.state, userId });
+    await this.props.updateProfile()
     this.props.history.push('/home');
   }
 
@@ -95,6 +97,12 @@ this.setState({
 
 const mapState = (state) => state
 
+const mapDispatch = (dispatch) => {
+  return {
+      updateProfile: () => dispatch(me())
+  }
+}
 
 
-export default withStyles(styles, { withTheme: true })(connect(mapState)(EditProfile))
+
+export default withStyles(styles, { withTheme: true })(connect(mapState,mapDispatch)(EditProfile))

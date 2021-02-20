@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
+import { Link } from 'react-router-dom'
 
 const styles = (theme) => ({
     guestCard: {
@@ -41,19 +42,24 @@ class Guest extends React.Component {
             <div id="guest">
                 <Paper className={`${classes.guestCard} ${classes.centered}`}>
                     <h1>Welcome</h1>
-                    <Button
-                        onClick={() => {
-                            window.localStorage.setItem('user', 'guest')
-                        }}
-                    >
-                        <a href="/home">Continue as Guest</a>
-                    </Button>
+                    <Link to="/home">
+                        <Button
+                            onClick={() => {
+                                window.localStorage.setItem('user', 'guest')
+                            }}
+                        > Continue as Guest
+                        </Button>
+                    </Link>
+                    <Link to="/signup">
+                        <Button>
+                            Sign Up
+                        </Button>
+                    </Link>
+                    <Link to="/login">
                     <Button>
-                        <a href="/signup">Sign Up</a>
+                        Login
                     </Button>
-                    <Button>
-                        <a href="login">Login</a>
-                    </Button>
+                    </Link>
                 </Paper>
             </div>
         )

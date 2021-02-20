@@ -13,14 +13,14 @@ import Paper from '@material-ui/core/Paper'
 const useStyles = makeStyles((theme) => ({
     root: {
         margin: theme.spacing(1),
-        minWidth: 100,
         display: 'flex',
         flexDirection: 'column',
-        maxWidth: 200,
+        maxWidth: 300,
         alignItems: 'center',
         textAlign: 'center',
         flexWrap: 'wrap',
         justifyContent: 'center',
+        minWidth: 120,
     },
 
     centered: {
@@ -34,6 +34,12 @@ const useStyles = makeStyles((theme) => ({
         margin: 'auto',
         padding: '1rem',
     },
+
+    formContainer: {
+        display: 'flex',
+        flexDirection : 'column',
+        alignItems : 'center'
+    }
 }))
 
 export default function AuthForm(props) {
@@ -43,7 +49,7 @@ export default function AuthForm(props) {
     return (
         <div id="login">
             <Paper className={`${classes.root} ${classes.centered}`}>
-                <form onSubmit={handleSubmit} name={name}>
+                <form onSubmit={handleSubmit} name={name} className={classes.formContainer}>
                     <TextField
                         id="standard-basic"
                         label="Email"
@@ -63,10 +69,10 @@ export default function AuthForm(props) {
                     {error && error.response && (
                         <div> {error.response.data} </div>
                     )}
-                </form>
-                {window.githubURL && (
+                    {window.githubURL && (
                     <a href={window.githubURL}>Login / Register Via Github </a>
                 )}
+                </form>
             </Paper>
         </div>
     )
