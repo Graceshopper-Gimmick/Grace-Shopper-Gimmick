@@ -21,11 +21,12 @@ const styles = (theme) => ({
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-evenly',
+        backgroundColor: 'rgb(254, 206, 0)'
 
         // background: #DCE35B;  /* fallback for old browsers */
         // background: -webkit-linear-gradient(to right, #45B649, #DCE35B);  /* Chrome 10-25, Safari 5.1-6 */
-        background:
-            'linear-gradient(to right, #45B649, #DCE35B)' /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */,
+        //background:
+        //   'linear-gradient(to right, #45B649, #DCE35B)' /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */,
     },
 
     myCustomClass: {
@@ -40,6 +41,7 @@ const styles = (theme) => ({
         flexWrap: 'wrap',
         fontFamily: 'Bitter',
         minWidth: 250,
+        backgroundColor:'#ffac1c'
     },
 
     imgThumbnail: {
@@ -60,7 +62,8 @@ const styles = (theme) => ({
         display: 'flex',
         justifyContent: 'flex-end',
         paddingRight: '4.5rem',
-        background: 'linear-gradient(to right, #45B649, #DCE35B)',
+        backgroundColor: 'rgb(254, 206, 0)'
+        //background: 'linear-gradient(to right, #45B649, #DCE35B)',
     },
 
     formControl: {
@@ -155,6 +158,7 @@ class HomePageItems extends React.Component {
                                     <Link
                                         className={classes.productLink}
                                         to={`/home/${product.id}`}
+                                        style={{textDecoration:'none'}}
                                     >
                                         <img
                                             className={classes.imgThumbnail}
@@ -162,8 +166,8 @@ class HomePageItems extends React.Component {
                                             border={'3px'}
                                         ></img>
 
-                                        <h2> {product.name}</h2>
-                                        <p>${product.price}</p>
+                                        <h2 style={{fontFamily:'Luckiest Guy',color:'white',WebkitTextStroke:'1px black'}}> {product.name}</h2>
+                                        <p style={{fontFamily:'Luckiest Guy',fontSize:'20px',color:'black'}}>${product.price}</p>
                                     </Link>
                                     <Button
                                         variant="outlined"
