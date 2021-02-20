@@ -275,11 +275,11 @@ const syncAndSeed = async () => {
   //     through: { Order: { productId: 1, cartId: 1 } },
   // })
 
-  const order = await Promise.all([
-    Order.create({ cartId: 1, productId: 5, quantity: 2 }), // active cart order
-    Order.create({ cartId: 2, productId: 6, quantity: 1 }), // checked out cart order
-    Order.create({ cartId: 2, productId: 4, quantity: 3 }), // checked out cart order // checked out cart order
-  ]);
+  // const order = await Promise.all([
+  //   Order.create({ cartId: 1, productId: 5, quantity: 2 }), // active cart order
+  //   Order.create({ cartId: 2, productId: 6, quantity: 1 }), // checked out cart order
+  //   Order.create({ cartId: 2, productId: 4, quantity: 3 }), // checked out cart order // checked out cart order
+  // ]);
   return {
     users: {
       cody,
