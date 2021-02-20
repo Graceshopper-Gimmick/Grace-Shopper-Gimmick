@@ -143,7 +143,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
                         <p className="navbar-title">
-                            Gimme' Your Money Gimmicks
+                            Gimme' Yo Money Gimmicks
                         </p>
                     </Typography>
                     <div>

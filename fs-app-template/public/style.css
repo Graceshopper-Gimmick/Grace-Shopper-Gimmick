@@ -80,13 +80,13 @@ form div {
     background-color: rgb(254, 206, 0);
 }
 #userHistory {
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     background-color: rgb(254, 206, 0)
 }
 #cart{
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     background-color: rgb(254, 206, 0)
 }
 
