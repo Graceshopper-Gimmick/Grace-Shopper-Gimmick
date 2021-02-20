@@ -32,7 +32,8 @@ const styles = (theme) => ({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#fcd734',
+        //backgroundColor: '#fcd734',
+        backgroundColor: 'white',
         //border:'solid 10px #0d47a1',
     },
 
@@ -178,7 +179,7 @@ class Cart extends React.Component {
         const userId = this.props.auth ? this.props.auth.id : 0
 
         return (
-            <FormControl>
+            <FormControl id='cart'>
                 <div>
                     <h1 className={classes.heading}>CART ITEMS</h1>
                 </div>
