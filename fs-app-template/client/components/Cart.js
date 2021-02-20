@@ -329,7 +329,7 @@ class Cart extends React.Component {
                     amount={this.state.cartTotal ? this.state.cartTotal.toFixed(2) * 100 : 0}
                     >
                     </StripeCheckout>
-                    <Button
+                    {/* <Button
                         onClick={() => {
                             //console.log('CARTID', cartId)
                             this.props.submitCart(cartId)
@@ -345,7 +345,7 @@ class Cart extends React.Component {
 
                     >
                         Submit
-                    </Button>
+                    </Button> */}
                 </div>
             </FormControl>
         )
