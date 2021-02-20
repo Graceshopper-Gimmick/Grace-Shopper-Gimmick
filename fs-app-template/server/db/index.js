@@ -28,7 +28,7 @@ const syncAndSeed = async () => {
     User.create({ email: "monil2912@test.com", password: "123", firstName: "Monil", lastName: "Goklani", address: "2281 Meadow View Drive", state: "Texas" }),
     User.create({ email: "Msze400@gmail.com", password: "123", firstName: "Matthew", lastName: "Sze", address: "3020 Simpson Street", state: "Illinois" }),
     User.create({
-      email: "arwindersinghh@gmail.com",
+      email: "arwindersingh@gmail.com",
       password: "123",
       isAdmin: true,
       firstName: "Arwinder",
