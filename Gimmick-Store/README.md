@@ -1,5 +1,7 @@
 # Grace-Shopper-Gimmick
 
+[Click this to see the deployed website](https://grace-shopper-gimmicks.herokuapp.com/)
+
 Purchase unnecessary goods to kill your boredom !
 
 Installation:
