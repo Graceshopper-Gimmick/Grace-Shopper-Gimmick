@@ -1,6 +1,6 @@
 # Grace-Shopper-Gimmick
 
-[Click this to see the deployed website](https://grace-shopper-gimmicks.herokuapp.com/)
+[Click this to see the deployed website](https://gimmicks.onrender.com/)
 
 Purchase unnecessary goods to kill your boredom !
 
